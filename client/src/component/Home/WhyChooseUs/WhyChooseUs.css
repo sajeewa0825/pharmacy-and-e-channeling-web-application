@@ -1,0 +1,12 @@
+.WhyChoosUsCardIMG {
+  width: 70px;
+  height: 70px;
+}
+.WhyChoosUsCard {
+  border-radius: 10px 20px 10px 20px;
+  transition: transform 300ms;
+  border: px solid #5089fd;
+}
+.WhyChoosUsCard:hover {
+  transform: translateY(-7px);
+}

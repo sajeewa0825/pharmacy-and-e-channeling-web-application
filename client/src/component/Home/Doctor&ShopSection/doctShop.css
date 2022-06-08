@@ -1,0 +1,56 @@
+.DoctShopSec {
+  border: 2px solid #5089fd;
+  border-radius: 10px;
+  padding: 10px;
+}
+.btn.DocPhamBtn1 {
+  background-color: #5089fd;
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+}
+.DocPharImg {
+  width: 400px;
+  height: 205px;
+}
+.DoctorPharmacySection {
+  display: flex;
+}
+.DocPharText {
+  font-size: 15px;
+  text-align: center;
+}
+.DoctShopSecDiv {
+  border-right: 1px solid #5089fd;
+}
+@media only screen and (max-width: 576px) {
+  .DocPharImg {
+    width: 280px;
+    height: 145px;
+  }
+  .DoctorPharmacySection {
+    display: block;
+  }
+  .DoctShopSec {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  .DoctShopSecDiv {
+    border-right: none;
+    border-bottom: 1px solid #5089fd;
+  }
+  .btn.DocPhamBtn1 {
+    background-color: #5089fd;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    color: white;
+    font-weight: bold;
+    font-size: 10px;
+  }
+}

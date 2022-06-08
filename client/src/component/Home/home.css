@@ -1,0 +1,42 @@
+.DetailCard {
+  font-size: 80px;
+  color: #5089fd;
+  transition: transform 300ms;
+}
+.DetailCard:hover {
+  transform: translateY(-6px);
+}
+.textCard {
+  display: inline-flex;
+  margin-top: 30px;
+  font-size: 15px;
+  color: lightslategrey;
+  display: inline;
+}
+.h5Text {
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
+}
+.FPSection1 {
+  background-color: rgb(244, 244, 244);
+  padding-top: 50px;
+  padding-bottom: 80px;
+}
+
+@media only screen and (max-width: 576px) {
+  .DetailCard {
+    font-size: 40px;
+  }
+  .textCard {
+    margin-top: 15px;
+    font-size: 9px;
+  }
+  .h5Text {
+    font-weight: bold;
+    font-size: 10px;
+  }
+  .cardD {
+    justify-content: center;
+  }
+}
