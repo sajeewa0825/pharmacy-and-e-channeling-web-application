@@ -4,56 +4,62 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
+import { connect } from 'react-redux';
 
-const products = [
-  {
-    name:'abcf',
-    price: '$9.99',
-  }
-];
+
 
 const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
-const payments = [
+const datas = [
   { name: 'Card type', detail: 'Visa' },
   { name: 'Card holder', detail: 'Mr John Smith' },
   { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
   { name: 'Expiry date', detail: '04/2024' },
 ];
 
-export default function Review() {
+function Review(props) {
+  let newDate = new Date()
+  let date = newDate.getDate();
+  let month = newDate.getMonth() + 1;
+  let year = newDate.getFullYear();
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-      Appointment summary
+        Appointment summary
       </Typography>
-      <List disablePadding>
-        {products.map((product) => (
-          <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
-            <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant="body2">{product.price}</Typography>
-          </ListItem>
-        ))}
-
-        <ListItem sx={{ py: 1, px: 0 }}>
-          <ListItemText primary="Total" />
-          <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-            $34.06
-          </Typography>
-        </ListItem>
-      </List>
       <Grid container spacing={2}>
         <Grid item container direction="column" xs={12} sm={6}>
-          <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-            Payment details
-          </Typography>
           <Grid container>
-            {payments.map((payment) => (
-              <React.Fragment key={payment.name}>
+            {props.AddressForm.map((data) => (
+              <React.Fragment key={data.Id}>
                 <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.name}</Typography>
+                  <Typography gutterBottom>Doctor Name</Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.detail}</Typography>
+                  <Typography gutterBottom>{data.Dr_name}</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>Patient Name</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{data.F_name}</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>Select Time</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{data.Time}</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>Date</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>{date +"/"+month+"/"+year}</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>Total</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography gutterBottom>Rs. {data.Total_bill}</Typography>
                 </Grid>
               </React.Fragment>
             ))}
@@ -63,3 +69,11 @@ export default function Review() {
     </React.Fragment>
   );
 }
+
+function mapStateToProps(state) {
+  return {
+    AddressForm: state.AddressForm
+  }
+}
+
+export default connect(mapStateToProps)(Review)

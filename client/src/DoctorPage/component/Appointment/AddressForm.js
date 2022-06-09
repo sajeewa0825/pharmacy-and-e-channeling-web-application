@@ -1,13 +1,39 @@
-import * as React from 'react';
+import React, { useState } from 'react'
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Autocomplete from '@mui/material/Autocomplete';
+import {AddressFormSend} from "../../../actions/AddressFormActions"
+import { bindActionCreators } from 'redux';
+import {connect} from 'react-redux'
+import { emphasize } from '@mui/material';
 
-export default function AddressForm() {
-    return (
+function AddressForm(props) {
+
+    let [Dname,SetDname] = useState("");
+    let [Time,SetTime] = useState("");
+    let [Fname,SetFname] = useState("");
+    let [Lname,SetLname] = useState("");
+    let [address,Setaddres] = useState("");
+    let [id,Setid] = useState("");
+    let [Email,SetEmail] = useState("");
+    let [Pno,SetPno] = useState("");
+
+    const data ={
+        Dname,
+        Time,
+        Fname,
+        Lname,
+        address,
+        id,
+        Email,
+        Pno
+    }
+
+
+    return(
         <React.Fragment>
             <Typography variant="h6" gutterBottom>
                 Appointment
@@ -19,7 +45,8 @@ export default function AddressForm() {
                         disablePortal
                         id="combo-box-demo"
                         options={doctor}
-                        renderInput={(params) => <TextField {...params} label="Doctor" />}
+                        onChange={(event, value) => SetDname(value.label)}
+                        renderInput={(params) => <TextField {...params} label="Doctor"  />}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -28,7 +55,8 @@ export default function AddressForm() {
                         disablePortal
                         id="combo-box-demo"
                         options={time}
-                        renderInput={(params) => <TextField {...params} label="Select Time" />}
+                        onChange={(event, value) => SetTime(value.label)}
+                        renderInput={(params) => <TextField {...params} label="Select Time" onChange={ (e) =>{ SetTime(e.target.value) }} />}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -40,6 +68,7 @@ export default function AddressForm() {
                         fullWidth
                         autoComplete="given-name"
                         variant="standard"
+                        onChange={ (e) =>{ SetFname(e.target.value) }}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -51,6 +80,7 @@ export default function AddressForm() {
                         fullWidth
                         autoComplete="family-name"
                         variant="standard"
+                        onChange={ (e) =>{ SetLname(e.target.value) }}
                     />
                 </Grid>
 
@@ -63,6 +93,7 @@ export default function AddressForm() {
                         fullWidth
                         autoComplete="shipping address-line1"
                         variant="standard"
+                        onChange={ (e) =>{ Setaddres(e.target.value) }}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -75,6 +106,7 @@ export default function AddressForm() {
                         fullWidth
                         autoComplete="Email"
                         variant="standard"
+                        onChange={ (e) =>{ Setid(e.target.value) }}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -87,6 +119,7 @@ export default function AddressForm() {
                         fullWidth
                         autoComplete="Email"
                         variant="standard"
+                        onChange={ (e) =>{ SetEmail(e.target.value) }}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -96,18 +129,27 @@ export default function AddressForm() {
                         label="Phone number"
                         fullWidth
                         variant="standard"
+                        onChange={ (e) =>{ SetPno(e.target.value) }}
                     />
                 </Grid>
                 <Grid item xs={12}>
                     <FormControlLabel
-                        control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
+                        control={<Checkbox color="secondary" name="saveAddress" value="yes" onClick={() => props.AddressFormSend(data) }/>}
                         label="Use this email address for payment details"
                     />
+                    
                 </Grid>
             </Grid>
         </React.Fragment>
     );
 }
+
+
+function matchDispatchToProps(dispatch){
+    return bindActionCreators({AddressFormSend:AddressFormSend},dispatch)
+}
+
+export default connect(null,matchDispatchToProps)(AddressForm)
 
 const doctor = [
     { label: "Dr abcd" },
