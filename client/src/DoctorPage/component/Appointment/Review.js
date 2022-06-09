@@ -7,15 +7,6 @@ import Grid from '@mui/material/Grid';
 import { connect } from 'react-redux';
 
 
-
-const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
-const datas = [
-  { name: 'Card type', detail: 'Visa' },
-  { name: 'Card holder', detail: 'Mr John Smith' },
-  { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
-  { name: 'Expiry date', detail: '04/2024' },
-];
-
 function Review(props) {
   let newDate = new Date()
   let date = newDate.getDate();
