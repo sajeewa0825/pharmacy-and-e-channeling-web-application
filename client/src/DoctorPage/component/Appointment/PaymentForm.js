@@ -2,10 +2,43 @@ import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+import { connect } from 'react-redux';
+import axios from 'axios'
+import Button from '@mui/material/Button';
 
-export default function PaymentForm() {
+
+function PaymentForm(props) {
+
+  const sendData = (e) => {
+    e.preventDefault();
+    let Dr_name = props.AddressForm[0].Dr_name
+    let F_name = props.AddressForm[0].F_name
+    let L_name = props.AddressForm[0].L_name
+    let Time = props.AddressForm[0].Time
+    let Id = props.AddressForm[0].Id
+    let Email = props.AddressForm[0].Email
+    let P_no = props.AddressForm[0].P_no
+    let Address = props.AddressForm[0].Address
+    let Total_bill = props.AddressForm[0].Total_bill
+
+    let newAppointment = {
+      Dr_name,
+      F_name,
+      L_name,
+      Time,
+      Id,
+      Email,
+      P_no,
+      Address,
+      Total_bill
+    }
+    axios.post("http://localhost:8080/doctor/addappointment", newAppointment).then(() => {
+      console.log("succes");
+      alert("Payed!  This is a success alert")
+    }).catch((err) => {
+      alert(err)
+    })
+  }
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -54,12 +87,19 @@ export default function PaymentForm() {
           />
         </Grid>
         <Grid item xs={12}>
-          <FormControlLabel
-            control={<Checkbox color="secondary" name="saveCard" value="yes" />}
-            label="Remember credit card details for next time"
-          />
+          <Button sx={{ mt: 3, ml: 1 }} variant="contained" onClick={sendData.bind(this)}>
+            Pay
+          </Button>
         </Grid>
       </Grid>
     </React.Fragment>
   );
 }
+
+function mapStateToProps(state) {
+  return {
+    AddressForm: state.AddressForm
+  }
+}
+
+export default connect(mapStateToProps)(PaymentForm)

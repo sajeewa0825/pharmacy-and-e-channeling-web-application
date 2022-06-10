@@ -4,22 +4,26 @@ let appointment= require("../models/appointment.js");
 // http://Localhost:8080/appointment/addappointment
 router.route("/addappointment").post((req, res) => {
 
-    const name = req.body.name;
-    const doctor_name=req.body.doctor_name;
-    const time=req.body.time;
-    const id =Number(req.body.id);
-    const phone=Number(req.body.phone);
-    const email=req.body.email;
-    const addres = req.body.addres;
+    const F_name = req.body.F_name;
+    const L_name = req.body.L_name;
+    const Dr_name=req.body.Dr_name;
+    const Time=req.body.Time;
+    const Id =req.body.Id;
+    const P_no=req.body.P_no;
+    const Email=req.body.Email;
+    const Address = req.body.Address;
+    const Total_bill = req.body.Total_bill;
 
     const newappointment = new appointment({
-        name,
-        doctor_name,
-        time,
-        id,
-        phone,
-        email,
-        addres
+        Dr_name,
+        F_name,
+        L_name,
+        Time,
+        Id,
+        Email,
+        P_no,
+        Address,
+        Total_bill
     })
 
     newappointment.save().then(() => {

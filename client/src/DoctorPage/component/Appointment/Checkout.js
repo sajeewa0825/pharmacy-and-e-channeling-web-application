@@ -14,8 +14,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
-import { connect } from 'react-redux';
-import axios from 'axios'
 
 
 const steps = ['Appointment', 'Payment details', 'Review'];
@@ -30,7 +28,7 @@ function getStepContent(step) {
         case 1:
             return <PaymentForm />;
         case 2:
-            return <Review />;
+            return <Review /> ;
         default:
             throw new Error('Unknown step');
     }
@@ -41,9 +39,11 @@ function getStepContent(step) {
 
 
 
+
+
 const theme = createTheme();
 
- function Checkout(props) {
+ function Checkout() {
     const [activeStep, setActiveStep] = React.useState(0);
 
     const handleNext = () => {
@@ -53,18 +53,6 @@ const theme = createTheme();
     const handleBack = () => {
         setActiveStep(activeStep - 1);
     };
-
-
-
-    if (activeStep === steps.length) {
-        axios.post("http://localhost:8080/doctor/addappointment",props.AddressForm).then( () =>{
-            alert("succesfully")
-            console.log("aggga")
-        }).catch( (err) =>{
-            alert(err)
-        } )
-    }
-
 
 
     return (
@@ -123,7 +111,7 @@ const theme = createTheme();
                                         onClick={handleNext}
                                         sx={{ mt: 3, ml: 1 }}
                                     >
-                                        {activeStep === steps.length - 1 ? 'Place order' : 'Next' }
+                                        {activeStep === steps.length - 1 ? "Send Email"  : 'Next' }
                                     </Button>
                                 </Box>
                             </React.Fragment>
@@ -136,10 +124,4 @@ const theme = createTheme();
 }
 
 
-function mapStateToProps(state) {
-    return {
-      AddressForm: state.AddressForm
-    }
-  }
-
-export default connect(mapStateToProps)(Checkout)
+export default Checkout
