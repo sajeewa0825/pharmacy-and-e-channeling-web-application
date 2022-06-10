@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,13 +14,14 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import "./Login.css"
 import Navbar from "../Navbar/Navbar.js"
+import axios from 'axios'
 
 function Copyright(props) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
             {'Copyright © '}
             <Link color="inherit" href="https://mui.com/">
-                Your Website
+                Uwu.Ict
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -30,19 +31,35 @@ function Copyright(props) {
 
 const theme = createTheme();
 
+
 export default function SignUp() {
+    let [F_name, SetFname] = useState("");
+    let [L_name, SetLname] = useState("");
+    let [Email, SetEmail] = useState("");
+    let [Password, SetPassword] = useState("");
+
+    const data ={
+        F_name,
+        L_name,
+        Email,
+        Password
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+        console.log(data)
+        axios.post("http://Localhost:8080/doctor/signup", data).then(() => {
+            console.log("succes");
+            alert("signup!  This is a success alert")
+          }).catch((err) => {
+            alert(err)
+          })
+
     };
 
     return (
         <ThemeProvider theme={theme}>
-            <Navbar/>
+            <Navbar />
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <Box
@@ -70,6 +87,7 @@ export default function SignUp() {
                                     id="firstName"
                                     label="First Name"
                                     autoFocus
+                                    onChange={ (e) =>{ SetFname(e.target.value) }}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
@@ -80,6 +98,7 @@ export default function SignUp() {
                                     label="Last Name"
                                     name="lastName"
                                     autoComplete="family-name"
+                                    onChange={ (e) =>{ SetLname(e.target.value) }}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -90,6 +109,7 @@ export default function SignUp() {
                                     label="Email Address"
                                     name="email"
                                     autoComplete="email"
+                                    onChange={ (e) =>{ SetEmail(e.target.value) }}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -101,6 +121,7 @@ export default function SignUp() {
                                     type="password"
                                     id="password"
                                     autoComplete="new-password"
+                                    onChange={ (e) =>{ SetPassword(e.target.value) }}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -115,6 +136,7 @@ export default function SignUp() {
                             fullWidth
                             variant="contained"
                             sx={{ mt: 3, mb: 2 }}
+                            onClick={handleSubmit}
                         >
                             Sign Up
                         </Button>

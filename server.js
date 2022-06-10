@@ -26,9 +26,9 @@ connection.once('open', () => {
 })
 
 
-const appointmentRoute = require("./routes/appointment.js");
-// http://Localhost:8070/student
-app.use("/doctor",appointmentRoute);
+const Route = require("./routes/routes.js");
+// http://Localhost:8080/doctor
+app.use("/doctor",Route);
 
 app.listen(PORT, () => {
     console.log("server is up and running on port $",PORT);

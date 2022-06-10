@@ -1,7 +1,8 @@
 const router = require("express").Router();
 let appointment= require("../models/appointment.js");
+let signup = require("../models/register")
 
-// http://Localhost:8080/appointment/addappointment
+// http://Localhost:8080/doctor/addappointment
 router.route("/addappointment").post((req, res) => {
 
     const F_name = req.body.F_name;
@@ -28,6 +29,28 @@ router.route("/addappointment").post((req, res) => {
 
     newappointment.save().then(() => {
         res.json("appointment succues");
+    }).catch((err) => {
+        console.log(err);
+    })
+})
+
+// http://Localhost:8080/doctor/signup
+router.route("/signup").post((req, res) => {
+
+    const F_name = req.body.F_name;
+    const L_name = req.body.L_name;
+    const Email=req.body.Email;
+    const Password = req.body.Password;
+
+    const newsignup = new signup({
+        F_name,
+        L_name,
+        Email,
+        Password
+    })
+
+    newsignup.save().then(() => {
+        res.json("Signup succues");
     }).catch((err) => {
         console.log(err);
     })
