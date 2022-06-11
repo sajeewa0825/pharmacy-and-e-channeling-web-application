@@ -5,6 +5,8 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const app = express();
 require("dotenv").config();
+const jwt = require('jsonwebtoken')
+const bcrypt =require("bcryptjs")
 
 const PORT = process.env.PORT || 8080;
 

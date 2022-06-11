@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -31,13 +31,30 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
-    const handleSubmit = (event) => {
+    let [Email, SetEmail] = useState("");
+    let [Password, SetPassword] = useState("");
+    const handleSubmit = async(event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+		const response = await fetch('http://Localhost:8080/doctor/signin', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				Email,
+				Password,
+			}),
+		})
+
+		const data = await response.json()
+
+		if (data.user) {
+			localStorage.setItem('token', data.user)
+			alert('Login successful')
+			window.location.href = '/'
+		} else {
+			alert('Please check your username and password')
+		}
     };
 
     return (
@@ -69,6 +86,7 @@ export default function SignIn() {
                             name="email"
                             autoComplete="email"
                             autoFocus
+                            onChange={ (e) =>{ SetEmail(e.target.value) }}
                         />
                         <TextField
                             margin="normal"
@@ -79,6 +97,7 @@ export default function SignIn() {
                             type="password"
                             id="password"
                             autoComplete="current-password"
+                            onChange={ (e) =>{ SetPassword(e.target.value) }}
                         />
                         <FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}

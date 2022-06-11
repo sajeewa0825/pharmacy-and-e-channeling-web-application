@@ -14,7 +14,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import "./Login.css"
 import Navbar from "../Navbar/Navbar.js"
-import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
+
 
 function Copyright(props) {
     return (
@@ -33,6 +34,7 @@ const theme = createTheme();
 
 
 export default function SignUp() {
+    const navigate = useNavigate();
     let [F_name, SetFname] = useState("");
     let [L_name, SetLname] = useState("");
     let [Email, SetEmail] = useState("");
@@ -45,15 +47,36 @@ export default function SignUp() {
         Password
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async(event) => {
         event.preventDefault();
-        axios.post("http://Localhost:8080/doctor/signup", data).then(() => {
-            console.log("succes");
+        // axios.post("http://Localhost:8080/doctor/signup", data).then(() => {
+        //     console.log("succes");
+        //     alert("signup!  This is a success alert")
+        //   }).catch(() => {
+        //     console.log("err")
+        //     alert("Email addres allredy exit")
+        //   })
+
+
+          const response = await fetch("http://Localhost:8080/doctor/signup", {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+                F_name,
+                L_name,
+                Email,
+                Password
+			}),
+		})
+
+		const data = await response.json()
+
+		if (data.status === 'ok') {
             alert("signup!  This is a success alert")
-          }).catch(() => {
-            console.log("err")
-            alert("Email addres allredy exit")
-          })
+			navigate('/signin')
+		}
 
     };
 

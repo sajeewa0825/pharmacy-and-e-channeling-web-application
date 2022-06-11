@@ -1,8 +1,8 @@
 const router = require("express").Router();
 let appointment= require("../models/appointment.js");
 let signup = require("../models/register")
-// const jwt = require('jsonwebtoken')
-// const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+const bcrypt = require('bcryptjs')
 
 // http://Localhost:8080/doctor/addappointment
 router.route("/addappointment").post((req, res) => {
@@ -47,18 +47,54 @@ router.route("/signup").post(async(req, res) => {
     if (user) {
         console.log("Email address already exists")
 	}else{
-        const newsignup = new signup({
-            F_name,
-            L_name,
-            Email,
-            Password
-        })
-        newsignup.save().then(() => {
-            res.json("Signup succues");
-        }).catch((err) => {
-            console.log(err);
-        })
+        try {
+            const newPassword = await bcrypt.hash(req.body.Password, 10)
+            await signup.create({
+                F_name: req.body.F_name,
+                L_name: req.body.L_name,
+                Email: req.body.Email,
+                Password: newPassword,
+            })
+            res.json({ status: 'ok' })
+        } catch (err) {
+            res.json({ status: 'error', error: 'Duplicate email' })
+        }
     }
+
+})
+
+// http://Localhost:8080/doctor/signin
+router.route("/signin").post(async(req, res) => {
+
+    console.log(req.body)
+    const user = await signup.findOne({
+		Email: req.body.Email,
+	})
+
+	if (!user) {
+		return { status: 'error', error: 'Invalid login' }
+	}
+
+	const isPasswordValid = await bcrypt.compare(
+		req.body.Password,
+		user.Password
+	)
+
+	if (isPasswordValid) {
+		const token = jwt.sign(
+			{
+				name: user.name,
+				Email: user.Email,
+			},
+			'secretuwu123'
+		)
+
+		return res.json({ status: 'ok', user: token })
+	} else {
+		return res.json({ status: 'error', user: false })
+	}
+
+
 
 })
 
