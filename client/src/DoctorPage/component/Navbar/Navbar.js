@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom'
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import {
-  BookmarkAltIcon,
-  CalendarIcon,
   ChartBarIcon,
   CursorClickIcon,
   MenuIcon,
@@ -62,14 +60,49 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
+
+
+
+
 export default function Example() {
+  function removeLogin() {
+    localStorage.clear();
+    window.location.href = '/'
+  }
+
+  function LoginCheck() {
+    console.log(localStorage.token)
+    if (!localStorage.length) {
+      return (
+        <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+          <Link className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900 setfont" to={"/signin"}>
+            Sign in
+          </Link>
+          <Link
+            to={"/signup"}
+            className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 setfont"
+          >
+            Sign up
+          </Link>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <button className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900 setfont" onClick={removeLogin.bind()} >
+            Sign out
+          </button>
+        </div>
+      )
+    }
+  }
   return (
     <div className="Zindex setfont">
       <Popover className="relative bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1">
-            <Link className="nav-link" to={"dhome"}>
+              <Link className="nav-link" to={"dhome"}>
                 <span className="sr-only">Workflow</span>
                 <img
                   className="h-8 w-auto sm:h-10"
@@ -85,7 +118,7 @@ export default function Example() {
               </Popover.Button>
             </div>
             <Popover.Group as="nav" className="hidden md:flex space-x-10">
-            <Link className="text-base font-medium text-gray-500 hover:text-gray-900 setfont" to={"/"}>
+              <Link className="text-base font-medium text-gray-500 hover:text-gray-900 setfont" to={"/"}>
                 Home
               </Link>
               <Link className="text-base font-medium text-gray-500 hover:text-gray-900 setfont" to={"/"}>
@@ -154,22 +187,14 @@ export default function Example() {
                     </Transition>
                   </>
                 )}
-              
+
               </Popover>
 
-             
+
             </Popover.Group>
             <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-            
-            <Link className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900 setfont" to={"/signin"}>
-                Sign in
-              </Link>
-              <Link
-                to={"/signup"}
-                className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 setfont"
-              >
-                Sign up
-              </Link>
+              {LoginCheck()}
+
             </div>
           </div>
         </div>
