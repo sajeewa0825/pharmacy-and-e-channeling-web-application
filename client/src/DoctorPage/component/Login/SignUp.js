@@ -47,15 +47,17 @@ export default function SignUp() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(data)
         axios.post("http://Localhost:8080/doctor/signup", data).then(() => {
             console.log("succes");
             alert("signup!  This is a success alert")
-          }).catch((err) => {
-            alert(err)
+          }).catch(() => {
+            console.log("err")
+            alert("Email addres allredy exit")
           })
 
     };
+
+
 
     return (
         <ThemeProvider theme={theme}>

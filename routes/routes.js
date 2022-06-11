@@ -1,6 +1,8 @@
 const router = require("express").Router();
 let appointment= require("../models/appointment.js");
 let signup = require("../models/register")
+// const jwt = require('jsonwebtoken')
+// const bcrypt = require('bcryptjs')
 
 // http://Localhost:8080/doctor/addappointment
 router.route("/addappointment").post((req, res) => {
@@ -35,25 +37,29 @@ router.route("/addappointment").post((req, res) => {
 })
 
 // http://Localhost:8080/doctor/signup
-router.route("/signup").post((req, res) => {
+router.route("/signup").post(async(req, res) => {
 
     const F_name = req.body.F_name;
     const L_name = req.body.L_name;
     const Email=req.body.Email;
     const Password = req.body.Password;
+    const user = await signup.findOne({ Email: req.body.Email })
+    if (user) {
+        console.log("Email address already exists")
+	}else{
+        const newsignup = new signup({
+            F_name,
+            L_name,
+            Email,
+            Password
+        })
+        newsignup.save().then(() => {
+            res.json("Signup succues");
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
 
-    const newsignup = new signup({
-        F_name,
-        L_name,
-        Email,
-        Password
-    })
-
-    newsignup.save().then(() => {
-        res.json("Signup succues");
-    }).catch((err) => {
-        console.log(err);
-    })
 })
 
 module.exports = router;
