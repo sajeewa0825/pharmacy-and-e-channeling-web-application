@@ -4,6 +4,8 @@ import Home from './component/Home';
 import Login from './component/Login/Login';
 import SignUp from './component/Login/SignUp';
 import Head from './component/Navbar/Navhead';
+import Footer from '../component/Footer/footer';
+import Appoiment from './component/Appointment';
 
 
 const DoctorPage = () => {
@@ -14,8 +16,10 @@ const DoctorPage = () => {
             <Routes>
                 <Route path='signup' element={<SignUp />} />
                 <Route path='signin' element={<Login />} />
+                <Route path='appointment' element={<Appoiment />} />
                 <Route path='/' element={<Home />} />
             </Routes>
+            <Footer/>
         </BrowserRouter>
     )
 }

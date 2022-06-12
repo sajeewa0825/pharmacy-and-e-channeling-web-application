@@ -1,5 +1,6 @@
 import "./Navbar.css"
 import { Link } from 'react-router-dom'
+import Logo from '../../../component/NavBar/image/phy.png'
 
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment } from 'react'
@@ -12,7 +13,6 @@ import {
   PlayIcon,
   RefreshIcon,
   ShieldCheckIcon,
-  SupportIcon,
   ViewGridIcon,
   XIcon,
 } from '@heroicons/react/outline'
@@ -50,11 +50,6 @@ const callsToAction = [
   { name: 'Contact Sales', href: '#', icon: PhoneIcon },
 ]
 
-const recentPosts = [
-  { id: 1, name: 'Boost your conversion rate', href: '#' },
-  { id: 2, name: 'How to use search engine optimization to drive traffic to your site', href: '#' },
-  { id: 3, name: 'Improve your customer experience', href: '#' },
-]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -64,7 +59,7 @@ function classNames(...classes) {
 
 
 
-export default function Example() {
+export default function NavBar() {
   function removeLogin() {
     localStorage.clear();
     window.location.href = '/'
@@ -74,24 +69,62 @@ export default function Example() {
     console.log(localStorage.token)
     if (!localStorage.length) {
       return (
-        <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-          <Link className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900 setfont" to={"/signin"}>
-            Sign in
-          </Link>
-          <Link
-            to={"/signup"}
-            className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 setfont"
-          >
-            Sign up
-          </Link>
+        <div>
+          <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+            <Link className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900 setfont" to={"/signin"}>
+              Signin
+            </Link>
+            <Link
+              to={"/signup"}
+              className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 setfont"
+            >
+              Signup
+            </Link>
+          </div>
         </div>
       )
     } else {
       return (
         <div>
-          <button className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900 setfont" onClick={removeLogin.bind()} >
-            Sign out
-          </button>
+          <div>
+            <button className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900 setfont" onClick={removeLogin.bind()} >
+              Sign out
+            </button>
+          </div>
+        </div>
+      )
+    }
+  }
+
+  function LoginCheckMobile() {
+    console.log(localStorage.token)
+    if (!localStorage.length) {
+      return (
+        <div>
+          <div>
+            <Link
+              to={"/signup"}
+              className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 setfont"
+            >
+              Signup
+            </Link>
+            <p className="mt-6 text-center text-base font-medium text-gray-500 setfont">
+              Existing customer?{' '}
+              <Link to={"/signin"} className="text-indigo-600 hover:text-indigo-500 setfont">
+                Signin
+              </Link>
+            </p>
+          </div>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <div>
+            <button className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 setfont" onClick={removeLogin.bind()} >
+              Sign out
+            </button>
+          </div>
         </div>
       )
     }
@@ -103,10 +136,10 @@ export default function Example() {
           <div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1">
               <Link className="nav-link" to={"dhome"}>
-                <span className="sr-only">Workflow</span>
+                <span className="sr-only">Medisute</span>
                 <img
                   className="h-8 w-auto sm:h-10"
-                  src="https://media.istockphoto.com/vectors/medicine-and-health-care-concept-stethoscope-heart-shape-vector-vector-id1207462669?s=612x612"
+                  src={Logo}
                   alt=""
                 />
               </Link>
@@ -122,7 +155,7 @@ export default function Example() {
                 Home
               </Link>
               <Link className="text-base font-medium text-gray-500 hover:text-gray-900 setfont" to={"/"}>
-                Docs
+                Pharmacy
               </Link>
               <Popover className="relative">
                 {({ open }) => (
@@ -215,8 +248,8 @@ export default function Example() {
                   <div>
                     <img
                       className="h-8 w-auto"
-                      src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                      alt="Workflow"
+                      src={Logo}
+                      alt="Medisute"
                     />
                   </div>
                   <div className="-mr-2">
@@ -242,20 +275,7 @@ export default function Example() {
                 </div>
               </div>
               <div className="py-6 px-5 space-y-6">
-                <div>
-                  <a
-                    href="#"
-                    className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 setfont"
-                  >
-                    Sign up
-                  </a>
-                  <p className="mt-6 text-center text-base font-medium text-gray-500 setfont">
-                    Existing customer?{' '}
-                    <a href="#" className="text-indigo-600 hover:text-indigo-500 setfont">
-                      Sign in
-                    </a>
-                  </p>
-                </div>
+                {LoginCheckMobile()}
               </div>
             </div>
           </Popover.Panel>
