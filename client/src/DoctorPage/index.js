@@ -10,7 +10,7 @@ const DoctorPage = () => {
 
     return (
         <BrowserRouter>
-            {/* <Head /> */}
+            <Head />
             <Routes>
                 <Route path='signup' element={<SignUp />} />
                 <Route path='signin' element={<Login />} />
