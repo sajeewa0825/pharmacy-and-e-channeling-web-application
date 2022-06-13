@@ -15,6 +15,30 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import "./Login.css"
 import Navbar from "../Navbar/Navbar.js"
 import { useNavigate } from 'react-router-dom';
+import emailjs from 'emailjs-com'
+
+
+const emailsend = (newuser) =>{
+  const service_id= 'service_gds5i2d'
+  const template_id= 'template_f0driub'
+  const user_id= 'zC-jA7DMIOelAwpSg'
+
+
+  const to_name= newuser.F_name;
+  const message="Your Medisute account Activeted."
+  const reply_to=newuser.Email
+  const data = {
+    to_name,
+    message,
+    reply_to
+  }
+
+  emailjs.send(service_id,template_id,data,user_id).then( (res) =>{
+    console.log(res)
+  }).catch( (err) =>{
+    console.log(err)
+  })
+}
 
 
 function Copyright(props) {
@@ -40,7 +64,7 @@ export default function SignUp() {
     let [Email, SetEmail] = useState("");
     let [Password, SetPassword] = useState("");
 
-    const data ={
+    const data1 ={
         F_name,
         L_name,
         Email,
@@ -75,6 +99,7 @@ export default function SignUp() {
 
 		if (data.status === 'ok') {
             alert("signup!  This is a success alert")
+            emailsend(data1)
 			navigate('/signin')
 		}
 

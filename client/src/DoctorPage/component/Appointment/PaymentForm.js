@@ -5,9 +5,37 @@ import TextField from '@mui/material/TextField';
 import { connect } from 'react-redux';
 import axios from 'axios'
 import Button from '@mui/material/Button';
+import emailjs from 'emailjs-com'
+
+
+const emailsend = (newAppointment) =>{
+  const service_id= 'service_gds5i2d'
+  const template_id= 'template_f0driub'
+  const user_id= 'zC-jA7DMIOelAwpSg'
+
+
+  const to_name= newAppointment.F_name;
+  const message="Your Appointment is conformed."
+  const reply_to=newAppointment.Email
+  const data = {
+    to_name,
+    message,
+    reply_to
+  }
+
+  emailjs.send(service_id,template_id,data,user_id).then( (res) =>{
+    console.log(res)
+  }).catch( (err) =>{
+    console.log(err)
+  })
+}
 
 
 function PaymentForm(props) {
+
+
+
+
 
   const sendData = (e) => {
     e.preventDefault();
@@ -32,9 +60,11 @@ function PaymentForm(props) {
       Address,
       Total_bill
     }
-    axios.post("http://localhost:8080/doctor/addappointment", newAppointment).then(() => {
+    axios.post("http://localhost:8080/doctor/addappointment", newAppointment).then((res) => {
       console.log("succes");
+      console.log(res)
       alert("Payed!  This is a success alert")
+      emailsend(newAppointment)
     }).catch((err) => {
       alert(err)
     })
