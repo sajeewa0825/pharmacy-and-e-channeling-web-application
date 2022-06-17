@@ -62,7 +62,7 @@ function classNames(...classes) {
 export default function NavBar() {
   function removeLogin() {
     localStorage.clear();
-    window.location.href = '/'
+    window.location.href = 'drhome'
   }
 
   function LoginCheck() {
@@ -140,7 +140,7 @@ export default function NavBar() {
                 <img
                   className="h-8 w-auto sm:h-10"
                   src={Logo}
-                  alt=""
+                  alt="/drhome"
                 />
               </Link>
             </div>
@@ -151,10 +151,10 @@ export default function NavBar() {
               </Popover.Button>
             </div>
             <Popover.Group as="nav" className="hidden md:flex space-x-10">
-              <Link className="text-base font-medium text-gray-500 hover:text-gray-900 setfont" to={"/"}>
+              <Link className="text-base font-medium text-gray-500 hover:text-gray-900 setfont" to={"/drhome"}>
                 Home
               </Link>
-              <Link className="text-base font-medium text-gray-500 hover:text-gray-900 setfont" to={"/"}>
+              <Link className="text-base font-medium text-gray-500 hover:text-gray-900 setfont" to={"/drhome"}>
                 Pharmacy
               </Link>
               <Popover className="relative">
