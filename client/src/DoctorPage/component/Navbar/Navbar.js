@@ -154,7 +154,7 @@ export default function NavBar() {
               <Link className="text-base font-medium text-gray-500 hover:text-gray-900 setfont" to={"/drhome"}>
                 Home
               </Link>
-              <Link className="text-base font-medium text-gray-500 hover:text-gray-900 setfont" to={"/drhome"}>
+              <Link className="text-base font-medium text-gray-500 hover:text-gray-900 setfont" to={"/phhome"}>
                 Pharmacy
               </Link>
               <Popover className="relative">

@@ -11,7 +11,7 @@ const features = [
   {
     name: 'No hidden fees',
     description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+      'Make sure we are offering everything you want within your budget and that there are no hidden charges',
     icon: ScaleIcon,
   },
   {
@@ -21,9 +21,9 @@ const features = [
     icon: LightningBoltIcon,
   },
   {
-    name: 'Mobile notifications',
+    name: 'notifications',
     description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+      'Medkit may contact you whether you’re at home or  at work , you’ll be notified as soon as our services are verified..Even faster and more efficient!',
     icon: AnnotationIcon,
   },
 ]
@@ -38,8 +38,7 @@ export default function Service() {
             A better way to Your Health
           </p>
           <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-            Lorem ipsum dolor sit amet consect adipisicing elit. Possimus magnam voluptatum cupiditate veritatis in
-            accusamus quisquam.
+          We take your health seriously at Medkit.com. Be it purchasing  high-quality, affordable medicines and health care products online or online doctor consultations, we've got it all covered for our customers!
           </p>
         </div>
 
