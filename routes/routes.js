@@ -1,6 +1,7 @@
 const router = require("express").Router();
 let appointment= require("../models/appointment.js");
-let signup = require("../models/register")
+let signup = require("../models/register");
+let doctor = require("../models/doctor")
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 
@@ -98,5 +99,39 @@ router.route("/signin").post(async(req, res) => {
 
 
 })
+
+
+// http://Localhost:8080/doctor/regdoctor
+router.route("/regdoctor").post((req, res) => {
+
+    const name = req.body.name;
+    const specialist = req.body.specialist;
+    const Dob = req.body.Dob;
+    const Gender = req.body.Gender;
+    const timePeriod=req.body.timePeriod;
+    const Id =req.body.Id;
+    const P_no=req.body.P_no;
+    const Email=req.body.Email;
+    const Address = req.body.Address;
+
+    const newdoctor = new doctor({
+        name,
+        specialist,
+        timePeriod,
+        Id,
+        Dob,
+        Gender,
+        Email,
+        P_no,
+        Address,
+    })
+
+    newdoctor.save().then(() => {
+        res.json("Doctor Register succues");
+    }).catch((err) => {
+        console.log(err);
+    })
+})
+
 
 module.exports = router;
