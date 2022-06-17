@@ -46,6 +46,7 @@ router.route("/signup").post(async(req, res) => {
     const user = await signup.findOne({ Email: req.body.Email })
     if (user) {
         console.log("Email address already exists")
+        res.json({ status: 'error', error: 'Duplicate email' })
 	}else{
         try {
             const newPassword = await bcrypt.hash(req.body.Password, 10)
@@ -72,7 +73,7 @@ router.route("/signin").post(async(req, res) => {
 	})
 
 	if (!user) {
-		return { status: 'error', error: 'Invalid login' }
+		return res.json( { status: 'error', error: 'Invalid login' })
 	}
 
 	const isPasswordValid = await bcrypt.compare(

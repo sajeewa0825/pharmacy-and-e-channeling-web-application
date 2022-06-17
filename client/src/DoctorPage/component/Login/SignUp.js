@@ -101,7 +101,14 @@ export default function SignUp() {
             alert("signup!  This is a success alert")
             emailsend(data1)
 			navigate('/signin')
-		}
+		}else{
+            alert("Email addres allredy exit")
+            SetEmail("")
+            SetFname("")
+            SetLname("")
+            SetPassword("")
+            document.getElementById("form1").reset();
+        }
 
     };
 
@@ -126,7 +133,7 @@ export default function SignUp() {
                     <Typography component="h1" variant="h5">
                         Sign up
                     </Typography>
-                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 } } id="form1">
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6}>
                                 <TextField

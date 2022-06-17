@@ -55,6 +55,9 @@ export default function SignIn() {
 			window.location.href = '/'
 		} else {
 			alert('Please check your username and password')
+            SetEmail("")
+            SetPassword("")
+            document.getElementById("form2").reset();
 		}
     };
 
@@ -77,7 +80,7 @@ export default function SignIn() {
                     <Typography component="h1" variant="h5">
                         Sign in
                     </Typography>
-                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }} id='form2'>
                         <TextField
                             margin="normal"
                             required
