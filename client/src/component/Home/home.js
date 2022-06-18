@@ -3,11 +3,12 @@ import "./home.css";
 import Img1 from "./image/item-1.jpg";
 import Img2 from "./image/item-2.jpg";
 import Img3 from "./image/item-3.jpg";
-// import Catgry from "./svg/list-solid.svg";
+import AboutImg from "./image/about-us.png";
 import FeatureProduct from "../Products/FeatureProducts";
 import ProductBlog from "../Products/ProductBlog/ProductBlog";
 import DoctShop from "./Doctor&ShopSection/DoctShop";
 import WhyShoosUs from "./WhyChooseUs/WhyShoosUs";
+import OurTeam from "./OurTeam/OurTeam";
 
 const Home = () => {
   return (
@@ -102,57 +103,98 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="container pt-4 pb-4">
-        <div className="row ">
-          <div className="col-md-3">
-            <div class="card border-0">
-              <div class="card-body">
-                <p class="card-text d-flex cardD">
-                  <i class="bi bi-truck me-2 DetailCard"></i>
-                  <span className="textCard ">
-                    <h5 className="h5Text">Free Delivery</h5>
-                    delivery to your home
-                  </span>
-                </p>
-              </div>
+      <div className="container mt-4 mb-4">
+        <div className="row">
+          <div className="col-lg-6">
+            <img
+              src={AboutImg}
+              class="img-fluid rounded-top mark-lazy"
+              alt=""
+            />
+          </div>
+          <div className="col-lg-6">
+            <div class="content">
+              <div class="title">Welcome to Medisine</div>
+              <h3 class="text-theme-color">
+                Medisine is a US exclusive pharmacy and top choice.
+              </h3>
+              <p class="description">
+                Since its founding we become an integral part of the city,
+                advancing our mission of the providing access to compassionate
+                care to our communities. today patient find care that combines
+                world-class medincine with compassion.
+              </p>
+              <ul>
+                <li>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                </li>
+                <li>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                </li>
+                <li>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                </li>
+              </ul>
             </div>
           </div>
-          <div className="col-md-3">
-            <div class=" border-0">
-              <div class="card-body">
-                <p class="card-text d-flex cardD">
-                  <i class="bi bi-shield-lock me-2 DetailCard"></i>
-                  <span className="textCard ">
-                    <h5 className="h5Text">Money Guarantee</h5>
-                    30 days back
-                  </span>
-                </p>
+        </div>
+      </div>
+      <div className="container-fluid FPSection1">
+        <div className="container pt-2 pb-2">
+          <div className="row row-cols-sm-2 row-cols-md-2 row-cols-lg-4 row-cols-xl-4">
+            <div className="col">
+              <div class="border-0">
+                <div class="card-body">
+                  <p class="card-text d-flex cardD">
+                    <i class="bi bi-truck me-2 DetailCard"></i>
+                    <span className="textCard ">
+                      <h5 className="h5Text">Free Delivery</h5>
+                      delivery to your home
+                    </span>
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="col-md-3">
-            <div class="card border-0">
-              <div class="card-body">
-                <p class="card-text d-flex cardD">
-                  <i class="bi bi-wallet me-2 DetailCard"></i>
-                  <span className="textCard ">
-                    <h5 className="h5Text">Payment Method</h5>
-                    Secure System
-                  </span>
-                </p>
+            <div className="col">
+              <div class=" border-0">
+                <div class="card-body">
+                  <p class="card-text d-flex cardD">
+                    <i class="bi bi-shield-lock me-2 DetailCard"></i>
+                    <span className="textCard ">
+                      <h5 className="h5Text">Money Guarantee</h5>
+                      30 days back
+                    </span>
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="col-md-3">
-            <div class="card border-0">
-              <div class="card-body">
-                <p class="card-text d-flex cardD">
-                  <i class="bi bi-gear me-2 DetailCard"></i>
-                  <span className="textCard ">
-                    <h5 className="h5Text">Online Support</h5>
-                    24 hours on day
-                  </span>
-                </p>
+            <div className="col">
+              <div class="border-0">
+                <div class="card-body">
+                  <p class="card-text d-flex cardD">
+                    <i class="bi bi-wallet me-2 DetailCard"></i>
+                    <span className="textCard ">
+                      <h5 className="h5Text">Payment Method</h5>
+                      Secure System
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="col">
+              <div class="border-0">
+                <div class="card-body">
+                  <p class="card-text d-flex cardD">
+                    <i class="bi bi-gear me-2 DetailCard"></i>
+                    <span className="textCard ">
+                      <h5 className="h5Text">Online Support</h5>
+                      24 hours on day
+                    </span>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -173,6 +215,9 @@ const Home = () => {
         <div className="container">
           <WhyShoosUs />
         </div>
+      </div>
+      <div className="container-fluid">
+        <OurTeam />
       </div>
     </div>
   );
