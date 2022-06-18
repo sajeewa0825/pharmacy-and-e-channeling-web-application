@@ -13,10 +13,10 @@ const WhyShoosUs = () => {
   return (
     <div>
       <div className="container">
-        <div className="row">
-          <h3>Why Choose Us</h3>
-          <div className="col-md-3">
-            <div class="card mb-3 text-center WhyChoosUsCard">
+        <h3>Why Choose Us</h3>
+        <div className="row row-cols-sm-1 row-cols-md-3 row-cols-lg-3 row-cols-xl-4 justify-content-center">
+          <div className="col">
+            <div class=" mb-3 text-center whyChoosUsCard">
               <div class="card-body">
                 <img src={MedicalTeam} className="WhyChoosUsCardIMG" />
                 <h4 className="WhyChoosUsCardHeaderText">Qualified Doctors.</h4>
@@ -27,8 +27,8 @@ const WhyShoosUs = () => {
               </div>
             </div>
           </div>
-          <div className="col-md-3">
-            <div class="card mb-3 text-center WhyChoosUsCard">
+          <div className="col-sm">
+            <div class=" mb-3 text-center whyChoosUsCard">
               <div class="card-body">
                 <img src={MedicalPharmacy} className="WhyChoosUsCardIMG" />
                 <h4 className="WhyChoosUsCardHeaderText">Pharmacy Support.</h4>
@@ -39,8 +39,8 @@ const WhyShoosUs = () => {
               </div>
             </div>
           </div>
-          <div className="col-md-3">
-            <div class="card mb-3 text-center WhyChoosUsCard">
+          <div className="col-sm">
+            <div class=" mb-3 text-center whyChoosUsCard">
               <div class="card-body">
                 <img src={MedicalVet} className="WhyChoosUsCardIMG" />
                 <h4 className="WhyChoosUsCardHeaderText">
@@ -53,8 +53,8 @@ const WhyShoosUs = () => {
               </div>
             </div>
           </div>
-          <div className="col-md-3">
-            <div class="card mb-3 text-center WhyChoosUsCard">
+          <div className="col-sm">
+            <div class=" mb-3 text-center whyChoosUsCard">
               <div class="card-body">
                 <img src={Medical24} className="WhyChoosUsCardIMG" />
                 <h4 className="WhyChoosUsCardHeaderText">24 Hour Service.</h4>
@@ -65,8 +65,8 @@ const WhyShoosUs = () => {
               </div>
             </div>
           </div>
-          <div className="col-md-3">
-            <div class="card mb-3 text-center WhyChoosUsCard">
+          <div className="col-sm">
+            <div class=" mb-3 text-center whyChoosUsCard">
               <div class="card-body">
                 <img src={MedicalFriendly} className="WhyChoosUsCardIMG" />
                 <h4 className="WhyChoosUsCardHeaderText">Friendly Service.</h4>
@@ -77,11 +77,11 @@ const WhyShoosUs = () => {
               </div>
             </div>
           </div>
-          <div className="col-md-3">
-            <div class="card mb-3 text-center WhyChoosUsCard">
+          <div className="col-sm">
+            <div class=" mb-3 text-center whyChoosUsCard">
               <div class="card-body">
                 <img src={MedicalEquip} className="WhyChoosUsCardIMG" />
-                <h4 className="WhyChoosUsCardHeaderText">Equipment Shop.</h4>
+                <h4 className="WhyChoosUsCardHeaderText">Medi Tools.</h4>
                 <p className="WhyChooseUsCardText">
                   Anim tempor ex occaecat in in.Et officia cillum reprehenderit
                   labore commodo.
@@ -89,8 +89,8 @@ const WhyShoosUs = () => {
               </div>
             </div>
           </div>
-          <div className="col-md-3">
-            <div class="card mb-3 text-center WhyChoosUsCard">
+          <div className="col-sm">
+            <div class=" mb-3 text-center whyChoosUsCard">
               <div class="card-body">
                 <img src={MedicalBlood} className="WhyChoosUsCardIMG" />
                 <h4 className="WhyChoosUsCardHeaderText">Blood Reports.</h4>
@@ -101,8 +101,8 @@ const WhyShoosUs = () => {
               </div>
             </div>
           </div>
-          <div className="col-md-3">
-            <div class="card mb-3 text-center WhyChoosUsCard">
+          <div className="col-sm">
+            <div class=" mb-3 text-center whyChoosUsCard">
               <div class="card-body">
                 <img src={MedicalChat} className="WhyChoosUsCardIMG" />
                 <h4 className="WhyChoosUsCardHeaderText">Customer care.</h4>

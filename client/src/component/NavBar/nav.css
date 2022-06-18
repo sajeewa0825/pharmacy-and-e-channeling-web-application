@@ -2,7 +2,9 @@
   margin: 0;
   padding: 0;
 }
-
+.ContNavRow {
+  background-color: #2a2f38;
+}
 .nav-link {
   background-image: linear-gradient(
     to right,
@@ -71,14 +73,17 @@
   margin-bottom: 15px;
 }
 .iconNav {
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   margin-right: 10px;
 }
 .iconNavText {
   font-size: 13px;
   font-weight: bold;
-  color: rgb(225, 225, 225);
+  color: #cdcdcd;
+}
+.CartBadge {
+  background-color: #5089fd;
 }
 
 @media only screen and (max-width: 576px) {

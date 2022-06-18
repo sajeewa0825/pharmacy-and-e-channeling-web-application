@@ -1,10 +1,16 @@
 import React from "react";
 import "./shop.css";
 import img1 from "./images/easy-wear-adult-diaper-m-10-s.jpg";
+import SideMenu from "./SideBar/SideMenu";
+import NavBar from "../NavBar/nav";
 
 const shop = () => {
   return (
     <div>
+      <NavBar/>
+      <div className="container-fluid">
+        <SideMenu />
+      </div>
       {/*******       Products    ***********/}
       <div className="container-fluid">
         <div class="row">

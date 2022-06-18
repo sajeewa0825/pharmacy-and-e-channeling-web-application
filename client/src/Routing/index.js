@@ -8,6 +8,9 @@ import Footer from '../component/Footer/footer';
 import Appoiment from '../DoctorPage/component/Appointment';
 import Landing from '../Landing/Landing';
 import Homeph from "../component/Home/home"
+import About from '../component/About/About';
+import Price from '../component/Price/price';
+import Shop from '../component/shop/shop';
 
 
 const Routing = () => {
@@ -21,6 +24,9 @@ const Routing = () => {
                 <Route path='appointment' element={<Appoiment />} />
                 <Route path='drhome' element={<Homedr />} />
                 <Route path='phhome' element={<Homeph />} />
+                <Route path='phaboutus' element={<About />} />
+                <Route path='phprice' element={<Price />} />
+                <Route path='phshop' element={<Shop />} />
                 <Route path='/' element={<Landing />} />
             </Routes>
             <Footer/>
