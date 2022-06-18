@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -16,28 +16,29 @@ import "./Login.css"
 import Navbar from "../Navbar/Navbar.js"
 import { useNavigate } from 'react-router-dom';
 import emailjs from 'emailjs-com'
+import "./Login.css"
 
 
-const emailsend = (newuser) =>{
-  const service_id= 'service_gds5i2d'
-  const template_id= 'template_f0driub'
-  const user_id= 'zC-jA7DMIOelAwpSg'
+const emailsend = (newuser) => {
+    const service_id = 'service_gds5i2d'
+    const template_id = 'template_f0driub'
+    const user_id = 'zC-jA7DMIOelAwpSg'
 
 
-  const to_name= newuser.F_name;
-  const message="Your Medisute account Activeted."
-  const reply_to=newuser.Email
-  const data = {
-    to_name,
-    message,
-    reply_to
-  }
+    const to_name = newuser.F_name;
+    const message = "Your Medisute account Activeted."
+    const reply_to = newuser.Email
+    const data = {
+        to_name,
+        message,
+        reply_to
+    }
 
-  emailjs.send(service_id,template_id,data,user_id).then( (res) =>{
-    console.log(res)
-  }).catch( (err) =>{
-    console.log(err)
-  })
+    emailjs.send(service_id, template_id, data, user_id).then((res) => {
+        console.log(res)
+    }).catch((err) => {
+        console.log(err)
+    })
 }
 
 
@@ -64,15 +65,23 @@ export default function SignUp() {
     let [Email, SetEmail] = useState("");
     let [Password, SetPassword] = useState("");
 
-    const data1 ={
+    const [formErrors, setFormErrors] = useState({});
+    const [isSubmit, setIsSubmit] = useState(false);
+
+    const data1 = {
         F_name,
         L_name,
         Email,
         Password
     }
 
-    const handleSubmit = async(event) => {
+
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
+        validate(data1);
+
+
         // axios.post("http://Localhost:8080/doctor/signup", data).then(() => {
         //     console.log("succes");
         //     alert("signup!  This is a success alert")
@@ -82,34 +91,76 @@ export default function SignUp() {
         //   })
 
 
-          const response = await fetch("http://Localhost:8080/doctor/signup", {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-                F_name,
-                L_name,
-                Email,
-                Password
-			}),
-		})
 
-		const data = await response.json()
+        if (isSubmit === true) {
+            const response = await fetch("http://Localhost:8080/doctor/signup", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    F_name,
+                    L_name,
+                    Email,
+                    Password
+                }),
+            })
 
-		if (data.status === 'ok') {
-            alert("signup!  This is a success alert")
-            emailsend(data1)
-			navigate('/signin')
-		}else{
-            alert("Email addres allredy exit")
-            SetEmail("")
-            SetFname("")
-            SetLname("")
-            SetPassword("")
-            document.getElementById("form1").reset();
+            const data = await response.json()
+
+            if (data.status === 'ok') {
+                alert("signup!  This is a success alert")
+                emailsend(data1)
+                navigate('/signin')
+            } else {
+                alert("Email addres allredy exit")
+                SetEmail("")
+                SetFname("")
+                SetLname("")
+                SetPassword("")
+                document.getElementById("form1").reset();
+            }
+
         }
 
+    };
+
+    const validate = (values) => {
+        const errors = {};
+        let checkerror =0;
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+        if (!values.F_name) {
+            errors.F_name = "Frist Name is required!";
+            checkerror=1;
+        }
+        if (!values.L_name) {
+            errors.L_name = "Last Name is required!";
+            checkerror=1;
+        }
+        if (!values.Email) {
+            errors.Email = "Email is required!";
+            checkerror=1;
+        } else if (!regex.test(values.Email)) {
+            errors.Email = "This is not a valid email format!";
+            checkerror=1;
+        }
+        if (!values.Password) {
+            errors.Password = "Password is required";
+            checkerror=1;
+        } else if (values.Password.length < 4) {
+            errors.Password = "Password must be more than 4 characters";
+            checkerror=1;
+        } else if (values.Password.length > 10) {
+            errors.Password = "Password cannot exceed more than 10 characters";
+            checkerror=1;
+        }
+
+        if (checkerror===0) {
+            setIsSubmit(true);
+        }else{
+            setIsSubmit(false);
+        }
+        setFormErrors(errors)
     };
 
 
@@ -133,19 +184,20 @@ export default function SignUp() {
                     <Typography component="h1" variant="h5">
                         Sign up
                     </Typography>
-                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 } } id="form1">
+                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }} id="form1">
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6}>
                                 <TextField
                                     autoComplete="given-name"
-                                    name="firstName"
+                                    name="F_Name"
                                     required
                                     fullWidth
                                     id="firstName"
                                     label="First Name"
                                     autoFocus
-                                    onChange={ (e) =>{ SetFname(e.target.value) }}
+                                    onChange={(e) => { SetFname(e.target.value) }}
                                 />
+                                <p className='valiFailcolor'>{formErrors.F_name}</p>
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
@@ -155,8 +207,9 @@ export default function SignUp() {
                                     label="Last Name"
                                     name="lastName"
                                     autoComplete="family-name"
-                                    onChange={ (e) =>{ SetLname(e.target.value) }}
+                                    onChange={(e) => { SetLname(e.target.value) }}
                                 />
+                                <p className='valiFailcolor'>{formErrors.L_name}</p>
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
@@ -164,10 +217,11 @@ export default function SignUp() {
                                     fullWidth
                                     id="email"
                                     label="Email Address"
-                                    name="email"
+                                    name="Email"
                                     autoComplete="email"
-                                    onChange={ (e) =>{ SetEmail(e.target.value) }}
+                                    onChange={(e) => { SetEmail(e.target.value) }}
                                 />
+                                <p className='valiFailcolor'>{formErrors.Email}</p>
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
@@ -178,8 +232,9 @@ export default function SignUp() {
                                     type="password"
                                     id="password"
                                     autoComplete="new-password"
-                                    onChange={ (e) =>{ SetPassword(e.target.value) }}
+                                    onChange={(e) => { SetPassword(e.target.value) }}
                                 />
+                                <p className='valiFailcolor'>{formErrors.Password}</p>
                             </Grid>
                             <Grid item xs={12}>
                                 <FormControlLabel

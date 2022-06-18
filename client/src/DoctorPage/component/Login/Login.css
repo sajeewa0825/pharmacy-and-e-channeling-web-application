@@ -1,3 +1,7 @@
 .setfont{
     text-decoration: none !important;
 }
+
+.valiFailcolor{
+    color: red;
+}

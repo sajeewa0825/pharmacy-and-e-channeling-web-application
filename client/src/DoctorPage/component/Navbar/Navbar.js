@@ -66,7 +66,6 @@ export default function NavBar() {
   }
 
   function LoginCheck() {
-    console.log(localStorage.token)
     if (!localStorage.length) {
       return (
         <div>
@@ -97,7 +96,6 @@ export default function NavBar() {
   }
 
   function LoginCheckMobile() {
-    console.log(localStorage.token)
     if (!localStorage.length) {
       return (
         <div>
