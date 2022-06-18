@@ -34,36 +34,78 @@ const theme = createTheme();
 export default function SignIn() {
     let [Email, SetEmail] = useState("");
     let [Password, SetPassword] = useState("");
-    const handleSubmit = async(event) => {
+
+    const [formErrors, setFormErrors] = useState({});
+    const [isSubmit, setIsSubmit] = useState(false);
+
+    const data1 = {
+        Email,
+        Password
+    }
+
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
-		const response = await fetch('http://Localhost:8080/doctor/signin', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				Email,
-				Password,
-			}),
-		})
+        validate(data1);
 
-		const data = await response.json()
+        if (isSubmit) {
 
-		if (data.user) {
-			localStorage.setItem('token', data.user)
-			// alert('Login successful')
-			window.location.href = '/'
-		} else {
-			alert('Please check your username and password')
-            SetEmail("")
-            SetPassword("")
-            document.getElementById("form2").reset();
-		}
+            const response = await fetch('http://Localhost:8080/doctor/signin', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    Email,
+                    Password,
+                }),
+            })
+
+            const data = await response.json()
+
+            if (data.user) {
+                localStorage.setItem('token', data.user)
+                // alert('Login successful')
+                window.location.href = '/'
+            } else {
+                alert('Please check your username and password')
+                SetEmail("")
+                SetPassword("")
+                document.getElementById("form2").reset();
+            }
+
+        }
     };
+
+    const validate = (values) => {
+        const errors = {};
+        let checkerror = 0;
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+        if (!values.Email) {
+            errors.Email = "Email is required!";
+            checkerror = 1;
+        } else if (!regex.test(values.Email)) {
+            errors.Email = "This is not a valid email format!";
+            checkerror = 1;
+        }
+        if (!values.Password) {
+            errors.Password = "Password is required";
+            checkerror = 1;
+        }
+
+
+        if (checkerror === 0) {
+            setIsSubmit(true);
+        } else {
+            setIsSubmit(false);
+        }
+        setFormErrors(errors)
+    };
+
 
     return (
         <ThemeProvider theme={theme}>
-            <Navbar/>
+            <Navbar />
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <Box
@@ -90,8 +132,9 @@ export default function SignIn() {
                             name="email"
                             autoComplete="email"
                             autoFocus
-                            onChange={ (e) =>{ SetEmail(e.target.value) }}
+                            onChange={(e) => { SetEmail(e.target.value) }}
                         />
+                        <p className='valiFailcolor'>{formErrors.Email}</p>
                         <TextField
                             margin="normal"
                             required
@@ -101,8 +144,9 @@ export default function SignIn() {
                             type="password"
                             id="password"
                             autoComplete="current-password"
-                            onChange={ (e) =>{ SetPassword(e.target.value) }}
+                            onChange={(e) => { SetPassword(e.target.value) }}
                         />
+                        <p className='valiFailcolor'>{formErrors.Password}</p>
                         <FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}
                             label="Remember me"
