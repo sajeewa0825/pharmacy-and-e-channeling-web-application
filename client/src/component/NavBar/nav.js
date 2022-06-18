@@ -15,7 +15,7 @@ const navBar = () => {
     <div>
       <Router>
         <div className="container-fluid">
-          <div className="row bg-dark ">
+          <div className="row border-bottom ContNavRow">
             <div class="col-12 d-flex justify-content-center ">
               <ul className="details">
                 <li>
@@ -34,14 +34,14 @@ const navBar = () => {
             </div>
           </div>
         </div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
           <div class="container-fluid">
             <a class="navbar-brand" href="/">
               <img
                 src={Logo}
                 alt=""
-                width="60"
-                height="44"
+                width="50"
+                height="34"
                 class="d-inline-block align-text-center"
               />
               Pharmacy
@@ -92,13 +92,13 @@ const navBar = () => {
                 type="button"
                 class="btn btn-none position-relative me-1 p-0"
               >
-                <i class="bi bi-cart-plus fs-8 text-black"></i>
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-danger ">
+                <i class="bi bi-cart3 fs-4 text-black "></i>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-circle CartBadge ">
                   2<span class="visually-hidden">unread messages</span>
                 </span>
               </button>
               <button type="button" class="btn  ">
-                <i class="bi bi-person-circle text-black"></i>
+                <i class="bi bi-person text-black fs-4"></i>
               </button>
             </div>
           </div>
