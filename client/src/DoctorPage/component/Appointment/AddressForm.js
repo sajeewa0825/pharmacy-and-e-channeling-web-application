@@ -20,6 +20,10 @@ function AddressForm(props) {
     let [Email,SetEmail] = useState("");
     let [Pno,SetPno] = useState("");
 
+    
+    const [formErrors, setFormErrors] = useState({});
+    const [isSubmit, setIsSubmit] = useState(false);
+
     const data ={
         Dname,
         Time,
@@ -30,6 +34,61 @@ function AddressForm(props) {
         Email,
         Pno
     }
+
+    const CheckValidate = async(event) =>{
+        event.preventDefault();
+        validate(data);
+
+        if(isSubmit){
+            console.log("okpass")
+            props.AddressFormSend(data)
+        }
+    }
+
+    const validate = (values) => {
+        const errors = {};
+        let checkerror =0;
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+        if (!values.Dname) {
+            errors.Dname = "Doctor Name is required!";
+            checkerror=1;
+        }
+        if (!values.Fname) {
+            errors.Fname = "Frist Name is required!";
+            checkerror=1;
+        }
+        if (!values.Email) {
+            errors.Email = "Email is required!";
+            checkerror=1;
+        } else if (!regex.test(values.Email)) {
+            errors.Email = "This is not a valid email format!";
+            checkerror=1;
+        }
+        if (!values.id) {
+            errors.id = "Id is required";
+            checkerror=1;
+        }
+
+        if (!values.address) {
+            errors.address = "Addres is required";
+            checkerror=1;
+        }
+
+        if (!values.Time) {
+            errors.Time = "Time is required";
+            checkerror=1;
+        }
+
+        if (checkerror===0) {
+            setIsSubmit(true);
+        }else{
+            setIsSubmit(false);
+        }
+        setFormErrors(errors)
+    };
+
+
+
 
 
     return(
@@ -47,6 +106,7 @@ function AddressForm(props) {
                         onChange={(event, value) => SetDname(value.label)}
                         renderInput={(params) => <TextField {...params} label="Doctor"  />}
                     />
+                    <p className='valiFailcolor'>{formErrors.Dname}</p>
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <Autocomplete
@@ -57,6 +117,7 @@ function AddressForm(props) {
                         onChange={(event, value) => SetTime(value.label)}
                         renderInput={(params) => <TextField {...params} label="Select Time" onChange={ (e) =>{ SetTime(e.target.value) }} />}
                     />
+                    <p className='valiFailcolor'>{formErrors.Time}</p>
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <TextField
@@ -69,6 +130,7 @@ function AddressForm(props) {
                         variant="standard"
                         onChange={ (e) =>{ SetFname(e.target.value) }}
                     />
+                    <p className='valiFailcolor'>{formErrors.Fname}</p>
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <TextField
@@ -94,6 +156,7 @@ function AddressForm(props) {
                         variant="standard"
                         onChange={ (e) =>{ Setaddres(e.target.value) }}
                     />
+                    <p className='valiFailcolor'>{formErrors.address}</p>
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <TextField
@@ -107,6 +170,7 @@ function AddressForm(props) {
                         variant="standard"
                         onChange={ (e) =>{ Setid(e.target.value) }}
                     />
+                    <p className='valiFailcolor'>{formErrors.id}</p>
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <TextField
@@ -120,6 +184,7 @@ function AddressForm(props) {
                         variant="standard"
                         onChange={ (e) =>{ SetEmail(e.target.value) }}
                     />
+                    <p className='valiFailcolor'>{formErrors.Email}</p>
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <TextField
@@ -133,8 +198,8 @@ function AddressForm(props) {
                 </Grid>
                 <Grid item xs={12}>
                     <FormControlLabel
-                        control={<Checkbox color="secondary" name="saveAddress" value="yes" onClick={() => props.AddressFormSend(data) }/>}
-                        label="Use this email address for payment details"
+                        control={<Checkbox color="secondary" name="saveAddress" value="yes" onChange={(e) => CheckValidate(e)}/>}
+                        label="details Check"
                     />
                     
                 </Grid>
