@@ -134,4 +134,16 @@ router.route("/regdoctor").post((req, res) => {
 })
 
 
+// http://Localhost:8080/doctor/regdoctor
+router.route("/regdoctor").get((req, res) => {
+
+    doctor.find().then((doctor) => {
+        res.json(doctor);
+    }).catch((err) => {
+        console.log(err)
+    })
+})
+
+
+
 module.exports = router;

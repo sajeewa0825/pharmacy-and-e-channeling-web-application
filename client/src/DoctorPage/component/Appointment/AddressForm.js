@@ -1,30 +1,48 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Autocomplete from '@mui/material/Autocomplete';
-import {AddressFormSend} from "../../../actions/AddressFormActions"
+import { AddressFormSend } from "../../../actions/AddressFormActions"
 import { bindActionCreators } from 'redux';
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
+import axios from 'axios'
 
 function AddressForm(props) {
 
-    let [Dname,SetDname] = useState("");
-    let [Time,SetTime] = useState("");
-    let [Fname,SetFname] = useState("");
-    let [Lname,SetLname] = useState("");
-    let [address,Setaddres] = useState("");
-    let [id,Setid] = useState("");
-    let [Email,SetEmail] = useState("");
-    let [Pno,SetPno] = useState("");
+    let [Dname, SetDname] = useState("");
+    let [Time, SetTime] = useState("");
+    let [Fname, SetFname] = useState("");
+    let [Lname, SetLname] = useState("");
+    let [address, Setaddres] = useState("");
+    let [id, Setid] = useState("");
+    let [Email, SetEmail] = useState("");
+    let [Pno, SetPno] = useState("");
 
-    
+
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
+    const [doctordata, SetDoctordata] = useState([])
+    const [specialist, Setspecialist] = useState([])
+    const [time, Settime] = useState([])
 
-    const data ={
+
+    useEffect(() => {
+        const getdoctor = () => {
+            axios.get("http://Localhost:8080/doctor/regdoctor").then((res) => {
+                console.log(res.data)
+                SetDoctordata(res.data)
+            }).catch((err) => {
+                alert(err)
+            })
+        }
+
+        getdoctor();
+    }, [])
+
+    const data = {
         Dname,
         Time,
         Fname,
@@ -35,11 +53,11 @@ function AddressForm(props) {
         Pno
     }
 
-    const CheckValidate = async(event) =>{
+    const CheckValidate = async (event) => {
         event.preventDefault();
         validate(data);
 
-        if(isSubmit){
+        if (isSubmit) {
             console.log("okpass")
             props.AddressFormSend(data)
         }
@@ -47,64 +65,95 @@ function AddressForm(props) {
 
     const validate = (values) => {
         const errors = {};
-        let checkerror =0;
+        let checkerror = 0;
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
         if (!values.Dname) {
             errors.Dname = "Doctor Name is required!";
-            checkerror=1;
+            checkerror = 1;
         }
         if (!values.Fname) {
             errors.Fname = "Frist Name is required!";
-            checkerror=1;
+            checkerror = 1;
         }
         if (!values.Email) {
             errors.Email = "Email is required!";
-            checkerror=1;
+            checkerror = 1;
         } else if (!regex.test(values.Email)) {
             errors.Email = "This is not a valid email format!";
-            checkerror=1;
+            checkerror = 1;
         }
         if (!values.id) {
             errors.id = "Id is required";
-            checkerror=1;
+            checkerror = 1;
         }
 
         if (!values.address) {
             errors.address = "Addres is required";
-            checkerror=1;
+            checkerror = 1;
         }
 
         if (!values.Time) {
             errors.Time = "Time is required";
-            checkerror=1;
+            checkerror = 1;
         }
 
-        if (checkerror===0) {
+        if (checkerror === 0) {
             setIsSubmit(true);
-        }else{
+        } else {
             setIsSubmit(false);
         }
         setFormErrors(errors)
     };
 
 
+    const doctorSelect =(spe)=>{
+        const filtered = doctordata.filter(obj => {
+            return obj.specialist === spe;
+          });
+
+          Setspecialist(filtered);
+    }
+
+    const doctorTimeSelect = ()=>{
+        const filtere = specialist.filter(obj => {
+            return obj.name === Dname;
+          });
+
+          console.log(filtere)
+
+          Settime(filtere);
+    }
 
 
 
-    return(
+
+
+    return (
         <React.Fragment>
             <Typography variant="h6" gutterBottom>
                 Appointment
             </Typography>
             <Grid container spacing={3}>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12} >
                     <Autocomplete
                         required
                         disablePortal
                         id="combo-box-demo"
                         options={doctor}
-                        onChange={(event, value) => SetDname(value.label)}
-                        renderInput={(params) => <TextField {...params} label="Doctor"  />}
+                        onChange={(event, value) => doctorSelect(value.label)}
+                        renderInput={(params) => <TextField {...params} label="Specialist" />}
+                    />
+                    <p className='valiFailcolor'>{formErrors.Dname}</p>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <Autocomplete
+                        required
+                        disablePortal
+                        id="combo-box-demo"
+                        options={specialist}
+                        onChange={(event, value) => SetDname(value)}
+                        renderInput={(params) => <TextField {...params} label="Doctor" />}
+                        getOptionLabel={(option) => option.name}
                     />
                     <p className='valiFailcolor'>{formErrors.Dname}</p>
                 </Grid>
@@ -115,7 +164,8 @@ function AddressForm(props) {
                         id="combo-box-demo"
                         options={time}
                         onChange={(event, value) => SetTime(value.label)}
-                        renderInput={(params) => <TextField {...params} label="Select Time" onChange={ (e) =>{ SetTime(e.target.value) }} />}
+                        renderInput={(params) => <TextField {...params} label="Select Time" onChange={(e) => { SetTime(e.target.value) }} />}
+                        getOptionLabel={(option) => { return ( option.timePeriod)}}
                     />
                     <p className='valiFailcolor'>{formErrors.Time}</p>
                 </Grid>
@@ -128,7 +178,7 @@ function AddressForm(props) {
                         fullWidth
                         autoComplete="given-name"
                         variant="standard"
-                        onChange={ (e) =>{ SetFname(e.target.value) }}
+                        onChange={(e) => { SetFname(e.target.value) }}
                     />
                     <p className='valiFailcolor'>{formErrors.Fname}</p>
                 </Grid>
@@ -141,7 +191,7 @@ function AddressForm(props) {
                         fullWidth
                         autoComplete="family-name"
                         variant="standard"
-                        onChange={ (e) =>{ SetLname(e.target.value) }}
+                        onChange={(e) => { SetLname(e.target.value) }}
                     />
                 </Grid>
 
@@ -154,7 +204,7 @@ function AddressForm(props) {
                         fullWidth
                         autoComplete="shipping address-line1"
                         variant="standard"
-                        onChange={ (e) =>{ Setaddres(e.target.value) }}
+                        onChange={(e) => { Setaddres(e.target.value) }}
                     />
                     <p className='valiFailcolor'>{formErrors.address}</p>
                 </Grid>
@@ -168,7 +218,7 @@ function AddressForm(props) {
                         fullWidth
                         autoComplete="Email"
                         variant="standard"
-                        onChange={ (e) =>{ Setid(e.target.value) }}
+                        onChange={(e) => { Setid(e.target.value) }}
                     />
                     <p className='valiFailcolor'>{formErrors.id}</p>
                 </Grid>
@@ -182,7 +232,7 @@ function AddressForm(props) {
                         fullWidth
                         autoComplete="Email"
                         variant="standard"
-                        onChange={ (e) =>{ SetEmail(e.target.value) }}
+                        onChange={(e) => { SetEmail(e.target.value) }}
                     />
                     <p className='valiFailcolor'>{formErrors.Email}</p>
                 </Grid>
@@ -193,15 +243,15 @@ function AddressForm(props) {
                         label="Phone number"
                         fullWidth
                         variant="standard"
-                        onChange={ (e) =>{ SetPno(e.target.value) }}
+                        onChange={(e) => { SetPno(e.target.value) }}
                     />
                 </Grid>
                 <Grid item xs={12}>
                     <FormControlLabel
-                        control={<Checkbox color="secondary" name="saveAddress" value="yes" onChange={(e) => CheckValidate(e)}/>}
+                        control={<Checkbox color="secondary" name="saveAddress" value="yes" onChange={(e) => CheckValidate(e)} />}
                         label="details Check"
                     />
-                    
+
                 </Grid>
             </Grid>
         </React.Fragment>
@@ -209,20 +259,17 @@ function AddressForm(props) {
 }
 
 
-function matchDispatchToProps(dispatch){
-    return bindActionCreators({AddressFormSend:AddressFormSend},dispatch)
+function matchDispatchToProps(dispatch) {
+    return bindActionCreators({ AddressFormSend: AddressFormSend }, dispatch)
 }
 
-export default connect(null,matchDispatchToProps)(AddressForm)
+export default connect(null, matchDispatchToProps)(AddressForm)
+
+
+
 
 const doctor = [
-    { label: "Dr abcd" },
-    { label: "Dr ab" },
-    { label: "Dr abcde" },
-    { label: "Dr a" }
-]
-
-const time = [
-    { label: "06.00 To 08.00 -AM" },
-    { label: "04.00 To 08.00 -pM" },
+    { label: "hart" },
+    { label: "iye" },
+    { label: "brain" },
 ]
