@@ -65,7 +65,6 @@ function AddressForm(props) {
     }
 
     const CheckValidate = async (event) => {
-        console.log(datevalue)
         event.preventDefault();
         validate(data);
 
@@ -142,7 +141,6 @@ function AddressForm(props) {
     }
 
     const settime = (drname) => {
-        console.log(drname.name)
         SetDname(drname.name)
 
         const filtered = doctordata.filter(obj => {
@@ -190,7 +188,7 @@ function AddressForm(props) {
                         disablePortal
                         id="combo-box-demo"
                         options={timepi}
-                        onChange={(event, value) => SetTimePeriod(value)}
+                        onChange={(event, value) => SetTimePeriod(value.timePeriod)}
                         renderInput={(params) => <TextField {...params} label="Time Period" />}
                         getOptionLabel={(option) => option.timePeriod}
                     />

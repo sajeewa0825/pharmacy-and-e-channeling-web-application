@@ -76,14 +76,14 @@ function PaymentForm(props) {
     if (!values.cvv) {
       errors.cvv = "CVV is required!";
       checkerror = 1;
-    }else if(values.cvv.length != 3){
+    }else if(values.cvv.length !== 3){
       errors.cvv = "CVV is incorect";
       checkerror = 1;
     }
     if (!values.cardNumber) {
       errors.cardNumber = "Card Number is required";
       checkerror = 1;
-    } else if (values.cardNumber.length != 16) {
+    } else if (values.cardNumber.length !== 16) {
       errors.cardNumber = "Card Number is invalid";
       checkerror = 1;
     }
@@ -105,23 +105,32 @@ function PaymentForm(props) {
     let Dr_name = props.AddressForm[0].Dr_name
     let F_name = props.AddressForm[0].F_name
     let L_name = props.AddressForm[0].L_name
-    let Time = props.AddressForm[0].Time
+    let TimePeriod = props.AddressForm[0].TimePeriod
+    let Date = props.AddressForm[0].Date
     let Id = props.AddressForm[0].Id
     let Email = props.AddressForm[0].Email
     let P_no = props.AddressForm[0].P_no
     let Address = props.AddressForm[0].Address
     let Total_bill = props.AddressForm[0].Total_bill
+    if(!localStorage){
+      Total_bill=Total_bill * ( (100-10) / 100 );
+    }
+    let Gender = props.AddressForm[0].Gender
+    let AppointmentSendTime = props.AddressForm[0].AppointmentSendTime
 
     let newAppointment = {
       Dr_name,
+      TimePeriod,
+      Date,
       F_name,
       L_name,
-      Time,
+      Gender,
       Id,
       Email,
       P_no,
       Address,
-      Total_bill
+      Total_bill,
+      AppointmentSendTime
     }
     axios.post("http://localhost:8080/doctor/addappointment", newAppointment).then((res) => {
       console.log("succes");
