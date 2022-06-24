@@ -5,6 +5,9 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Autocomplete from '@mui/material/Autocomplete';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AddressFormSend } from "../../../actions/AddressFormActions"
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
@@ -13,8 +16,10 @@ import axios from 'axios'
 function AddressForm(props) {
 
     let [Dname, SetDname] = useState("");
-    let [Time, SetTime] = useState("");
+    let [TimePeriod, SetTimePeriod] = useState("");
+    let [datevalue, setdate] = React.useState(new Date());
     let [Fname, SetFname] = useState("");
+    let [Gender, SetGender] = useState("");
     let [Lname, SetLname] = useState("");
     let [address, Setaddres] = useState("");
     let [id, Setid] = useState("");
@@ -26,7 +31,8 @@ function AddressForm(props) {
     const [isSubmit, setIsSubmit] = useState(false);
     const [doctordata, SetDoctordata] = useState([])
     const [specialist, Setspecialist] = useState([])
-    const [time, Settime] = useState([])
+    const [timepi, Settimepi] = useState([])
+
 
 
     useEffect(() => {
@@ -42,18 +48,24 @@ function AddressForm(props) {
         getdoctor();
     }, [])
 
+    const AppointmentSendTime = new Date();
+
     const data = {
         Dname,
-        Time,
+        TimePeriod,
+        datevalue,
         Fname,
         Lname,
+        Gender,
         address,
         id,
         Email,
-        Pno
+        Pno,
+        AppointmentSendTime
     }
 
     const CheckValidate = async (event) => {
+        console.log(datevalue)
         event.preventDefault();
         validate(data);
 
@@ -92,8 +104,23 @@ function AddressForm(props) {
             checkerror = 1;
         }
 
-        if (!values.Time) {
-            errors.Time = "Time is required";
+        if (!values.TimePeriod) {
+            errors.TimePeriod = "Time is required";
+            checkerror = 1;
+        }
+
+        if (!values.Gender) {
+            errors.Gender = "Time is required";
+            checkerror = 1;
+        }
+
+        if (!values.datevalue) {
+            errors.datevalue = "Date is required";
+            checkerror = 1;
+        }
+
+        if (values.datevalue <= new Date()) {
+            errors.datevalue = "Date is incorrect";
             checkerror = 1;
         }
 
@@ -106,22 +133,23 @@ function AddressForm(props) {
     };
 
 
-    const doctorSelect =(spe)=>{
+    const doctorSelect = (spe) => {
         const filtered = doctordata.filter(obj => {
             return obj.specialist === spe;
-          });
+        });
 
-          Setspecialist(filtered);
+        Setspecialist(filtered);
     }
 
-    const doctorTimeSelect = ()=>{
-        const filtere = specialist.filter(obj => {
-            return obj.name === Dname;
-          });
+    const settime = (drname) => {
+        console.log(drname.name)
+        SetDname(drname.name)
 
-          console.log(filtere)
+        const filtered = doctordata.filter(obj => {
+            return obj._id === drname._id;
+        });
 
-          Settime(filtere);
+        Settimepi(filtered)
     }
 
 
@@ -143,7 +171,6 @@ function AddressForm(props) {
                         onChange={(event, value) => doctorSelect(value.label)}
                         renderInput={(params) => <TextField {...params} label="Specialist" />}
                     />
-                    <p className='valiFailcolor'>{formErrors.Dname}</p>
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <Autocomplete
@@ -151,7 +178,7 @@ function AddressForm(props) {
                         disablePortal
                         id="combo-box-demo"
                         options={specialist}
-                        onChange={(event, value) => SetDname(value)}
+                        onChange={(event, value) => settime(value)}
                         renderInput={(params) => <TextField {...params} label="Doctor" />}
                         getOptionLabel={(option) => option.name}
                     />
@@ -162,12 +189,36 @@ function AddressForm(props) {
                         required
                         disablePortal
                         id="combo-box-demo"
-                        options={time}
-                        onChange={(event, value) => SetTime(value.label)}
-                        renderInput={(params) => <TextField {...params} label="Select Time" onChange={(e) => { SetTime(e.target.value) }} />}
-                        getOptionLabel={(option) => { return ( option.timePeriod)}}
+                        options={timepi}
+                        onChange={(event, value) => SetTimePeriod(value)}
+                        renderInput={(params) => <TextField {...params} label="Time Period" />}
+                        getOptionLabel={(option) => option.timePeriod}
                     />
-                    <p className='valiFailcolor'>{formErrors.Time}</p>
+                    <p className='valiFailcolor'>{formErrors.TimePeriod}</p>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <DatePicker
+                            label="Date"
+                            value={datevalue}
+                            onChange={(newValue) => {
+                                setdate(newValue);
+                            }}
+                            renderInput={(params) => <TextField {...params} />}
+                        />
+                    </LocalizationProvider>
+                    <p className='valiFailcolor'>{formErrors.datevalue}</p>
+                </Grid>
+                <Grid item xs={12} sm={6} >
+                    <Autocomplete
+                        required
+                        disablePortal
+                        id="combo-box-demo"
+                        options={gender}
+                        onChange={(event, value) => SetGender(value.label)}
+                        renderInput={(params) => <TextField {...params} label="Gender" />}
+                    />
+                    <p className='valiFailcolor'>{formErrors.Gender}</p>
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <TextField
@@ -272,4 +323,9 @@ const doctor = [
     { label: "hart" },
     { label: "iye" },
     { label: "brain" },
+]
+
+const gender = [
+    { label: "Male" },
+    { label: "Female" }
 ]
