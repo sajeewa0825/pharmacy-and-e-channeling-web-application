@@ -11,6 +11,7 @@ import Homeph from "../component/Home/home"
 import About from '../component/About/About';
 import Price from '../component/Price/price';
 import Shop from '../component/shop/shop';
+import Resetpassword from '../DoctorPage/component/Login/Resetpw';
 
 
 const Routing = () => {
@@ -27,6 +28,7 @@ const Routing = () => {
                 <Route path='phaboutus' element={<About />} />
                 <Route path='phprice' element={<Price />} />
                 <Route path='phshop' element={<Shop />} />
+                <Route path='resetpassword' element={<Resetpassword />} />
                 <Route path='/' element={<Landing />} />
             </Routes>
             <Footer/>

@@ -16,31 +16,18 @@ import "./Login.css"
 import Navbar from "../Navbar/Navbar.js"
 
 
-function Copyright(props) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
+
 
 const theme = createTheme();
 
-export default function SignIn() {
+export default function Resetpassword() {
     let [Email, SetEmail] = useState("");
-    let [Password, SetPassword] = useState("");
 
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
 
     const data1 = {
-        Email,
-        Password
+        Email
     }
 
 
@@ -56,8 +43,7 @@ export default function SignIn() {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    Email,
-                    Password,
+                    Email
                 }),
             })
 
@@ -70,7 +56,6 @@ export default function SignIn() {
             } else {
                 alert('Please check your username and password')
                 SetEmail("")
-                SetPassword("")
                 document.getElementById("form2").reset();
             }
 
@@ -88,10 +73,7 @@ export default function SignIn() {
             errors.Email = "This is not a valid email format!";
             checkerror = 1;
         }
-        if (!values.Password) {
-            errors.Password = "Password is required";
-            checkerror = 1;
-        }
+
 
 
         if (checkerror === 0) {
@@ -106,7 +88,7 @@ export default function SignIn() {
     return (
         <ThemeProvider theme={theme}>
             <Navbar />
-            <Container component="main" maxWidth="xs">
+            <Container component="main" maxWidth="xs" className='setbottom'>
                 <CssBaseline />
                 <Box
                     sx={{
@@ -120,7 +102,7 @@ export default function SignIn() {
                         <LockOutlinedIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        Sign in
+                        Reset Password
                     </Typography>
                     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }} id='form2'>
                         <TextField
@@ -135,59 +117,21 @@ export default function SignIn() {
                             onChange={(e) => { SetEmail(e.target.value) }}
                         />
                         <p className='valiFailcolor'>{formErrors.Email}</p>
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="password"
-                            label="Password"
-                            type="password"
-                            id="password"
-                            autoComplete="current-password"
-                            onChange={(e) => { SetPassword(e.target.value) }}
-                        />
-                        <p className='valiFailcolor'>{formErrors.Password}</p>
-                        <FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
-                            label="Remember me"
-                        />
                         <Button
                             type="submit"
                             fullWidth
                             variant="contained"
                             sx={{ mt: 3, mb: 2 }}
                         >
-                            Sign In
+                            Send Link
                         </Button>
-                        <div className="text-center mb-3">
-                            <p> Or Sign in with:</p>
-                            <button type="button" className="btn btn-link btn-floating mx-1">
-                                <img src='https://cdn1.iconfinder.com/data/icons/logotypes/32/square-facebook-128.png' width="36px" alt='Facebook' />
-                            </button>
-
-                            <button type="button" className="btn btn-link btn-floating mx-1">
-                                <img src='https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png' width="36px" alt='Google' />
-                            </button>
-
-                            <button type="button" className="btn btn-link btn-floating mx-1">
-                                <img src='https://cdn3.iconfinder.com/data/icons/social-media-2253/25/Group-256.png' width="36px" alt='Git hub' />
-                            </button>
-                        </div>
-                        <Grid container>
-                            <Grid item xs>
-                                <Link href="/resetpassword" variant="body2" className='setfont'>
-                                    Forgot password?
-                                </Link>
-                            </Grid>
-                            <Grid item>
+                        <Grid item>
                                 <Link href="/signup" variant="body2" className='setfont'>
                                     {"Don't have an account? Sign Up"}
                                 </Link>
                             </Grid>
-                        </Grid>
                     </Box>
                 </Box>
-                <Copyright sx={{ mt: 8, mb: 4 }} />
             </Container>
         </ThemeProvider>
     );
