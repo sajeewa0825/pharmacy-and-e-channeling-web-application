@@ -22,6 +22,11 @@ const signupSchema = new Schema({
         required: true
     },
 
+    token: {
+        type: String,
+        required: false
+    }
+
 })
 
 const signup = mongoose.model("signup",signupSchema);

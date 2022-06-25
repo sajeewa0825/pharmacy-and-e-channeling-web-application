@@ -3,8 +3,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -14,6 +12,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import "./Login.css"
 import Navbar from "../Navbar/Navbar.js"
+import axios from 'axios'
 
 
 
@@ -36,29 +35,14 @@ export default function Resetpassword() {
         validate(data1);
 
         if (isSubmit) {
-
-            const response = await fetch('http://Localhost:8080/doctor/signin', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    Email
-                }),
-            })
-
-            const data = await response.json()
-
-            if (data.user) {
-                localStorage.setItem('token', data.user)
-                // alert('Login successful')
-                window.location.href = '/'
-            } else {
-                alert('Please check your username and password')
-                SetEmail("")
-                document.getElementById("form2").reset();
-            }
-
+            axios.post('http://Localhost:8080/doctor/passwordreset', data1).then((res) => {
+                console.log(res)
+                alert(res.message)
+                window.location.href = '/resetpassword'
+              }).catch((err) => {
+                console.log(err)
+                alert("User with given email does not exist!")
+            }) 
         }
     };
 
@@ -122,8 +106,9 @@ export default function Resetpassword() {
                             fullWidth
                             variant="contained"
                             sx={{ mt: 3, mb: 2 }}
+                            onClick={handleSubmit}
                         >
-                            Send Link
+                            Send Security Link
                         </Button>
                         <Grid item>
                                 <Link href="/signup" variant="body2" className='setfont'>
