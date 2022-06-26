@@ -1,14 +1,15 @@
 const router = require("express").Router();
-let appointment = require("../models/appointment.js");
-let signup = require("../models/register");
-let doctor = require("../models/doctor")
+const appointment = require("../models/appointment.js");
+const signup = require("../models/register");
+const doctor = require("../models/doctor")
+const product = require("../models/product")
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const SendMail = require("../utils/sendEmail")
 
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 
-
+// add appointment details
 // http://Localhost:8080/doctor/addappointment
 router.route("/addappointment").post((req, res) => {
 
@@ -50,6 +51,8 @@ router.route("/addappointment").post((req, res) => {
     })
 })
 
+
+// user signup
 // http://Localhost:8080/doctor/signup
 router.route("/signup").post(async (req, res) => {
 
@@ -76,6 +79,9 @@ router.route("/signup").post(async (req, res) => {
 
 })
 
+
+
+// user signin
 // http://Localhost:8080/doctor/signin
 router.route("/signin").post(async (req, res) => {
     const user = await signup.findOne({
@@ -112,6 +118,8 @@ router.route("/signin").post(async (req, res) => {
 })
 
 
+
+// docotr register
 // http://Localhost:8080/doctor/regdoctor
 router.route("/regdoctor").post((req, res) => {
 
@@ -145,6 +153,7 @@ router.route("/regdoctor").post((req, res) => {
 })
 
 
+// get registered doctore
 // http://Localhost:8080/doctor/regdoctor
 router.route("/regdoctor").get((req, res) => {
 
@@ -157,6 +166,7 @@ router.route("/regdoctor").get((req, res) => {
 
 
 // send password link
+// http://Localhost:8080/doctor/passwordreset
 router.route("/passwordreset").post(async (req, res) => {
     try {
         const user = await signup.findOne({
@@ -188,6 +198,9 @@ router.route("/passwordreset").post(async (req, res) => {
     }
 });
 
+
+// update password
+// http://Localhost:8080/doctor/setpassword
 router.route("/setpassword").post(async (req, res) => {
     console.log(req.body)
 
@@ -207,6 +220,41 @@ router.route("/setpassword").post(async (req, res) => {
         return res.status(401).send(error);
     }
 });
+
+
+// add product
+// http://Localhost:8080/doctor/addproduct
+router.route("/addproduct").post((req, res) => {
+
+    const name = req.body.name;
+    const imgLink  = req.body.imgLink ;
+    const price = req.body.price;
+
+
+    const newproduct = new product({
+        name,
+        imgLink,
+        price
+    })
+
+    newproduct.save().then(() => {
+        res.json("Product add succesfull");
+    }).catch((err) => {
+        console.log(err);
+    })
+})
+
+
+// get product
+// http://Localhost:8080/doctor/addproduct
+router.route("/addproduct").get((req, res) => {
+
+    product.find().then((product) => {
+        res.json(product);
+    }).catch((err) => {
+        console.log(err)
+    })
+})
 
 
 
