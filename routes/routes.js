@@ -172,10 +172,9 @@ router.route("/passwordreset").post(async (req, res) => {
         const user = await signup.findOne({
             Email: req.body.Email,
         })
-        if (!user)
-            return res
-                .status(409)
-                .send({ message: "User with given email does not exist!" });
+        if (!user) {
+            return res.json({ status: 409, message: "User with given email does not exist!" })
+        }
         let token = user._id
         if (token) {
             let data = token;
@@ -187,11 +186,11 @@ router.route("/passwordreset").post(async (req, res) => {
         const text = "Medisuite Account Password Rest security code"
 
         const url = token;
-        await SendMail(user.Email, text, url);
-
-        res
-            .status(200)
-            .send({ message: "Password reset link sent to your email account" });
+        await SendMail(user.Email, text, url).then(() => {
+            return res.json({ status: 200, message: "Password reset link sent to your email account" })
+        }).catch(() => {
+            return res.json({ status: 409, message: "Email send error" })
+        })
     } catch (error) {
         console.log(error)
         res.status(500).send({ message: "Internal Server Error" });
@@ -210,7 +209,7 @@ router.route("/setpassword").post(async (req, res) => {
             const newPassword = await bcrypt.hash(req.body.Password, 10)
             await signup.updateOne({ _id: verified.data }, {
                 Password: newPassword
-            }).then((response) => {
+            }).then(() => {
                 return res.send({ status: 200, message: 'Password Updated' })
             })
         } else {
@@ -227,7 +226,7 @@ router.route("/setpassword").post(async (req, res) => {
 router.route("/addproduct").post((req, res) => {
 
     const name = req.body.name;
-    const imgLink  = req.body.imgLink ;
+    const imgLink = req.body.imgLink;
     const price = req.body.price;
 
 

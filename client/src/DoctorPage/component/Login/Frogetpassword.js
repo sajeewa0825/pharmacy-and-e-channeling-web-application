@@ -37,11 +37,11 @@ export default function Resetpassword() {
         if (isSubmit) {
             axios.post('http://Localhost:8080/doctor/passwordreset', data1).then((res) => {
                 console.log(res)
-                alert(res.message)
+                alert(res.data.message)
                 window.location.href = '/resetpassword'
               }).catch((err) => {
                 console.log(err)
-                alert("User with given email does not exist!")
+                alert(err.message)
             }) 
         }
     };

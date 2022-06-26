@@ -38,7 +38,7 @@ export default function SignIn() {
         if (isSubmit) {
             axios.post('http://Localhost:8080/doctor/setpassword', data1).then((res) => {
                 console.log(res)
-                alert(res.message)
+                alert(res.data.message)
                 window.location.href = '/signin'
               }).catch((err) => {
                 alert(err)
