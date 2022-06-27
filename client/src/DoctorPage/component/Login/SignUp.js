@@ -15,31 +15,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import "./Login.css"
 import Navbar from "../Navbar/Navbar.js"
 import { useNavigate } from 'react-router-dom';
-import emailjs from 'emailjs-com'
+import axios from 'axios'
 import "./Login.css"
-
-
-const emailsend = (newuser) => {
-    const service_id = 'service_gds5i2d'
-    const template_id = 'template_f0driub'
-    const user_id = 'zC-jA7DMIOelAwpSg'
-
-
-    const to_name = newuser.F_name;
-    const message = "Your Medisute account Activeted."
-    const reply_to = newuser.Email
-    const data = {
-        to_name,
-        message,
-        reply_to
-    }
-
-    emailjs.send(service_id, template_id, data, user_id).then((res) => {
-        console.log(res)
-    }).catch((err) => {
-        console.log(err)
-    })
-}
 
 
 function Copyright(props) {
@@ -66,7 +43,6 @@ export default function SignUp() {
     let [Password, SetPassword] = useState("");
 
     const [formErrors, setFormErrors] = useState({});
-    const [isSubmit, setIsSubmit] = useState(false);
 
     const data1 = {
         F_name,
@@ -79,48 +55,18 @@ export default function SignUp() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        validate(data1);
+        let checkerror =validate(data1);
 
-
-        // axios.post("http://Localhost:8080/doctor/signup", data).then(() => {
-        //     console.log("succes");
-        //     alert("signup!  This is a success alert")
-        //   }).catch(() => {
-        //     console.log("err")
-        //     alert("Email addres allredy exit")
-        //   })
-
-
-
-        if (isSubmit === true) {
-            const response = await fetch("http://Localhost:8080/doctor/signup", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    F_name,
-                    L_name,
-                    Email,
-                    Password
-                }),
-            })
-
-            const data = await response.json()
-
-            if (data.status === 'ok') {
-                alert("signup!  This is a success alert")
-                emailsend(data1)
-                navigate('/signin')
-            } else {
-                alert("Email addres allredy exit")
-                SetEmail("")
-                SetFname("")
-                SetLname("")
-                SetPassword("")
-                document.getElementById("form1").reset();
-            }
-
+        if (checkerror === 0) {
+            axios.post("http://Localhost:8080/doctor/signup", data1).then((res) => {
+                if(res.data.status == 200){
+                    alert(res.data.message)
+                }else{
+                    alert(res.data.error)
+                }
+              }).catch((err) => {
+                console.log(err)
+              })
         }
 
     };
@@ -154,13 +100,8 @@ export default function SignUp() {
             errors.Password = "Password cannot exceed more than 10 characters";
             checkerror=1;
         }
-
-        if (checkerror===0) {
-            setIsSubmit(true);
-        }else{
-            setIsSubmit(false);
-        }
         setFormErrors(errors)
+        return checkerror;
     };
 
 

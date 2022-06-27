@@ -36,7 +36,6 @@ export default function SignIn() {
     let [Password, SetPassword] = useState("");
 
     const [formErrors, setFormErrors] = useState({});
-    const [isSubmit, setIsSubmit] = useState(false);
 
     const data1 = {
         Email,
@@ -46,9 +45,10 @@ export default function SignIn() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        validate(data1);
-
-        if (isSubmit) {
+        console.log("click")
+        let checkerror =validate(data1);
+        console.log(checkerror)
+        if (checkerror === 0) {
 
             const response = await fetch('http://Localhost:8080/doctor/signin', {
                 method: 'POST',
@@ -69,8 +69,6 @@ export default function SignIn() {
                 window.location.href = '/'
             } else {
                 alert('Please check your username and password')
-                SetEmail("")
-                SetPassword("")
                 document.getElementById("form2").reset();
             }
 
@@ -93,13 +91,9 @@ export default function SignIn() {
             checkerror = 1;
         }
 
+        setFormErrors(errors);
 
-        if (checkerror === 0) {
-            setIsSubmit(true);
-        } else {
-            setIsSubmit(false);
-        }
-        setFormErrors(errors)
+        return checkerror;
     };
 
 
@@ -122,7 +116,7 @@ export default function SignIn() {
                     <Typography component="h1" variant="h5">
                         Sign in
                     </Typography>
-                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }} id='form2'>
+                    <Box component="form" onSubmit={handleSubmit.bind()} noValidate sx={{ mt: 1 }} id='form2'>
                         <TextField
                             margin="normal"
                             required

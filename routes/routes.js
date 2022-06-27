@@ -56,12 +56,11 @@ router.route("/addappointment").post((req, res) => {
 // http://Localhost:8080/doctor/signup
 router.route("/signup").post(async (req, res) => {
 
-    const Email = req.body.Email;
     const user = await signup.findOne({ Email: req.body.Email })
 
     if (user) {
         console.log("Email address already exists")
-        res.json({ status: 'error', error: 'Duplicate email' })
+        res.json({ status: 409, error: 'Email address already exists' })
     } else {
         try {
             const newPassword = await bcrypt.hash(req.body.Password, 10)
@@ -71,7 +70,7 @@ router.route("/signup").post(async (req, res) => {
                 Email: req.body.Email,
                 Password: newPassword
             })
-            res.json({ status: 'ok' })
+            res.json({ status: 200, message: 'sign up successful'  })
         } catch (err) {
             res.json({ status: 'error', error: 'Duplicate email' })
         }
