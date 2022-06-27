@@ -23,7 +23,6 @@ export default function Resetpassword() {
     let [Email, SetEmail] = useState("");
 
     const [formErrors, setFormErrors] = useState({});
-    const [isSubmit, setIsSubmit] = useState(false);
 
     const data1 = {
         Email
@@ -32,9 +31,9 @@ export default function Resetpassword() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        validate(data1);
+        let checkerror =validate(data1);
 
-        if (isSubmit) {
+        if (checkerror===0) {
             axios.post('http://Localhost:8080/doctor/passwordreset', data1).then((res) => {
                 console.log(res)
                 alert(res.data.message)
@@ -57,15 +56,8 @@ export default function Resetpassword() {
             errors.Email = "This is not a valid email format!";
             checkerror = 1;
         }
-
-
-
-        if (checkerror === 0) {
-            setIsSubmit(true);
-        } else {
-            setIsSubmit(false);
-        }
         setFormErrors(errors)
+        return checkerror;
     };
 
 

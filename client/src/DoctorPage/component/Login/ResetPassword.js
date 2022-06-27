@@ -23,7 +23,6 @@ export default function SignIn() {
     let [Password, SetPassword] = useState("");
 
     const [formErrors, setFormErrors] = useState({});
-    const [isSubmit, setIsSubmit] = useState(false);
 
     const data1 = {
         token,
@@ -33,9 +32,9 @@ export default function SignIn() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        validate(data1);
+        let checkerror = validate(data1);
 
-        if (isSubmit) {
+        if (checkerror===0) {
             axios.post('http://Localhost:8080/doctor/setpassword', data1).then((res) => {
                 console.log(res)
                 alert(res.data.message)
@@ -59,14 +58,10 @@ export default function SignIn() {
             checkerror = 1;
         }
 
-
-        if (checkerror === 0) {
-            setIsSubmit(true);
-        } else {
-            setIsSubmit(false);
-        }
         setFormErrors(errors)
+        return checkerror;
     };
+
 
 
     return (

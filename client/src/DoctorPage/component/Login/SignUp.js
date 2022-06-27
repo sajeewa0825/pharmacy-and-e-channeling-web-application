@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState} from 'react'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,7 +14,6 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import "./Login.css"
 import Navbar from "../Navbar/Navbar.js"
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import "./Login.css"
 
@@ -36,7 +35,6 @@ const theme = createTheme();
 
 
 export default function SignUp() {
-    const navigate = useNavigate();
     let [F_name, SetFname] = useState("");
     let [L_name, SetLname] = useState("");
     let [Email, SetEmail] = useState("");
@@ -59,8 +57,8 @@ export default function SignUp() {
 
         if (checkerror === 0) {
             axios.post("http://Localhost:8080/doctor/signup", data1).then((res) => {
-                if(res.data.status == 200){
-                    alert(res.data.message)
+                if(res.data.status === 200){
+                    window.location.href =  '/signin'
                 }else{
                     alert(res.data.error)
                 }

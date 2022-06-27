@@ -28,7 +28,6 @@ function AddressForm(props) {
 
 
     const [formErrors, setFormErrors] = useState({});
-    const [isSubmit, setIsSubmit] = useState(false);
     const [doctordata, SetDoctordata] = useState([])
     const [specialist, Setspecialist] = useState([])
     const [timepi, Settimepi] = useState([])
@@ -66,10 +65,9 @@ function AddressForm(props) {
 
     const CheckValidate = async (event) => {
         event.preventDefault();
-        validate(data);
+        let checkerror =validate(data);
 
-        if (isSubmit) {
-            console.log("okpass")
+        if (checkerror===0) {
             props.AddressFormSend(data)
         }
     }
@@ -122,13 +120,8 @@ function AddressForm(props) {
             errors.datevalue = "Date is incorrect";
             checkerror = 1;
         }
-
-        if (checkerror === 0) {
-            setIsSubmit(true);
-        } else {
-            setIsSubmit(false);
-        }
         setFormErrors(errors)
+        return checkerror;
     };
 
 

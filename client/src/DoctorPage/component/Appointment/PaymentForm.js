@@ -5,37 +5,12 @@ import TextField from '@mui/material/TextField';
 import { connect } from 'react-redux';
 import axios from 'axios'
 import Button from '@mui/material/Button';
-import emailjs from 'emailjs-com'
 import Autocomplete from '@mui/material/Autocomplete';
-
-
-const emailsend = (newAppointment) => {
-  const service_id = 'service_gds5i2d'
-  const template_id = 'template_f0driub'
-  const user_id = 'zC-jA7DMIOelAwpSg'
-
-
-  const to_name = newAppointment.F_name;
-  const message = "Your Appointment is conformed."
-  const reply_to = newAppointment.Email
-  const data = {
-    to_name,
-    message,
-    reply_to
-  }
-
-  emailjs.send(service_id, template_id, data, user_id).then((res) => {
-    console.log(res)
-  }).catch((err) => {
-    console.log(err)
-  })
-}
 
 
 function PaymentForm(props) {
 
   const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
 
   let [cardtype, setCardname] = useState("");
   let [cardNumber, SetCardNumber] = useState("");
@@ -51,10 +26,8 @@ function PaymentForm(props) {
 
   const CheckValidate = async (event) => {
     event.preventDefault();
-    validate(data);
-
-    console.log(isSubmit)
-    if (isSubmit) {
+    let checkerror = validate(data);
+    if (checkerror===0) {
       console.log("issubmit")
       sendData(event,props)
     }
@@ -88,11 +61,8 @@ function PaymentForm(props) {
       checkerror = 1;
     }
 
-    if (checkerror === 0) {
-      console.log("ok")
-      setIsSubmit(true);
-    }
     setFormErrors(errors)
+    return checkerror;
   };
 
 
@@ -112,7 +82,7 @@ function PaymentForm(props) {
     let P_no = props.AddressForm[0].P_no
     let Address = props.AddressForm[0].Address
     let Total_bill = props.AddressForm[0].Total_bill
-    if(!localStorage){
+    if(localStorage.token){
       Total_bill=Total_bill * ( (100-10) / 100 );
     }
     let Gender = props.AddressForm[0].Gender
@@ -133,10 +103,7 @@ function PaymentForm(props) {
       AppointmentSendTime
     }
     axios.post("http://localhost:8080/doctor/addappointment", newAppointment).then((res) => {
-      console.log("succes");
-      console.log(res)
       alert("Payed!  This is a success alert")
-      emailsend(newAppointment)
     }).catch((err) => {
       alert(err)
     })

@@ -45,9 +45,7 @@ export default function SignIn() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log("click")
         let checkerror =validate(data1);
-        console.log(checkerror)
         if (checkerror === 0) {
 
             const response = await fetch('http://Localhost:8080/doctor/signin', {
@@ -65,7 +63,6 @@ export default function SignIn() {
 
             if (data.user) {
                 localStorage.setItem('token', data.user)
-                // alert('Login successful')
                 window.location.href = '/'
             } else {
                 alert('Please check your username and password')
