@@ -10,11 +10,12 @@ const SendMail = require("../utils/sendEmail")
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 
 // add appointment details
-// http://Localhost:8080/doctor/addappointment
+// http://Localhost:8080/addappointment
 router.route("/addappointment").post((req, res) => {
+    const subject = "Your Doctor Appointment Confirmation email"
 
-    SendMail()
-    console.log(req.body)
+
+
 
     const F_name = req.body.F_name;
     const L_name = req.body.L_name;
@@ -44,8 +45,27 @@ router.route("/addappointment").post((req, res) => {
         AppointmentSendTime
     })
 
-    newappointment.save().then(() => {
-        res.json("appointment succues");
+    newappointment.save().then((response) => {
+        res.json(response);
+        console.log(response)
+        const text = `
+        Hey ${req.body.F_name},
+    
+        confirmed your doctor appointment on ${req.body.Date}. 
+        If you have questions before your appointment, use the contact details below to get in touch with us.
+    
+        *Doctor name - ${req.body.Dr_name}
+        *patients name - ${req.body.F_name}
+        *Appointment Date- ${req.body.Date}
+        *Appointment Time Period - ${req.body.TimePeriod}
+        *Appointment ID- ${response._id}
+        *Payed Bill- ${req.body.Total_bill}
+        
+        To cancel or reschedule your appointment before the scheduled time
+        
+        Thanks for scheduling with Medisuite!
+        http://localhost:8080/`;
+        SendMail(req.body.Email, subject, text)
     }).catch((err) => {
         console.log(err);
     })
@@ -55,6 +75,19 @@ router.route("/addappointment").post((req, res) => {
 // user signup
 // http://Localhost:8080/signup
 router.route("/signup").post(async (req, res) => {
+    const subject = "Your Medisuite account Confirmation email"
+    const text = `
+        Dear ${req.body.F_name}
+        Thank you for completing your registration with customer portal.
+    
+        This email serves as a confirmation that your account is activated and that you are officially a part of the Medisute family.
+        Enjoy!
+    
+        Regards,
+        The Medisute team`;
+
+
+
 
     const user = await signup.findOne({ Email: req.body.Email })
 
@@ -62,18 +95,22 @@ router.route("/signup").post(async (req, res) => {
         console.log("Email address already exists")
         res.json({ status: 409, error: 'Email address already exists' })
     } else {
-        try {
-            const newPassword = await bcrypt.hash(req.body.Password, 10)
-            await signup.create({
-                F_name: req.body.F_name,
-                L_name: req.body.L_name,
-                Email: req.body.Email,
-                Password: newPassword
-            })
-            res.json({ status: 200, message: 'sign up successful'  })
-        } catch (err) {
-            res.json({ status: 'error', error: 'Duplicate email' })
-        }
+
+        const newPassword = await bcrypt.hash(req.body.Password, 10)
+        const newsignup = new signup({
+            F_name: req.body.F_name,
+            L_name: req.body.L_name,
+            Email: req.body.Email,
+            Password: newPassword
+        })
+
+        newsignup.save().then(() => {
+            res.json({ status: 200, message: 'sign up successful' })
+            SendMail(req.body.Email, subject, text)
+        }).catch((err) => {
+            res.json(err)
+        })
+
     }
 
 })
@@ -167,6 +204,7 @@ router.route("/regdoctor").get((req, res) => {
 // send password link
 // http://Localhost:8080/doctor/passwordreset
 router.route("/passwordreset").post(async (req, res) => {
+
     try {
         const user = await signup.findOne({
             Email: req.body.Email,
@@ -182,10 +220,25 @@ router.route("/passwordreset").post(async (req, res) => {
             }, JWT_SECRET_KEY, { expiresIn: '180s' });
         }
 
-        const text = "Medisuite Account Password Rest security code"
+        const subject = "Your Medisuite account Password Reset"
+        const text = `
+        Hello ${user.F_name},
 
-        const url = token;
-        await SendMail(user.Email, text, url).then(() => {
+        Somebody requested a new password for the customer portal account associated with email.
+        
+        No changes have been made to your account yet.
+        
+        You can reset your password using security txt.This password reset txt is only valid for the next 3 minutes.
+
+        ${token}
+        
+        If you did not request a new password, please let us know  by replying to this email.
+        
+        Yours,
+        The Medisuite team.
+        http://Localhost:8080`;
+
+        await SendMail(user.Email, subject, text).then(() => {
             return res.json({ status: 200, message: "Password reset link sent to your email account" })
         }).catch(() => {
             return res.json({ status: 409, message: "Email send error" })

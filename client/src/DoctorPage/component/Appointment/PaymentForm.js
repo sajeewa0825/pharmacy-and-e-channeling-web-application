@@ -104,6 +104,7 @@ function PaymentForm(props) {
     }
     axios.post("http://localhost:8080/addappointment", newAppointment).then((res) => {
       alert("Payed!  This is a success alert")
+      console.log(res)
     }).catch((err) => {
       alert(err)
     })
