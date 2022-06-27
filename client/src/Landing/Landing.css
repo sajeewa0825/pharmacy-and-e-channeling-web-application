@@ -1,0 +1,115 @@
+.LandingPage {
+  position: relative;
+}
+.LandingPage-bgImg {
+  width: 100%;
+  height: auto;
+  position: relative;
+  opacity: 60%;
+}
+.LandingPage-LogingBtn {
+  position: absolute;
+  right: 2px;
+  top: 5px;
+}
+.LandingPage-LogingBtnDesign {
+  background: #5089fd;
+  padding: 3px;
+  margin-right: 5px;
+  width: 100px;
+  border-radius: 50px;
+  text-align: center;
+}
+.LandingPage-Heading {
+  position: absolute;
+  top: 33%;
+  left: 26%;
+  text-align: center;
+  width: 50%;
+}
+.LandingPagey_btn {
+  color: white;
+  background: #5089fd;
+  width: 150px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 50px;
+  height: 50px;
+}
+.LandingPagey_btnLink {
+  text-decoration: none;
+  color: white;
+  font-weight: bolder;
+}
+.LandingPage-Heading_Text {
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+.LandingPage-Text {
+  font-size: 25px;
+}
+.LandingPage-Heading .LandingPage-Heading_Text:after {
+  display: block;
+  content: "";
+  height: 4px;
+  width: 130px;
+  background-color: #5089fd;
+  position: absolute;
+  left: 230px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+@media screen and (max-width: 992px) {
+  .LandingPage-Heading {
+    position: absolute;
+    top: 30%;
+    left: 20%;
+    text-align: center;
+    width: 60%;
+    margin: auto;
+  }
+  .LandingPage-Heading_Text {
+    font-size: 35px;
+  }
+  .LandingPage-Text {
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .LandingPage-Heading {
+    position: absolute;
+    top: 25%;
+    left: 20%;
+    text-align: center;
+    width: 60%;
+    margin: auto;
+  }
+  .LandingPage-Heading_Text {
+    font-size: 30px;
+  }
+  .LandingPage-Text {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 576px) {
+  .LandingPage-Heading {
+    position: absolute;
+    top: 15%;
+    left: 20%;
+    text-align: center;
+    width: 60%;
+    margin: auto;
+  }
+  .LandingPage-Heading_Text {
+    font-size: 20px;
+  }
+  .LandingPage-Text {
+    font-size: 10px;
+  }
+  .LandingPagey_btn {
+    width: 90px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    height: auto;
+  }
+}
