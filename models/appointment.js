@@ -44,6 +44,21 @@ const appointmentSchema = new Schema({
 
     Total_bill: {
         type: String,
+        required:true
+    },
+
+    Date: {
+        type: String,
+        required:true
+    },
+
+    AppointmentSendTime: {
+        type: String,
+        required:true
+    },
+
+    Gender: {
+        type: String,
         required:false
     }
 })

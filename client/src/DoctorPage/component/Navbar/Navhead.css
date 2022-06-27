@@ -1,6 +1,68 @@
+* {
+  margin: 0;
+  padding: 0;
+}
 .ContNavRow {
   background-color: #2a2f38;
 }
+.nav-link {
+  background-image: linear-gradient(
+    to right,
+    #0d0895,
+    #277aed 50%,
+    rgb(0, 0, 0) 50%
+  );
+  background-size: 200% 100%;
+  background-position: -100%;
+  display: inline-block;
+
+  position: relative;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-link:before {
+  content: "";
+  background: linear-gradient(
+    to right,
+    rgb(33, 5, 123),
+    rgb(3, 48, 211),
+    rgb(0, 128, 255)
+  );
+  display: block;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+  background-position: 0;
+}
+
+.nav-link:hover::before {
+  width: 100%;
+}
+.me-auto {
+  align-items: center;
+}
+
+.icon-circle {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  text-align: center;
+  background-color: #e94560;
+  font-size: 12px;
+  color: #fff;
+}
+
 .details {
   display: contents;
 }
@@ -18,7 +80,10 @@
 .iconNavText {
   font-size: 13px;
   font-weight: bold;
-  color: rgb(225, 225, 225);
+  color: #cdcdcd;
+}
+.CartBadge {
+  background-color: #5089fd;
 }
 
 @media only screen and (max-width: 576px) {
