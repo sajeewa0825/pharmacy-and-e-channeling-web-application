@@ -53,7 +53,7 @@ router.route("/addappointment").post((req, res) => {
 
 
 // user signup
-// http://Localhost:8080/doctor/signup
+// http://Localhost:8080/signup
 router.route("/signup").post(async (req, res) => {
 
     const user = await signup.findOne({ Email: req.body.Email })

@@ -30,7 +30,7 @@ connection.once('open', () => {
 
 const Route = require("./routes/routes.js");
 // http://Localhost:8080/doctor
-app.use("/doctor",Route);
+app.use("/",Route);
 
 app.listen(PORT, () => {
     console.log("server is up and running on port $",PORT);

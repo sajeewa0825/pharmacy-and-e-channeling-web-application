@@ -48,7 +48,7 @@ export default function SignIn() {
         let checkerror =validate(data1);
         if (checkerror === 0) {
 
-            const response = await fetch('http://Localhost:8080/doctor/signin', {
+            const response = await fetch('http://Localhost:8080/signin', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -34,7 +34,7 @@ export default function Resetpassword() {
         let checkerror =validate(data1);
 
         if (checkerror===0) {
-            axios.post('http://Localhost:8080/doctor/passwordreset', data1).then((res) => {
+            axios.post('http://Localhost:8080/passwordreset', data1).then((res) => {
                 console.log(res)
                 alert(res.data.message)
                 window.location.href = '/resetpassword'
