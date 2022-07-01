@@ -133,6 +133,7 @@ router.route("/signin").post(async (req, res) => {
         user.Password
     )
 
+    const name = user.F_name;
     if (isPasswordValid) {
         const token = jwt.sign(
             {
@@ -144,7 +145,12 @@ router.route("/signin").post(async (req, res) => {
         }
         )
 
-        return res.json({ status: 'ok', user: token })
+        const userdata={
+            token,
+            name
+        }
+
+        return res.json({ status: 200, user: userdata })
     } else {
         return res.json({ status: 'error', user: false })
     }

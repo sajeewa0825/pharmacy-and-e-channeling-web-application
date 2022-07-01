@@ -1,5 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Popover} from '@headlessui/react'
+import { Popover } from '@headlessui/react'
 import { Link } from 'react-router-dom'
 import Navbar from "../Navbar/Navbar"
 import "../Navbar/Navbar.css"
@@ -7,6 +7,26 @@ import "../Navbar/Navbar.css"
 
 
 export default function Slide() {
+    const setdevice = () =>{
+        localStorage.setItem('videoenable', true)
+    }
+
+    const videoButton = () => {
+        if (localStorage.token) {
+            return (
+                <div className="mt-3 sm:mt-0 sm:ml-3">
+                    <Link
+                        onClick={setdevice.bind()}
+                        to={"/video"}
+                        className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 md:py-4 md:text-lg md:px-10 setfont"
+                    >
+                        Online consultation
+                    </Link>
+                </div>
+            )
+        }
+    }
+
     return (
         <div className="relative bg-white overflow-hidden">
             <div className="max-w-7xl mx-auto">
@@ -22,7 +42,7 @@ export default function Slide() {
                     </svg>
 
                     <Popover>
-                            <Navbar/>
+                        <Navbar />
                     </Popover>
 
                     <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
@@ -32,7 +52,7 @@ export default function Slide() {
                                 <span className="block text-indigo-600 xl:inline">Protects you</span>
                             </h1>
                             <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                            We provide health and medical information to improve the health and wellbeing of people and the communities they live in.
+                                We provide health and medical information to improve the health and wellbeing of people and the communities they live in.
                             </p>
                             <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                                 <div className="rounded-md shadow mt-3">
@@ -43,6 +63,7 @@ export default function Slide() {
                                         Make Appointment
                                     </Link>
                                 </div>
+                                    {videoButton()}
                             </div>
                         </div>
                     </main>

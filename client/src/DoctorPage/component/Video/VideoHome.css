@@ -1,0 +1,16 @@
+.Vbody {
+    background:
+    linear-gradient(
+      rgba(0, 0, 0, 0.3), 
+      rgba(0, 0, 0, 0.3)
+    ),
+    url(https://images.medicaldaily.com/sites/medicaldaily.com/files/styles/headline/public/2019/07/31/online-doctor.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.Vall {
+    margin: 0;
+    padding: 0;
+}
