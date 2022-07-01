@@ -1,200 +1,92 @@
-import React from "react";
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import "./shop.css";
-import img1 from "./images/easy-wear-adult-diaper-m-10-s.jpg";
 import SideMenu from "./SideBar/SideMenu";
 import NavBar from "../NavBar/nav";
 
-const shop = () => {
+const Shop = () => {
+  const [Product, SetProduct] = useState([])
+
+  useEffect(() => {
+    const getproduct = () => {
+      axios.get("http://Localhost:8080/addproduct").then((res) => {
+        console.log(res.data)
+        SetProduct(res.data)
+      }).catch((err) => {
+        alert(err)
+      })
+    }
+
+    getproduct();
+  }, [])
+
+
+  let ProductData = Product.map((data) => {
+    return (
+        <div key={data._id} className="col-md-3 col-sm-6">
+          <div className="product-grid">
+            <div className="product-image">
+              <a href="#" className="image">
+                <img className="pic-1" src={data.imgLink} />
+              </a>
+              <span className="product-discount-label">-33%</span>
+              <ul className="product-links">
+                <li>
+                  <a href="#" data-tip="Add to Wishlist">
+                    <i className="fa fa-heart"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" data-tip="Compare">
+                    <i className="fa fa-random"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" data-tip="Quick View">
+                    <i className="fa fa-search"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div className="product-content">
+              <ul className="rating">
+                <li className="fas fa-star"></li>
+                <li className="fas fa-star"></li>
+                <li className="fas fa-star"></li>
+                <li className="far fa-star"></li>
+                <li className="far fa-star"></li>
+              </ul>
+              <h3 className="title">
+                <a href="#">{data.name}</a>
+              </h3>
+              <div className="price">
+                <span>$90.00</span> {data.price}
+              </div>
+              <a className="add-to-cart" href="#">
+                add to cart
+              </a>
+            </div>
+          </div>
+        </div>
+    )
+  })
+
   return (
     <div>
-      <NavBar/>
+      <NavBar />
       <div className="container-fluid">
         <SideMenu />
       </div>
       {/*******       Products    ***********/}
+
       <div className="container-fluid">
-        <div class="row">
-          <div class="col-md-3 col-sm-6">
-            <div class="product-grid">
-              <div class="product-image">
-                <a href="#" class="image">
-                  <img class="pic-1" src={img1} />
-                </a>
-                <span class="product-discount-label">-33%</span>
-                <ul class="product-links">
-                  <li>
-                    <a href="#" data-tip="Add to Wishlist">
-                      <i class="fa fa-heart"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" data-tip="Compare">
-                      <i class="fa fa-random"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" data-tip="Quick View">
-                      <i class="fa fa-search"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class="product-content">
-                <ul class="rating">
-                  <li class="fas fa-star"></li>
-                  <li class="fas fa-star"></li>
-                  <li class="fas fa-star"></li>
-                  <li class="far fa-star"></li>
-                  <li class="far fa-star"></li>
-                </ul>
-                <h3 class="title">
-                  <a href="#">Men's Blazer</a>
-                </h3>
-                <div class="price">
-                  <span>$90.00</span> $66.00
-                </div>
-                <a class="add-to-cart" href="#">
-                  add to cart
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6">
-            <div class="product-grid">
-              <div class="product-image">
-                <a href="#" class="image">
-                  <img class="pic-1" src={img1} />
-                </a>
-                <span class="product-discount-label">-33%</span>
-                <ul class="product-links">
-                  <li>
-                    <a href="#" data-tip="Add to Wishlist">
-                      <i class="fa fa-heart"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" data-tip="Compare">
-                      <i class="fa fa-random"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" data-tip="Quick View">
-                      <i class="fa fa-search"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class="product-content">
-                <ul class="rating">
-                  <li class="fas fa-star"></li>
-                  <li class="fas fa-star"></li>
-                  <li class="fas fa-star"></li>
-                  <li class="far fa-star"></li>
-                  <li class="far fa-star"></li>
-                </ul>
-                <h3 class="title">
-                  <a href="#">Men's Blazer</a>
-                </h3>
-                <div class="price">
-                  <span>$90.00</span> $66.00
-                </div>
-                <a class="add-to-cart" href="#">
-                  add to cart
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6">
-            <div class="product-grid">
-              <div class="product-image">
-                <a href="#" class="image">
-                  <img class="pic-1" src={img1} />
-                </a>
-                <span class="product-discount-label">-33%</span>
-                <ul class="product-links">
-                  <li>
-                    <a href="#" data-tip="Add to Wishlist">
-                      <i class="fa fa-heart"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" data-tip="Compare">
-                      <i class="fa fa-random"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" data-tip="Quick View">
-                      <i class="fa fa-search"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class="product-content">
-                <ul class="rating">
-                  <li class="fas fa-star"></li>
-                  <li class="fas fa-star"></li>
-                  <li class="fas fa-star"></li>
-                  <li class="far fa-star"></li>
-                  <li class="far fa-star"></li>
-                </ul>
-                <h3 class="title">
-                  <a href="#">Men's Blazer</a>
-                </h3>
-                <div class="price">
-                  <span>$90.00</span> $66.00
-                </div>
-                <a class="add-to-cart" href="#">
-                  add to cart
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6">
-            <div class="product-grid">
-              <div class="product-image">
-                <a href="#" class="image">
-                  <img class="pic-1" src={img1} />
-                </a>
-                <ul class="product-links">
-                  <li>
-                    <a href="#" data-tip="Add to Wishlist">
-                      <i class="fa fa-heart"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" data-tip="Compare">
-                      <i class="fa fa-random"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" data-tip="Quick View">
-                      <i class="fa fa-search"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class="product-content">
-                <ul class="rating">
-                  <li class="fas fa-star"></li>
-                  <li class="fas fa-star"></li>
-                  <li class="fas fa-star"></li>
-                  <li class="fas fa-star"></li>
-                  <li class="far fa-star"></li>
-                </ul>
-                <h3 class="title">
-                  <a href="#">Women's Shirt</a>
-                </h3>
-                <div class="price">$79.90</div>
-                <a class="add-to-cart" href="#">
-                  add to cart
-                </a>
-              </div>
-            </div>
-          </div>
+        <div className="row" >
+            {ProductData}
         </div>
       </div>
-    </div>
+
+    </div >
   );
 };
 
-export default shop;
+export default Shop;
