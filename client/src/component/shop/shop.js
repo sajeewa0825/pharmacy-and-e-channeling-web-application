@@ -8,7 +8,7 @@ const Shop = () => {
   const [Product, SetProduct] = useState([])
 
   useEffect(() => {
-    const getdoctor = () => {
+    const getproduct = () => {
       axios.get("http://Localhost:8080/addproduct").then((res) => {
         console.log(res.data)
         SetProduct(res.data)
@@ -17,13 +17,13 @@ const Shop = () => {
       })
     }
 
-    getdoctor();
+    getproduct();
   }, [])
 
 
   let ProductData = Product.map((data) => {
     return (
-        <div className="col-md-3 col-sm-6">
+        <div key={data._id} className="col-md-3 col-sm-6">
           <div className="product-grid">
             <div className="product-image">
               <a href="#" className="image">
