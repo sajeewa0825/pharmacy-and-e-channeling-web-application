@@ -31,14 +31,19 @@ const Landing = () => {
             pariatur aliqua cillum dolore in duis enim voluptate ullamco cillum
             cupidatat.
           </h3>
-          <button type="button" className=" LandingPagey_btn me-2">
-            <Link className="LandingPagey_btnLink" to={"/phhome"}>
-              PHarmacy
+          <button type="button" className=" LandingPagey_btnPharmacy me-2">
+            <Link className="LandingPagey_btnLink_btn" to={"/phhome"}>
+              Pharmacy
             </Link>
           </button>
-          <button type="button" className=" LandingPagey_btn">
-            <Link className="LandingPagey_btnLink" to={"/drhome"}>
+          <button type="button" className=" LandingPagey_btnDoctor">
+            <Link className="LandingPagey_btnLink_btn" to={"/drhome"}>
               Doctor
+            </Link>
+          </button>
+          <button type="button" className=" LandingPagey_btnDoctor">
+            <Link className="LandingPagey_btnLink_btn" to={"/admin"}>
+              Admin
             </Link>
           </button>
         </div>
