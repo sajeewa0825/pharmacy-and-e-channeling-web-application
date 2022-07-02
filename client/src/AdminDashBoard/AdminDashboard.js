@@ -8,7 +8,7 @@ const AdminDashboard = () => {
     <div>
       <div className="container-fluid">
         <div className="row">
-          <div className="col-md-2 adminLeft_col">
+          <div className="col-md-2 adminLeft_col" id="style-3">
             <div className="sidemenu_top">
               <div className="sidemenu_top_User_img">
                 <span>Logo</span>
@@ -65,7 +65,33 @@ const AdminDashboard = () => {
               </ul>
             </div>
           </div>
-          <div className="col-md-10 adminRight_col"></div>
+          <div className="col-md-10 adminRight_col">
+            <div className="row adminRight_row">
+              <div className="adminRight_top">
+                <ul className="adminRight_top_ul">
+                  <li>
+                    <i class="bi bi-journal-text"></i>
+                    <span>Make an appointment</span>
+                  </li>
+                  <li>
+                    <i class="bi bi-pencil"></i>
+                    <span>Write a prescription</span>
+                  </li>
+                  <li>
+                    <i class="bi bi-journals"></i>
+                    <span>Generate Report</span>
+                  </li>
+                  <li>
+                    <i class="bi bi-bell icon_Bell me-3"></i>
+                  </li>
+                  <li>
+                    <img src={User} alt="" width={"60px"} height={"60px"} />
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="row">hello</div>
+          </div>
         </div>
       </div>
     </div>
