@@ -6,23 +6,23 @@
   float: left;
   margin: 0;
   padding: 0;
-  background: #5089fd;
+  background: #009efb;
   overflow-y: auto;
 
   height: 600px;
 }
 /************************************** scrollBar style ******************************************/
 #style-3 ::-webkit-scrollbar-track {
-  background-color: #5089fd;
+  background-color: #009efb;
 }
 
 #style-3::-webkit-scrollbar {
   width: 6px;
-  background-color: #5089fd;
+  background-color: #009efb;
 }
 
 #style-3::-webkit-scrollbar-thumb {
-  background-color: #121cb0;
+  background-color: #3575ff;
   border-radius: 5px;
 }
 /************************************** scrollBar style ******************************************/
@@ -67,12 +67,18 @@
 }
 
 /********************************************** AdminRight  ****************************************/
-/* .adminRight_col {
-  background: #1b3c80;
-} */
-.adminRight_row {
-  background: #5089fd;
+.adminRight_col {
+  float: left;
+  margin: 0;
+  padding: 0;
   box-shadow: -5px 0px 15px -6px rgba(0, 0, 0, 0.27);
+  overflow-y: auto;
+
+  height: 600px;
+}
+.adminRight_row {
+  background: #009efb;
+
   padding: 0;
   margin: 0;
 }
@@ -98,14 +104,8 @@
   margin-left: 20px;
   font-size: 25px;
 }
-.icon_Bell::after {
-  content: "";
-  position: absolute;
-  top: 108px;
-  right: 90px;
-  border-radius: 50%;
-  border: 1px solid #fff;
-  width: 10px;
-  height: 10px;
-  background: #ec4e20;
-}
+
+/* @media screen (max-width:992px) {
+
+  
+} */
