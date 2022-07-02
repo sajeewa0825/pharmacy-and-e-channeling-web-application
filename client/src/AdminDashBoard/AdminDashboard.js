@@ -2,6 +2,7 @@ import React from "react";
 import User from "./Images/icons8-user-100.png";
 import "./AdminDashboard.css";
 import { Link } from "react-router-dom";
+import AdminHome from "./AdminHome/AdminHome";
 
 const AdminDashboard = () => {
   return (
@@ -20,14 +21,14 @@ const AdminDashboard = () => {
             <div className="sidemenu_center">
               <ul className="sidemenu_center_ul">
                 <li>
-                  <Link to={"./#"} className="sidemenu_center_ul_Link">
+                  <Link to={"/adminHome"} className="sidemenu_center_ul_Link">
                     <i class="bi bi-columns-gap"></i>
                     <span>Dashboard</span>
                   </Link>
                 </li>
 
                 <li>
-                  <Link to={"./#"} className="sidemenu_center_ul_Link">
+                  <Link to={"/adminDoctor"} className="sidemenu_center_ul_Link">
                     <i class="bi bi-heart-pulse"></i>
                     <span>Doctor</span>
                   </Link>
@@ -65,7 +66,7 @@ const AdminDashboard = () => {
               </ul>
             </div>
           </div>
-          <div className="col-md-10 adminRight_col">
+          <div className="col-md-10 adminRight_col " id="style-3">
             <div className="row adminRight_row">
               <div className="adminRight_top">
                 <ul className="adminRight_top_ul">
@@ -90,7 +91,9 @@ const AdminDashboard = () => {
                 </ul>
               </div>
             </div>
-            <div className="row">hello</div>
+            <div className="row">
+              <AdminHome />
+            </div>
           </div>
         </div>
       </div>
