@@ -304,13 +304,19 @@ router.route("/addproduct").post((req, res) => {
 
 // get product
 // http://Localhost:8080/doctor/addproduct
-router.route("/addproduct").get((req, res) => {
+router.route("/addproduct").post((req, res) => {
 
     product.find().then((product) => {
         res.json(product);
     }).catch((err) => {
         console.log(err)
     })
+})
+
+// send video id from email
+// http://Localhost:8080/doctor/regdoctor
+router.route("/videochat").get((req, res) => {
+    console.log(req.body)
 })
 
 

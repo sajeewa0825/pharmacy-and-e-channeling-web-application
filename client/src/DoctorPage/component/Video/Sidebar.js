@@ -3,8 +3,8 @@ import { Button, TextField, Grid, Typography, Container, Paper } from '@material
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Assignment, Phone, PhoneDisabled } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
-
 import { SocketContext } from './Context';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,6 +42,22 @@ const Sidebar = ({ children }) => {
   const [idToCall, setIdToCall] = useState('');
   const classes = useStyles();
 
+  const handlesendemail = async (event) => {
+    console.log("data come")
+    event.preventDefault();
+        axios.post("http://Localhost:8080/videochat",me ).then((res) => {
+            if(res.data.status === 200){
+                console.log("ok")
+            }else{
+                alert(res.data.error)
+            }
+          }).catch((err) => {
+            console.log(err)
+          })
+    
+
+};
+
   return (
     <Container className={classes.container}>
       <Paper elevation={10} className={classes.paper}>
@@ -51,7 +67,7 @@ const Sidebar = ({ children }) => {
               <Typography gutterBottom variant="h6">Account Info</Typography>
               <TextField label="Name" value={name} onChange={(e) => setName(e.target.value)} fullWidth />
               <CopyToClipboard text={me} className={classes.margin}>
-                <Button variant="contained" color="primary" fullWidth startIcon={<Assignment fontSize="large" />}>
+                <Button variant="contained" color="primary" fullWidth startIcon={<Assignment fontSize="large" />} onClick={(e)=>{handlesendemail(e)}}>
                   Copy Your ID
                 </Button>
               </CopyToClipboard>

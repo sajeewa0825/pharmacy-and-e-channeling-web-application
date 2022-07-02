@@ -1,5 +1,6 @@
 import { Popover } from '@headlessui/react'
 import React from 'react'
+import Alert from '@mui/material/Alert';
 
 export default function VideoNavBar() {
     function removecam() {
@@ -16,6 +17,7 @@ export default function VideoNavBar() {
                             <button className="text-base font-medium text-gray-500 hover:text-gray-900 setfont" onClick={(e) => removecam(e)}>
                                 Home
                             </button>
+                            <Alert severity="info">This is an info alert — Use the computer for a better experience, Quality depends on internet speed and traffic.</Alert>
                         </Popover.Group>
                     </div>
                 </div>

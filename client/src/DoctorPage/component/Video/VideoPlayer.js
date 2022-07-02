@@ -5,7 +5,7 @@ import { SocketContext } from './Context';
 
 const useStyles = makeStyles((theme) => ({
   video: {
-    width: '550px',
+    width: '100%',
     [theme.breakpoints.down('xs')]: {
       width: '300px',
     },
@@ -31,16 +31,16 @@ const VideoPlayer = () => {
     <Grid container className={classes.gridContainer}>
       {stream && (
         <Paper className={classes.paper}>
-          <Grid item xs={12} md={6}>
-            <Typography variant="h5" gutterBottom>{name || 'Name'}</Typography>
+          <Grid item xs={12} >
+            <Typography variant="h6" gutterBottom>{name || 'Name'}</Typography>
             <video playsInline muted ref={myVideo} autoPlay className={classes.video} />
           </Grid>
         </Paper>
       )}
       {callAccepted && !callEnded && (
         <Paper className={classes.paper}>
-          <Grid item xs={12} md={6}>
-            <Typography variant="h5" gutterBottom>{call.name || 'Name'}</Typography>
+          <Grid item xs={12}>
+            <Typography variant="h6" gutterBottom>{call.name || 'Name'}</Typography>
             <video playsInline ref={userVideo} autoPlay className={classes.video} />
           </Grid>
         </Paper>

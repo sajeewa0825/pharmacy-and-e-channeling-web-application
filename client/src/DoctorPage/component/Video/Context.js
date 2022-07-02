@@ -11,7 +11,7 @@ const ContextProvider = ({ children }) => {
   const [callAccepted, setCallAccepted] = useState(false);
   const [callEnded, setCallEnded] = useState(false);
   const [stream, setStream] = useState();
-  const [name, setName] = useState('');
+  const [name, setName] = useState(localStorage.name);
   const [call, setCall] = useState({});
   const [me, setMe] = useState('');
 
