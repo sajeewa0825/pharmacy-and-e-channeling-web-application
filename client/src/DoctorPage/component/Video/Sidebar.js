@@ -33,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: '10px 20px',
-    border: '2px solid black',
   },
 }));
 
@@ -43,9 +42,11 @@ const Sidebar = ({ children }) => {
   const classes = useStyles();
 
   const handlesendemail = async (event) => {
-    console.log("data come")
+    const data ={
+      me
+    }
     event.preventDefault();
-        axios.post("http://Localhost:8080/videochat",me ).then((res) => {
+        axios.post("http://Localhost:8080/videochat",data ).then((res) => {
             if(res.data.status === 200){
                 console.log("ok")
             }else{
@@ -64,11 +65,11 @@ const Sidebar = ({ children }) => {
         <form className={classes.root} noValidate autoComplete="off">
           <Grid container className={classes.gridContainer}>
             <Grid item xs={12} md={6} className={classes.padding}>
-              <Typography gutterBottom variant="h6">Account Info</Typography>
+              <Typography gutterBottom variant="h6">Your Info</Typography>
               <TextField label="Name" value={name} onChange={(e) => setName(e.target.value)} fullWidth />
               <CopyToClipboard text={me} className={classes.margin}>
                 <Button variant="contained" color="primary" fullWidth startIcon={<Assignment fontSize="large" />} onClick={(e)=>{handlesendemail(e)}}>
-                  Copy Your ID
+                  Copy ID And Find Dr
                 </Button>
               </CopyToClipboard>
             </Grid>
