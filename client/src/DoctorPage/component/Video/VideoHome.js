@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import VideoPlayer from './VideoPlayer';
 import Sidebar from './Sidebar';
 import Notifications from './Notifications';
+import VideoNavBar from './VideoNav';
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
@@ -38,6 +39,7 @@ const VideoHome = () => {
 
     return (
         <div className='Vbody Vall'>
+            <VideoNavBar/>
             <div className={classes.wrapper}>
                 <AppBar className={classes.appBar} position="static" color="inherit">
                     <Typography variant="h2" align="center">Video Chat</Typography>
