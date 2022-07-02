@@ -14,6 +14,7 @@ import Shop from "../component/shop/shop";
 import Frogetpassword from "../DoctorPage/component/Login/Frogetpassword";
 import PasswordReset from "../DoctorPage/component/Login/ResetPassword";
 import AdminDashboard from "./../AdminDashBoard/AdminDashboard";
+import AdminDoctor from "./../AdminDashBoard/AdminDoctor/AdminDoctor";
 
 const Routing = () => {
   return (
@@ -31,6 +32,8 @@ const Routing = () => {
         <Route path="frogetpassword" element={<Frogetpassword />} />
         <Route path="resetpassword" element={<PasswordReset />} />
         <Route path="admin" element={<AdminDashboard />} />
+        <Route path="adminDoctor" element={<AdminDoctor />} />
+
         <Route path="/" element={<Landing />} />
       </Routes>
       <Footer />
