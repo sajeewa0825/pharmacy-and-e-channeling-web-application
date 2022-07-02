@@ -302,7 +302,7 @@ router.route("/addproduct").post((req, res) => {
 
 // get product
 // http://Localhost:8080/doctor/addproduct
-router.route("/addproduct").post((req, res) => {
+router.route("/addproduct").get((req, res) => {
 
     product.find().then((product) => {
         res.json(product);
