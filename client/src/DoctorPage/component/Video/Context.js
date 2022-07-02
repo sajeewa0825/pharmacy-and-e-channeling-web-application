@@ -14,7 +14,6 @@ const ContextProvider = ({ children }) => {
   const [name, setName] = useState('');
   const [call, setCall] = useState({});
   const [me, setMe] = useState('');
-  const [enable, Setenable] = useState(false);
 
   const myVideo = useRef();
   const userVideo = useRef();
@@ -76,10 +75,9 @@ const ContextProvider = ({ children }) => {
 
   const leaveCall = () => {
     setCallEnded(true);
-
     connectionRef.current.destroy();
-
-    window.location.reload();
+    localStorage.removeItem("videoenable")
+    window.location.href = '/drhome'
   };
 
   return (

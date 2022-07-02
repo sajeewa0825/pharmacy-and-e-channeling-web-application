@@ -66,9 +66,8 @@ export default function SignIn() {
                 console.log(localStorage)
                 localStorage.setItem('token', data.user.token)
                 localStorage.setItem('name', data.user.name)
-                localStorage.setItem('videoenable', false)
                 console.log(localStorage)
-                window.location.href = '/'
+                window.location.href = '/drhome'
             } else {
                 alert('Please check your username and password')
                 document.getElementById("form2").reset();
