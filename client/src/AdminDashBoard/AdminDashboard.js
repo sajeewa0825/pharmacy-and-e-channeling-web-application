@@ -21,7 +21,7 @@ const AdminDashboard = () => {
             <div className="sidemenu_center">
               <ul className="sidemenu_center_ul">
                 <li>
-                  <Link to={"/adminHome"} className="sidemenu_center_ul_Link">
+                  <Link to={"#"} className="sidemenu_center_ul_Link">
                     <i class="bi bi-columns-gap"></i>
                     <span>Dashboard</span>
                   </Link>
@@ -34,35 +34,47 @@ const AdminDashboard = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to={"./#"} className="sidemenu_center_ul_Link">
+                  <Link
+                    to={"/adminPatient"}
+                    className="sidemenu_center_ul_Link"
+                  >
                     <i class="bi bi-people"></i>
                     <span>Patient</span>
                   </Link>
                 </li>
                 <li>
-                  <Link to={"./#"} className="sidemenu_center_ul_Link">
+                  <Link
+                    to={"/adminAppoinment"}
+                    className="sidemenu_center_ul_Link"
+                  >
                     <i class="bi bi-card-heading"></i>
                     <span>Appoinments</span>
                   </Link>
                 </li>
                 <li>
-                  <Link to={"./#"} className="sidemenu_center_ul_Link">
+                  <Link
+                    to={"/adminProduct"}
+                    className="sidemenu_center_ul_Link"
+                  >
                     <i class="bi bi-bag-plus"></i>
                     <span>Products</span>
                   </Link>
                 </li>
                 <li>
-                  <Link to={"./#"} className="sidemenu_center_ul_Link">
+                  <Link
+                    to={"/adminPayment"}
+                    className="sidemenu_center_ul_Link"
+                  >
                     <i class="bi bi-credit-card-2-back"></i>
                     <span>Payments</span>
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link to={"./#"} className="sidemenu_center_ul_Link">
                     <i class="bi bi-truck"></i>
                     <span>Delivery</span>
                   </Link>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>
