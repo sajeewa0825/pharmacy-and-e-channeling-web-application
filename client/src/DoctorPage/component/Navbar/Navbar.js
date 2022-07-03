@@ -66,7 +66,7 @@ export default function NavBar() {
   }
 
   function LoginCheck() {
-    if (!localStorage.length) {
+    if (!localStorage.token) {
       return (
         <div>
           <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
@@ -96,7 +96,7 @@ export default function NavBar() {
   }
 
   function LoginCheckMobile() {
-    if (!localStorage.length) {
+    if (!localStorage.token) {
       return (
         <div>
           <div>
