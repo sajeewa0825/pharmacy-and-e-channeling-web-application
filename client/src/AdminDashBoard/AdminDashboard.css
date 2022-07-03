@@ -11,6 +11,16 @@
 
   height: 600px;
 }
+.sidemenu_top_User_img {
+  font-size: 20px;
+  color: #fff;
+  font-weight: bold;
+}
+.sidemenu_top_User_img hr {
+  opacity: 80%;
+
+  border-radius: 5px;
+}
 /************************************** scrollBar style ******************************************/
 #style-3 ::-webkit-scrollbar-track {
   background-color: #009efb;
