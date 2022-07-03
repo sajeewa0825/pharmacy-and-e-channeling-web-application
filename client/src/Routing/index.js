@@ -15,6 +15,10 @@ import Frogetpassword from "../DoctorPage/component/Login/Frogetpassword";
 import PasswordReset from "../DoctorPage/component/Login/ResetPassword";
 import AdminDashboard from "./../AdminDashBoard/AdminDashboard";
 import AdminDoctor from "./../AdminDashBoard/AdminDoctor/AdminDoctor";
+import AdminPatient from "../AdminDashBoard/AdminPatient/AdminPatient";
+import AdminAppoinment from "../AdminDashBoard/AdminAppoinment/AdminAppoinment";
+import AdminProduct from "../AdminDashBoard/AdminProduct/AdminProduct";
+import AdminPayment from "../AdminDashBoard/AdminPayment/AdminPayment";
 
 const Routing = () => {
   return (
@@ -33,6 +37,10 @@ const Routing = () => {
         <Route path="resetpassword" element={<PasswordReset />} />
         <Route path="admin" element={<AdminDashboard />} />
         <Route path="adminDoctor" element={<AdminDoctor />} />
+        <Route path="adminPatient" element={<AdminPatient />}></Route>
+        <Route path="adminAppoinment" element={<AdminAppoinment />}></Route>
+        <Route path="adminProduct" element={<AdminProduct />}></Route>
+        <Route path="adminPayment" element={<AdminPayment />}></Route>
 
         <Route path="/" element={<Landing />} />
       </Routes>
