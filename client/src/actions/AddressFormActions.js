@@ -8,6 +8,7 @@ export const AddressFormSend= (props) =>{
         payload:[
             {
                 Dr_name:props.Dname,
+                D_type:props.Dtype,
                 TimePeriod:props.TimePeriod,
                 Date:props.datevalue,
                 F_name:props.Fname,

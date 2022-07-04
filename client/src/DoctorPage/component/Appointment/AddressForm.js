@@ -31,6 +31,7 @@ function AddressForm(props) {
     const [doctordata, SetDoctordata] = useState([])
     const [specialist, Setspecialist] = useState([])
     const [timepi, Settimepi] = useState([])
+    const [Dtype,Setdtype]=useState("")
 
 
 
@@ -51,6 +52,7 @@ function AddressForm(props) {
 
     const data = {
         Dname,
+        Dtype,
         TimePeriod,
         datevalue,
         Fname,
@@ -68,6 +70,7 @@ function AddressForm(props) {
         let checkerror =validate(data);
 
         if (checkerror===0) {
+            console.log(Dtype)
             props.AddressFormSend(data)
         }
     }
@@ -126,6 +129,7 @@ function AddressForm(props) {
 
 
     const doctorSelect = (spe) => {
+        Setdtype(spe)
         const filtered = doctordata.filter(obj => {
             return obj.specialist === spe;
         });

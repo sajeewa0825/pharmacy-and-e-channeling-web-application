@@ -60,6 +60,11 @@ const appointmentSchema = new Schema({
     Gender: {
         type: String,
         required:false
+    },
+
+    Dr_type: {
+        type: String,
+        required:false
     }
 })
 

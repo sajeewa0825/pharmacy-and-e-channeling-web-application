@@ -1,6 +1,48 @@
-import React from "react";
+import React, { useState, useEffect } from 'react'
+import axios from 'axios';
 
 const AdminAppoinment = () => {
+
+  const [appointment,Setappointment] = useState([])
+
+  useEffect(() => {
+    const getdata = () => {
+        axios.get("http://Localhost:8080/getappointment").then((res) => {
+            console.log(res.data)
+            Setappointment(res.data)
+        }).catch((err) => {
+            alert(err)
+        })
+    }
+
+    getdata();
+}, [])
+
+
+let appointmentList = appointment.map((data) => {
+  return ( 
+    <tr>
+    <td>{data._id}</td>
+    <td>{data.F_name}</td>
+    <td>{data.L_name}</td>
+    <td>{data.Dr_type}</td>
+    <td>{data.Dr_name}</td>
+    <td>{data.Date}</td>
+    <td>{data.Time}</td>
+    <td>{data.Gender}</td>
+    <td>{data.Email}</td>
+    <td>{data.Id}</td>
+    <td>{data.P_no}</td>
+    <td>{data.Address}</td>
+    <td>Rs.{data.Total_bill}</td>
+
+    <td>
+      <i class="bi bi-pen-fill Pen_icon_table me-3 text-primary"></i>
+      <i class="bi bi-trash text-danger"></i>
+    </td>
+  </tr>
+  )})
+
   return (
     <div>
       {" "}
@@ -206,6 +248,7 @@ const AdminAppoinment = () => {
             </div>
           </div>
         </div>
+
         <div className="row">
           <div className="col-12 p-3">
             <div className="card">
@@ -221,135 +264,18 @@ const AdminAppoinment = () => {
                       <th scope="col">Date</th>
                       <th scope="col">Time_Period</th>
                       <th scope="col">Gender</th>
-                      <th scope="col">Age</th>
                       <th scope="col">Email</th>
                       <th scope="col">NIC</th>
                       <th scope="col">Mobile</th>
                       <th scope="col">Address</th>
+                      <th scope="col">Total_bill</th>
                       <th scope="col">Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>01</td>
-                      <td>Mahinda</td>
-                      <td>Rajapaksha</td>
-                      <td>Pshyco</td>
-                      <td>Gotabhaya</td>
-                      <td>May.9</td>
-                      <td>10.00am</td>
-                      <td>Male</td>
-                      <td>75</td>
-                      <td>Mahinda@gmail.com</td>
-                      <td>123456789v</td>
-                      <td>075123456</td>
-                      <td>Colombo</td>
-
-                      <td>
-                        <i class="bi bi-pen-fill Pen_icon_table me-3 text-primary"></i>
-                        <i class="bi bi-trash text-danger"></i>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>01</td>
-                      <td>Mahinda</td>
-                      <td>Rajapaksha</td>
-                      <td>Pshyco</td>
-                      <td>Gotabhaya</td>
-                      <td>May.9</td>
-                      <td>10.00am</td>
-                      <td>Male</td>
-                      <td>75</td>
-                      <td>Mahinda@gmail.com</td>
-                      <td>123456789v</td>
-                      <td>075123456</td>
-                      <td>Colombo</td>
-
-                      <td>
-                        <i class="bi bi-pen-fill Pen_icon_table me-3 text-primary"></i>
-                        <i class="bi bi-trash text-danger"></i>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>01</td>
-                      <td>Mahinda</td>
-                      <td>Rajapaksha</td>
-                      <td>Pshyco</td>
-                      <td>Gotabhaya</td>
-                      <td>May.9</td>
-                      <td>10.00am</td>
-                      <td>Male</td>
-                      <td>75</td>
-                      <td>Mahinda@gmail.com</td>
-                      <td>123456789v</td>
-                      <td>075123456</td>
-                      <td>Colombo</td>
-
-                      <td>
-                        <i class="bi bi-pen-fill Pen_icon_table me-3 text-primary"></i>
-                        <i class="bi bi-trash text-danger"></i>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>01</td>
-                      <td>Mahinda</td>
-                      <td>Rajapaksha</td>
-                      <td>Pshyco</td>
-                      <td>Gotabhaya</td>
-                      <td>May.9</td>
-                      <td>10.00am</td>
-                      <td>Male</td>
-                      <td>75</td>
-                      <td>Mahinda@gmail.com</td>
-                      <td>123456789v</td>
-                      <td>075123456</td>
-                      <td>Colombo</td>
-
-                      <td>
-                        <i class="bi bi-pen-fill Pen_icon_table me-3 text-primary"></i>
-                        <i class="bi bi-trash text-danger"></i>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>01</td>
-                      <td>Mahinda</td>
-                      <td>Rajapaksha</td>
-                      <td>Pshyco</td>
-                      <td>Gotabhaya</td>
-                      <td>May.9</td>
-                      <td>10.00am</td>
-                      <td>Male</td>
-                      <td>75</td>
-                      <td>Mahinda@gmail.com</td>
-                      <td>123456789v</td>
-                      <td>075123456</td>
-                      <td>Colombo</td>
-
-                      <td>
-                        <i class="bi bi-pen-fill Pen_icon_table me-3 text-primary"></i>
-                        <i class="bi bi-trash text-danger"></i>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>01</td>
-                      <td>Mahinda</td>
-                      <td>Rajapaksha</td>
-                      <td>Pshyco</td>
-                      <td>Gotabhaya</td>
-                      <td>May.9</td>
-                      <td>10.00am</td>
-                      <td>Male</td>
-                      <td>75</td>
-                      <td>Mahinda@gmail.com</td>
-                      <td>123456789v</td>
-                      <td>075123456</td>
-                      <td>Colombo</td>
-
-                      <td>
-                        <i class="bi bi-pen-fill Pen_icon_table me-3 text-primary"></i>
-                        <i class="bi bi-trash text-danger"></i>
-                      </td>
-                    </tr>
+                    
+                        {appointmentList}
+                    
                   </tbody>
                 </table>
               </div>

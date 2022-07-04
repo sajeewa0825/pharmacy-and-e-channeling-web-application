@@ -18,6 +18,7 @@ router.route("/addappointment").post((req, res) => {
     const F_name = req.body.F_name;
     const L_name = req.body.L_name;
     const Dr_name = req.body.Dr_name;
+    const Dr_type = req.body.Dr_type;
     const Time = req.body.TimePeriod;
     const Date = req.body.Date;
     const Gender = req.body.Gender;
@@ -30,6 +31,7 @@ router.route("/addappointment").post((req, res) => {
 
     const newappointment = new appointment({
         Dr_name,
+        Dr_type,
         Time,
         Date,
         F_name,
@@ -66,6 +68,17 @@ router.route("/addappointment").post((req, res) => {
         SendMail(req.body.Email, subject, text)
     }).catch((err) => {
         console.log(err);
+    })
+})
+
+// get appointment data
+// http://Localhost:8080/getappointment
+router.route("/getappointment").get((req, res) => {
+
+    appointment.find().then((data) => {
+        res.json(data);
+    }).catch((err) => {
+        console.log(err)
     })
 })
 
