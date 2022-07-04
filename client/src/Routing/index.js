@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Homedr from '../DoctorPage/component/Home';
+import Homedr from '../DoctorPage/Home';
 import Login from '../DoctorPage/component/Login/Login';
 import SignUp from '../DoctorPage/component/Login/SignUp';
 import Head from '../DoctorPage/component/Navbar/Navhead';
@@ -13,6 +13,7 @@ import Price from '../component/Price/price';
 import Shop from '../component/shop/shop';
 import Frogetpassword from '../DoctorPage/component/Login/Frogetpassword';
 import PasswordReset from '../DoctorPage/component/Login/ResetPassword';
+import VideoHome from '../DoctorPage/component/Video/VideoHome';
 
 
 
@@ -32,6 +33,7 @@ const Routing = () => {
                 <Route path='phshop' element={<Shop />} />
                 <Route path='frogetpassword' element={<Frogetpassword />} />
                 <Route path='resetpassword' element={<PasswordReset/>} />
+                <Route path='video' element={<VideoHome/>} />
                 <Route path='/' element={<Landing />} />
             </Routes>
             <Footer/>

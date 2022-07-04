@@ -8,14 +8,12 @@ const bcrypt = require('bcryptjs')
 const SendMail = require("../utils/sendEmail")
 
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
+const ADMIN_EMAIL =process.env.ADMIN_EMAIL;
 
 // add appointment details
 // http://Localhost:8080/addappointment
 router.route("/addappointment").post((req, res) => {
     const subject = "Your Doctor Appointment Confirmation email"
-
-
-
 
     const F_name = req.body.F_name;
     const L_name = req.body.L_name;
@@ -133,6 +131,7 @@ router.route("/signin").post(async (req, res) => {
         user.Password
     )
 
+    const name = user.F_name;
     if (isPasswordValid) {
         const token = jwt.sign(
             {
@@ -144,7 +143,12 @@ router.route("/signin").post(async (req, res) => {
         }
         )
 
-        return res.json({ status: 'ok', user: token })
+        const userdata={
+            token,
+            name
+        }
+
+        return res.json({ status: 200, user: userdata })
     } else {
         return res.json({ status: 'error', user: false })
     }
@@ -305,6 +309,30 @@ router.route("/addproduct").get((req, res) => {
     }).catch((err) => {
         console.log(err)
     })
+})
+
+// send video id from email
+// http://Localhost:8080/videochat
+router.route("/videochat").post((req, res) => {
+    console.log(req.body)
+
+    const subject = "User online counseling join"
+    const text = `
+        Dear admin
+        please set doctor for call id
+    
+        ........................................
+
+        call id : ${req.body.me}
+        
+        ........................................
+    
+        Regards,
+        The Medisute Server`;
+
+
+    SendMail(ADMIN_EMAIL, subject, text)
+    return res.send({ status: 200, message: 'email send' })
 })
 
 
