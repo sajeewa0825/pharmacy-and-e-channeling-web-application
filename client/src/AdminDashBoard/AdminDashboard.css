@@ -115,7 +115,15 @@
   font-size: 25px;
 }
 
-/* @media screen (max-width:992px) {
-
-  
-} */
+@media screen and (max-width: 992px) {
+  .adminRight_top_ul li {
+    font-size: 14px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+  .adminRight_top_ul li i {
+    margin-right: 3px;
+    margin-left: 15px;
+    font-size: 15px;
+  }
+}
