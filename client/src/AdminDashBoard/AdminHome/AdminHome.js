@@ -1,6 +1,6 @@
 import React from "react";
 import "./AdminHome.css";
-import Steth from "./stethoscope.png";
+
 import { Link } from "react-router-dom";
 
 const AdminHome = () => {
@@ -24,10 +24,10 @@ const AdminHome = () => {
             <div className="col adminHome_col">
               <div class="adminHome_Card">
                 <div class="card-body adminHome_Card_Body">
-                  <span className="pb-2">DOCTORS</span>
+                  <span className="pb-2">PATIENTS</span>
                   <span>1500</span>
                 </div>
-                <i class="fas fa-stethoscope"></i>
+                <i class="bi bi-people"></i>
               </div>
             </div>
           </Link>
@@ -35,10 +35,10 @@ const AdminHome = () => {
             <div className="col adminHome_col">
               <div class="adminHome_Card">
                 <div class="card-body adminHome_Card_Body">
-                  <span className="pb-2">DOCTORS</span>
+                  <span className="pb-2">APPOINMENTS</span>
                   <span>1500</span>
                 </div>
-                <i class="fas fa-stethoscope"></i>
+                <i class="bi bi-card-heading"></i>
               </div>
             </div>
           </Link>
@@ -46,10 +46,10 @@ const AdminHome = () => {
             <div className="col adminHome_col">
               <div class="adminHome_Card">
                 <div class="card-body adminHome_Card_Body">
-                  <span className="pb-2">DOCTORS</span>
+                  <span className="pb-2">PRODUCTS</span>
                   <span>1500</span>
                 </div>
-                <i class="fas fa-stethoscope"></i>
+                <i class="bi bi-bag-plus"></i>
               </div>
             </div>
           </Link>
