@@ -16,29 +16,32 @@
 */
 const callouts = [
     {
-      name: 'Desk and Office',
-      description: 'Work from home accessories',
+      positions:"Chairman",
+      name: ' Dr. Akila Perera',
+      description: 'GENERAL PHYSICIAN/ INTERNAL MEDICINE ',
+      degree:"MBBS, MD, FRCP, FACP, DABTM, FICA, FCCP",
       imageSrc: 'https://images.pexels.com/photos/8460159/pexels-photo-8460159.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      imageAlt: 'Desk with leather desk pad, walnut desk organizer, wireless keyboard and mouse, and porcelain mug.',
-      href: '#',
+      imageAlt: 'Founder',
     },
     {
-      name: 'Self-Improvement',
-      description: 'Journals and note-taking',
+      positions:"Chief financial officer",
+      name: 'Chalani Kulathunga ',
+      description: 'Masters degree in Accounting,  Business in london',
+      degree:"",
       imageSrc: 'https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       imageAlt: 'Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant.',
-      href: '#',
     },
     {
-      name: 'Travel',
-      description: 'Daily commute essentials',
+      positions: 'Medical director',
+      name: 'Dr. Tiran Gunathilaka ',
+      description: 'Master of health administration (MHA) in Uk',
+      degree:"",
       imageSrc: 'https://images.pexels.com/photos/5668774/pexels-photo-5668774.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       imageAlt: 'Collection of four insulated travel bottles on wooden shelf.',
-      href: '#',
     },
   ]
   
-  export default function Blog() {
+  export default function Bord() {
     return (
       <div className="bg-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -55,11 +58,17 @@ const callouts = [
                       className="w-full h-full object-center object-cover"
                     />
                   </div>
-                  <h3 className="mt-6 text-sm text-gray-500">
-                    <a href={callout.href}>
+                  <h3 className=" mt-6 text-sm text-gray-500">
+                      <span className="absolute inset-0" />
+                      {callout.positions}
+                  </h3>
+                  <h3 className=" text-sm text-gray-500">
                       <span className="absolute inset-0" />
                       {callout.name}
-                    </a>
+                  </h3>
+                  <h3 className=" text-sm text-gray-500">
+                      <span className="absolute inset-0" />
+                      {callout.degree}
                   </h3>
                   <p className="text-base font-semibold text-gray-900">{callout.description}</p>
                 </div>

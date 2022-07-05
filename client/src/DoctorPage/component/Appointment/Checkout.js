@@ -13,10 +13,9 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
-import Review from './Review';
 
 
-const steps = ['Appointment', 'Payment details', 'Review'];
+const steps = ['Appointment', 'Payment details'];
 
 
 
@@ -27,8 +26,6 @@ function getStepContent(step) {
             return <AddressForm />;
         case 1:
             return <PaymentForm />;
-        case 2:
-            return <Review /> ;
         default:
             throw new Error('Unknown step');
     }
@@ -92,8 +89,7 @@ const theme = createTheme();
                                     Thank you for your Appointment.
                                 </Typography>
                                 <Typography variant="subtitle1">
-                                    Your Appointment number is #2001539. We have emailed your Appointment
-                                    confirmation
+                                        Check Your email
                                 </Typography>
                             </React.Fragment>
                         ) : (
@@ -111,7 +107,7 @@ const theme = createTheme();
                                         onClick={handleNext}
                                         sx={{ mt: 3, ml: 1 }}
                                     >
-                                        {activeStep === steps.length - 1 ? "Send Email"  : 'Next' }
+                                        {activeStep === steps.length - 1 ? "Next"  : 'Next' }
                                     </Button>
                                 </Box>
                             </React.Fragment>
