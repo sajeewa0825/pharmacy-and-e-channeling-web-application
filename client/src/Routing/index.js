@@ -12,7 +12,7 @@ import About from "../component/About/About";
 import Price from "../component/Price/price";
 import Shop from "../component/shop/shop";
 import Frogetpassword from "../DoctorPage/component/Login/Frogetpassword";
-import VideoHome from '../DoctorPage/component/Video/VideoHome';
+import VideoHome from "../DoctorPage/component/Video/VideoHome";
 import PasswordReset from "../DoctorPage/component/Login/ResetPassword";
 import AdminDashboard from "./../AdminDashBoard/AdminDashboard";
 import AdminDoctor from "./../AdminDashBoard/AdminDoctor/AdminDoctor";
@@ -20,6 +20,7 @@ import AdminPatient from "../AdminDashBoard/AdminPatient/AdminPatient";
 import AdminAppoinment from "../AdminDashBoard/AdminAppoinment/AdminAppoinment";
 import AdminProduct from "../AdminDashBoard/AdminProduct/AdminProduct";
 import AdminPayment from "../AdminDashBoard/AdminPayment/AdminPayment";
+import Cart from "../component/Home/Cart/Cart";
 
 const Routing = () => {
   return (
@@ -38,12 +39,13 @@ const Routing = () => {
         <Route path="resetpassword" element={<PasswordReset />} />
         <Route path="admin" element={<AdminDashboard />} />
         <Route path="adminDoctor" element={<AdminDoctor />} />
-        <Route path="adminPatient" element={<AdminPatient />}></Route>
-        <Route path="adminAppoinment" element={<AdminAppoinment />}></Route>
-        <Route path="adminProduct" element={<AdminProduct />}></Route>
-        <Route path="adminPayment" element={<AdminPayment />}></Route>
-        <Route path='video' element={<VideoHome />} />
-        <Route path='/' element={<Landing />} />
+        <Route path="adminPatient" element={<AdminPatient />} />
+        <Route path="adminAppoinment" element={<AdminAppoinment />} />
+        <Route path="adminProduct" element={<AdminProduct />} />
+        <Route path="adminPayment" element={<AdminPayment />} />
+        <Route path="video" element={<VideoHome />} />
+        <Route path="cart" element={<Cart />} />
+        <Route path="/" element={<Landing />} />
       </Routes>
       <Footer />
     </BrowserRouter>
