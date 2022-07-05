@@ -67,18 +67,18 @@ const navBar = () => {
             className="collapse navbar-collapse justify-content-end "
             id="navbarNavDropdown"
           >
-            <button
-              type="button"
-              className="btn btn-none position-relative me-1 p-0"
-            >
-              <i className="bi bi-cart3 fs-4 text-black "></i>
-              <span className="position-absolute top-0 start-100 translate-middle badge rounded-circle CartBadge ">
-                2<span className="visually-hidden">unread messages</span>
-              </span>
-            </button>
-            <button type="button" className="btn  ">
-              <i className="bi bi-person text-black fs-4"></i>
-            </button>
+            <Link to={"/cart"}>
+              {" "}
+              <button
+                type="button"
+                className=" btn-none position-relative me-1 p-0"
+              >
+                <i className="bi bi-cart3 fs-4 text-black "></i>
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-circle CartBadge ">
+                  0<span className="visually-hidden">unread messages</span>
+                </span>
+              </button>
+            </Link>
           </div>
         </div>
       </nav>
