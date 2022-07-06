@@ -96,7 +96,7 @@ router.route("/appointmentdelete/:id").delete(async (req, res) => {
 })
 
 
-// update route
+// update appointment
 // http://Localhost:8080/update/dfdsrr353fd
 router.route("/appointmentupdate/:id").put(async (req, res) => {
     let userId = req.params.id;
@@ -184,7 +184,7 @@ router.route("/signup").post(async (req, res) => {
 
 
 // user signin
-// http://Localhost:8080/doctor/signin
+// http://Localhost:8080/signin
 router.route("/signin").post(async (req, res) => {
     const user = await signup.findOne({
         Email: req.body.Email,
@@ -271,6 +271,55 @@ router.route("/regdoctor").get((req, res) => {
         console.log(err)
     })
 })
+
+// delete doctor
+// http://Localhost:8080/doctordelete/:id
+router.route("/doctordelete/:id").delete(async (req, res) => {
+    let userId = req.params.id;
+
+    await doctor.findByIdAndDelete(userId).then(() => {
+        res.status(200).send({ status: "doctor delete " })
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).send({ status: "doctor delete error", error: err.message });
+    })
+})
+
+// update appointment
+// http://Localhost:8080/update/dfdsrr353fd
+router.route("/doctorupdate/:id").put(async (req, res) => {
+    let userId = req.params.id;
+    const { 
+        name,
+        specialist,
+        timePeriod,
+        Id,
+        Dob,
+        Gender,
+        Email,
+        P_no,
+        Address } = req.body;
+
+    const updateData = {
+        name,
+        specialist,
+        timePeriod,
+        Id,
+        Dob,
+        Gender,
+        Email,
+        P_no,
+        Address
+    }
+
+    await doctor.findByIdAndUpdate(userId, updateData).then(() => {
+        res.status(200).send({ status: "Doctor updated " })
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).send({ status: "Doctor  update error ", error: err.message });
+    })
+})
+
 
 
 // send password link

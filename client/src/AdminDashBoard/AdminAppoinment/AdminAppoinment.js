@@ -30,21 +30,19 @@ const AdminAppoinment = () => {
     getdata();
   }, [])
 
-  let [Dr_name, SetDname] = useState("");
-  let [TimePeriod, SetTimePeriod] = useState("");
-  let [date, setdate] = useState(new Date());
-  let [F_name, SetFname] = useState("");
-  let [Gender, SetGender] = useState("");
-  let [L_name, SetLname] = useState("");
-  let [Address, Setaddres] = useState("");
-  let [Id, Setid] = useState("");
-  let [Email, SetEmail] = useState("");
-  let [P_no, SetPno] = useState("");
-  let [Dr_type, SetDtype] = useState("");
+  const [Dr_name, SetDname] = useState("");
+  const [TimePeriod, SetTimePeriod] = useState("");
+  const [date, setdate] = useState(new Date());
+  const [F_name, SetFname] = useState("");
+  const [Gender, SetGender] = useState("");
+  const [L_name, SetLname] = useState("");
+  const [Address, Setaddres] = useState("");
+  const [Id, Setid] = useState("");
+  const [Email, SetEmail] = useState("");
+  const [P_no, SetPno] = useState("");
+  const [Dr_type, SetDtype] = useState("");
 
-  const [userid, setUserid] = useState("")
-  const [submit, setsubmit] = useState("")
-  let Total_bill = 3000;
+  const Total_bill = 3000;
 
   if (localStorage.token) {
     Total_bill = Total_bill * ((100 - 10) / 100);
