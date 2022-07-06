@@ -1,14 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
+import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 
 const AdminAppoinment = () => {
   const [appointment, Setappointment] = useState([])
+  const [doctordata, SetDoctordata] = useState([])
+  const [specialist, Setspecialist] = useState([])
+  const [timepi, Settimepi] = useState([])
 
   useEffect(() => {
     const getdata = () => {
       axios.get("http://Localhost:8080/getappointment").then((res) => {
         console.log(res.data)
         Setappointment(res.data)
+      }).catch((err) => {
+        alert(err)
+      })
+
+      axios.get("http://Localhost:8080/regdoctor").then((res) => {
+        console.log(res.data)
+        SetDoctordata(res.data)
       }).catch((err) => {
         alert(err)
       })
@@ -28,9 +41,9 @@ const AdminAppoinment = () => {
   let [Email, SetEmail] = useState("");
   let [P_no, SetPno] = useState("");
   let [Dr_type, SetDtype] = useState("");
-  
-  const[userid,setUserid] = useState("")
-  const[submit,setsubmit] = useState("")
+
+  const [userid, setUserid] = useState("")
+  const [submit, setsubmit] = useState("")
   let Total_bill = 3000;
 
   if (localStorage.token) {
@@ -56,13 +69,13 @@ const AdminAppoinment = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-      axios.post("http://localhost:8080/addappointment", newAppointment).then((res) => {
-        document.getElementById("form").reset();
-        document.getElementById('closebutton').click();
-        window.location.reload(false);
-      }).catch((err) => {
-        alert(err)
-      })
+    axios.post("http://localhost:8080/addappointment", newAppointment).then((res) => {
+      document.getElementById("form").reset();
+      document.getElementById('closebutton').click();
+      window.location.reload(false);
+    }).catch((err) => {
+      alert(err)
+    })
   }
 
   const deletedata = (id) => {
@@ -75,59 +88,26 @@ const AdminAppoinment = () => {
     })
   }
 
-  const sendupdateData = (e) => {
-    e.preventDefault();
 
-    let Appointmentupdate = {
-      Dr_name,
-      Dr_type,
-      TimePeriod,
-      Date: date,
-      F_name,
-      L_name,
-      Gender,
-      Id,
-      Email,
-      P_no,
-      Address,
-      Total_bill,
-      AppointmentSendTime
-    }
-      axios.put(`http://localhost:8080/appointmentupdate/${userid}`, Appointmentupdate).then(() => {
-        setsubmit("")
-        document.getElementById("form").reset();
-        document.getElementById('closebutton').click();
-        window.location.reload(false);
-      }).catch((err) => {
-        alert(err)
-      })
-    
+
+
+  const doctorSelect = (spe) => {
+    SetDtype(spe)
+    const filtered = doctordata.filter(obj => {
+      return obj.specialist === spe;
+    });
+
+    Setspecialist(filtered);
   }
 
-  const updatedata = (data) => {
-    document.getElementById('openbutton').click();
-    setUserid(data._id)
-    setsubmit("update")
-    SetFname(data.F_name)
-    SetLname(data.L_name)
-    SetPno(data.P_no)
-    Setaddres(data.Address)
-    Setid(data.Id)
-    SetEmail(data.Email)
-    SetDname(data.Dr_name)
-    SetDtype(data.Dr_type)
-    SetTimePeriod(data.Time)
-    setdate(data.Date)
-    SetGender(data.Gender)
-  }
+  const settime = (drname) => {
+    SetDname(drname.name)
 
+    const filtered = doctordata.filter(obj => {
+      return obj._id === drname._id;
+    });
 
-  const controlbtn = (e) => {
-    if (submit === "update") {
-      sendupdateData(e)
-    } else {
-      submitHandler(e)
-    }
+    Settimepi(filtered)
   }
 
 
@@ -152,7 +132,6 @@ const AdminAppoinment = () => {
         <td>Rs.{data.Total_bill}</td>
 
         <td>
-          <i class="bi bi-pen-fill Pen_icon_table me-3 text-primary" onClick={() => updatedata(data)}></i>
           <i class="bi bi-trash text-danger" onClick={() => deletedata(data._id)}></i>
         </td>
       </tr>
@@ -204,75 +183,55 @@ const AdminAppoinment = () => {
                   <div class="modal-body ">
                     <form class="row g-3" id='form'>
                       <div class="col-md-12">
-                        <label for="inputGender" class="form-label">
-                          Specialist
-                        </label>
-                        <select
-                          class="form-select"
-                          aria-label="Default select example"
-                          onChange={(e) => { SetDtype(e.target.value) }}
-                          value={Dr_type}
-                        >
-                          <option value="1">Specialist 1</option>
-                          <option value="2">Specialist 2</option>
-                          <option value="3">Specialist 3</option>
-                          <option value="4">Specialist 4</option>
-                          <option value="5">Specialist 5</option>
-                          <option value="6">Specialist 6</option>
-                        </select>
-                      </div>
+                        <Grid container spacing={3}>
+                          <Grid item xs={12} >
+                            <Autocomplete
+                              required
+                              disablePortal
+                              id="combo-box-demo"
+                              options={doctor}
+                              onChange={(event, value) => doctorSelect(value.label)}
+                              renderInput={(params) => <TextField {...params} label="Specialist" />}
+                            />
+                          </Grid>
+                          <Grid item xs={12} sm={6}>
+                            <Autocomplete
+                              required
+                              disablePortal
+                              id="combo-box-demo"
+                              options={specialist}
+                              onChange={(event, value) => settime(value)}
+                              renderInput={(params) => <TextField {...params} label="Doctor" />}
+                              getOptionLabel={(option) => option.name}
+                            />
+                            {/* <p className='valiFailcolor'>{formErrors.Dname}</p> */}
+                          </Grid>
+                          <Grid item xs={12} sm={6}>
+                            <Autocomplete
+                              required
+                              disablePortal
+                              id="combo-box-demo"
+                              options={timepi}
+                              onChange={(event, value) => SetTimePeriod(value.timePeriod)}
+                              renderInput={(params) => <TextField {...params} label="Time Period" />}
+                              getOptionLabel={(option) => option.timePeriod}
+                            />
+                            {/* <p className='valiFailcolor'>{formErrors.TimePeriod}</p> */}
+                          </Grid>
 
+                        </Grid>
+                      </div>
                       <div class="col-md-6">
-                        <label for="inputGender" class="form-label">
-                          Doctor
-                        </label>
-                        <select
-                          class="form-select"
-                          aria-label="Default select example"
-                          onChange={(e) => { SetDname(e.target.value) }}
-                          value={Dr_name}
-                        >
-                          <option value="1">Doctor 1</option>
-                          <option value="2">Doctor 2</option>
-                          <option value="3">Doctor 3</option>
-                          <option value="4">Doctor 4</option>
-                          <option value="5">Doctor 5</option>
-                          <option value="6">Doctor 6</option>
-                        </select>
-                      </div>
-
-                      <div class="col-md-6">
-                        <label for="inputGender" class="form-label">
-                          Time Period
-                        </label>
-                        <select
-                          class="form-select"
-                          aria-label="Default select example"
-                          onChange={(e) => { SetTimePeriod(e.target.value) }}
-                          value={TimePeriod}
-                        >
-                          <option value="1">Time Period 1</option>
-                          <option value="2">Time Period 2</option>
-                          <option value="3">Time Period 3</option>
-                          <option value="4">Time Period 4</option>
-                          <option value="5">Time Period 5</option>
-                          <option value="6">Time Period 6</option>
-                        </select>
-                      </div>
-
-                      <div class="col-md-6">
-                        <label for="inputDate" class="form-label">
-                          Date
-                        </label>
-                        <input
-                          type="date"
-                          class="form-control"
-                          id="inputDate"
-                          onChange={(e) => { setdate(e.target.value) }}
-                          value={date}
-                        />
-                      </div>
-
+                            <label for="inputDate" class="form-label">
+                              Date
+                            </label>
+                            <input
+                              type="date"
+                              class="form-control"
+                              id="inputDate"
+                              onChange={ (e) => { setdate(e.target.value)}}
+                            />
+                          </div>
                       <div class="col-md-6">
                         <label for="inputGender" class="form-label">
                           Select Gender
@@ -283,6 +242,7 @@ const AdminAppoinment = () => {
                           onChange={(e) => { SetGender(e.target.value) }}
                           value={Gender}
                         >
+                          <option value="">Select</option>
                           <option value="Male">Male</option>
                           <option value="Female">Female</option>
                         </select>
@@ -377,11 +337,12 @@ const AdminAppoinment = () => {
                         <button
                           type="submit"
                           class="AdminDoctor_modal_Submit_Btn"
-                          onClick={(e) => controlbtn(e)}
+                          onClick={(e) => submitHandler(e)}
                         >
                           Submit
                         </button>
                       </div>
+
                     </form>
                   </div>
                 </div>
@@ -429,3 +390,9 @@ const AdminAppoinment = () => {
 };
 
 export default AdminAppoinment;
+
+const doctor = [
+  { label: "hart" },
+  { label: "iye" },
+  { label: "brain" },
+]
