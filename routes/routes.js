@@ -8,7 +8,7 @@ const bcrypt = require('bcryptjs')
 const SendMail = require("../utils/sendEmail")
 
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
-const ADMIN_EMAIL =process.env.ADMIN_EMAIL;
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
 
 // add appointment details
 // http://Localhost:8080/addappointment
@@ -79,6 +79,61 @@ router.route("/getappointment").get((req, res) => {
         res.json(data);
     }).catch((err) => {
         console.log(err)
+    })
+})
+
+// delete appointment
+// http://Localhost:8080/appointmentdelete
+router.route("/appointmentdelete/:id").delete(async (req, res) => {
+    let userId = req.params.id;
+
+    await appointment.findByIdAndDelete(userId).then(() => {
+        res.status(200).send({ status: "appointment delete " })
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).send({ status: "appointment delete error", error: err.message });
+    })
+})
+
+
+// update route
+// http://Localhost:8080/update/dfdsrr353fd
+router.route("/appointmentupdate/:id").put(async (req, res) => {
+    let userId = req.params.id;
+    const { 
+        Dr_name,
+        Dr_type,
+        Time,
+        Date,
+        F_name,
+        L_name,
+        Gender,
+        Id,
+        Email,
+        P_no,
+        Address,
+        Total_bill } = req.body;
+
+    const updateData = {
+        Dr_name,
+        Dr_type,
+        Time,
+        Date,
+        F_name,
+        L_name,
+        Gender,
+        Id,
+        Email,
+        P_no,
+        Address,
+        Total_bill,
+    }
+
+    await appointment.findByIdAndUpdate(userId, updateData).then(() => {
+        res.status(200).send({ status: "appointment updated " })
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).send({ status: "appointment update error ", error: err.message });
     })
 })
 
@@ -156,7 +211,7 @@ router.route("/signin").post(async (req, res) => {
         }
         )
 
-        const userdata={
+        const userdata = {
             token,
             name
         }
