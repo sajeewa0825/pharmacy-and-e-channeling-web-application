@@ -5,7 +5,7 @@ const SideMenu = () => {
   return (
     <div>
       <nav class="navbar navbar-light bg-white">
-        <div class="container">
+        <div class="container-fluid">
           <div className="col-12">
             <form class="d-flex justify-content-end">
               <div className="d-flex">
