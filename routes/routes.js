@@ -424,12 +424,15 @@ router.route("/addproduct").post((req, res) => {
     const name = req.body.name;
     const imgLink = req.body.imgLink;
     const price = req.body.price;
-
+    const qty = req.body.qty;
+    const info = req.body.info;
 
     const newproduct = new product({
         name,
         imgLink,
-        price
+        price,
+        qty,
+        info
     })
 
     newproduct.save().then(() => {
@@ -441,13 +444,54 @@ router.route("/addproduct").post((req, res) => {
 
 
 // get product
-// http://Localhost:8080/doctor/addproduct
+// http://Localhost:8080/addproduct
 router.route("/addproduct").get((req, res) => {
 
     product.find().then((product) => {
         res.json(product);
     }).catch((err) => {
         console.log(err)
+    })
+})
+
+// delete doctor
+// http://Localhost:8080/deleteproduct/:id
+router.route("/deleteproduct/:id").delete(async (req, res) => {
+    let userId = req.params.id;
+
+    await product.findByIdAndDelete(userId).then(() => {
+        res.status(200).send({ status: "product delete " })
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).send({ status: "product delete error", error: err.message });
+    })
+})
+
+// update appointment
+// http://Localhost:8080/update/dfdsrr353fd
+router.route("/productupdate/:id").put(async (req, res) => {
+    let userId = req.params.id;
+    const { 
+        name,
+        qty,
+        imgLink,
+        price,
+        info 
+    } = req.body;
+
+    const updateData = {
+        name,
+        qty,
+        imgLink,
+        price,
+        info 
+    }
+
+    await product.findByIdAndUpdate(userId, updateData).then(() => {
+        res.status(200).send({ status: "product updated " })
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).send({ status: "product  update error ", error: err.message });
     })
 })
 
