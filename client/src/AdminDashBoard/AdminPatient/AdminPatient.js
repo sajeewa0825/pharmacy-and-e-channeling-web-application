@@ -1,104 +1,51 @@
-import React from "react";
+import axios from 'axios';
+import React, { useState, useEffect } from 'react'
 import "./AdminPatient.css";
 
 const AdminPatient = () => {
+
+  const [user, Setuser] = useState([])
+
+  useEffect(() => {
+    const getdata = () => {
+      axios.get("http://Localhost:8080/getuser").then((res) => {
+        Setuser(res.data)
+      }).catch((err) => {
+        alert(err)
+      })
+    }
+
+    getdata();
+  }, [])
+
+  const userlist = user.map((data) => {
+    return (
+      <tr key={data._id}>
+      <td>{data._id}</td>
+      <td>{data.F_name}</td>
+      <td>{data.L_name}</td>
+      <td>{data.Email}</td>
+      <td>{data.Password}</td>
+      <td>
+        <i class="bi bi-trash text-danger"onClick={() => deleteuser(data._id)}></i>
+      </td>
+    </tr>
+    )})
+
+    const deleteuser = (id) => {
+      axios.delete(`http://localhost:8080/userdelete/${id}`).then((res) => {
+        alert("user deleted")
+        Setuser(user.filter(data => data._id !== id))
+      }).catch((err) => {
+        alert(err)
+      })
+    }
   return (
     <div>
       <div className="container">
         <div className="row p-3 adminDoc_top_row">
           <div className="col">
             <h4>PATIENTS LIST</h4>
-          </div>
-          <div className="col d-flex justify-content-end">
-            <button
-              type="button"
-              class="AdminDoctor_AddDoc_btn"
-              data-bs-toggle="modal"
-              data-bs-target="#staticBackdrop"
-            >
-              <i class="bi bi-plus-circle"></i>Add Patient
-            </button>
-
-            <div
-              class="modal fade"
-              id="staticBackdrop"
-              data-bs-backdrop="static"
-              data-bs-keyboard="false"
-              tabindex="-1"
-              aria-labelledby="staticBackdropLabel"
-              aria-hidden="true"
-            >
-              <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable ">
-                <div class="modal-content border-0 ">
-                  <div class="modal-header AdminDoctor_modal_Head shadow">
-                    <h5 class="modal-title" id="staticBackdropLabel">
-                      ADD PAITENTS
-                    </h5>
-                    <button
-                      type="button"
-                      class="btn-close AdminDoctor_modal_Head_Btn"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div class="modal-body ">
-                    <form class="row g-3">
-                      <div class="col-md-6">
-                        <label for="inputFName" class="form-label">
-                          First Name
-                        </label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="inputFName"
-                        />
-                      </div>
-                      <div class="col-md-6">
-                        <label for="inputLName" class="form-label">
-                          Last Name
-                        </label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="inputLName"
-                        />
-                      </div>
-
-                      <div class="col-md-6">
-                        <label for="inputEmail" class="form-label">
-                          Email Address
-                        </label>
-                        <input
-                          type="email"
-                          class="form-control"
-                          id="inputEmail"
-                        />
-                      </div>
-
-                      <div class="col-md-6">
-                        <label for="inputPassword" class="form-label">
-                          Password
-                        </label>
-                        <input
-                          type="password"
-                          class="form-control"
-                          id="inputPassword"
-                        />
-                      </div>
-
-                      <div class="col-12">
-                        <button
-                          type="submit"
-                          class="AdminDoctor_modal_Submit_Btn"
-                        >
-                          Submit
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
         <div className="row">
@@ -117,72 +64,7 @@ const AdminPatient = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>01</td>
-                      <td>Mahinda</td>
-                      <td>Rajapaksha</td>
-                      <td>Mahinda@gmail.com</td>
-                      <td>mhinda123</td>
-                      <td>
-                        <i class="bi bi-pen-fill Pen_icon_table me-3 text-primary"></i>
-                        <i class="bi bi-trash text-danger"></i>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>01</td>
-                      <td>Mahinda</td>
-                      <td>Rajapaksha</td>
-                      <td>Mahinda@gmail.com</td>
-                      <td>mhinda123</td>
-                      <td>
-                        <i class="bi bi-pen-fill Pen_icon_table me-3 text-primary"></i>
-                        <i class="bi bi-trash text-danger"></i>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>01</td>
-                      <td>Mahinda</td>
-                      <td>Rajapaksha</td>
-                      <td>Mahinda@gmail.com</td>
-                      <td>mhinda123</td>
-                      <td>
-                        <i class="bi bi-pen-fill Pen_icon_table me-3 text-primary"></i>
-                        <i class="bi bi-trash text-danger"></i>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>01</td>
-                      <td>Mahinda</td>
-                      <td>Rajapaksha</td>
-                      <td>Mahinda@gmail.com</td>
-                      <td>mhinda123</td>
-                      <td>
-                        <i class="bi bi-pen-fill Pen_icon_table me-3 text-primary"></i>
-                        <i class="bi bi-trash text-danger"></i>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>01</td>
-                      <td>Mahinda</td>
-                      <td>Rajapaksha</td>
-                      <td>Mahinda@gmail.com</td>
-                      <td>mhinda123</td>
-                      <td>
-                        <i class="bi bi-pen-fill Pen_icon_table me-3 text-primary"></i>
-                        <i class="bi bi-trash text-danger"></i>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>01</td>
-                      <td>Mahinda</td>
-                      <td>Rajapaksha</td>
-                      <td>Mahinda@gmail.com</td>
-                      <td>mhinda123</td>
-                      <td>
-                        <i class="bi bi-pen-fill Pen_icon_table me-3 text-primary"></i>
-                        <i class="bi bi-trash text-danger"></i>
-                      </td>
-                    </tr>
+                    {userlist}
                   </tbody>
                 </table>
               </div>

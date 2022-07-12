@@ -1,6 +1,37 @@
-import React from "react";
+import axios from "axios";
+import React, { useState, useEffect } from 'react'
+
 
 const AdminProduct = () => {
+  const [Product, SetProduct] = useState([])
+
+  useEffect(() => {
+    const getproduct = () => {
+      axios.get("http://Localhost:8080/addproduct").then((res) => {
+        console.log(res.data)
+        SetProduct(res.data)
+      }).catch((err) => {
+        alert(err)
+      })
+    }
+
+    getproduct();
+  }, [])
+
+  const productlist = Product.map((data) => {
+    return (
+      <tr>
+      <td>{data._id}</td>
+      <td>{data.name}</td>
+      <td>{data.qty}</td>
+      <td>{data.imgLink}</td>
+      <td>
+        <i class="bi bi-pen-fill Pen_icon_table me-3 text-primary"></i>
+        <i class="bi bi-trash text-danger"></i>
+      </td>
+    </tr>
+
+    )})
   return (
     <div>
       <div className="container">
@@ -97,84 +128,7 @@ const AdminProduct = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>01</td>
-                      <td>Vitamin</td>
-                      <td>20</td>
-                      <td>
-                        <i class="bi bi-image-fill"></i>
-                      </td>
-
-                      <td>
-                        <i class="bi bi-pen-fill Pen_icon_table me-3 text-primary"></i>
-                        <i class="bi bi-trash text-danger"></i>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>01</td>
-                      <td>Vitamin</td>
-                      <td>20</td>
-                      <td>
-                        <i class="bi bi-image-fill"></i>
-                      </td>
-
-                      <td>
-                        <i class="bi bi-pen-fill Pen_icon_table me-3 text-primary"></i>
-                        <i class="bi bi-trash text-danger"></i>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>01</td>
-                      <td>Vitamin</td>
-                      <td>20</td>
-                      <td>
-                        <i class="bi bi-image-fill"></i>
-                      </td>
-
-                      <td>
-                        <i class="bi bi-pen-fill Pen_icon_table me-3 text-primary"></i>
-                        <i class="bi bi-trash text-danger"></i>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>01</td>
-                      <td>Vitamin</td>
-                      <td>20</td>
-                      <td>
-                        <i class="bi bi-image-fill"></i>
-                      </td>
-
-                      <td>
-                        <i class="bi bi-pen-fill Pen_icon_table me-3 text-primary"></i>
-                        <i class="bi bi-trash text-danger"></i>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>01</td>
-                      <td>Vitamin</td>
-                      <td>20</td>
-                      <td>
-                        <i class="bi bi-image-fill"></i>
-                      </td>
-
-                      <td>
-                        <i class="bi bi-pen-fill Pen_icon_table me-3 text-primary"></i>
-                        <i class="bi bi-trash text-danger"></i>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>01</td>
-                      <td>Vitamin</td>
-                      <td>20</td>
-                      <td>
-                        <i class="bi bi-image-fill"></i>
-                      </td>
-
-                      <td>
-                        <i class="bi bi-pen-fill Pen_icon_table me-3 text-primary"></i>
-                        <i class="bi bi-trash text-danger"></i>
-                      </td>
-                    </tr>
+                      {productlist}
                   </tbody>
                 </table>
               </div>

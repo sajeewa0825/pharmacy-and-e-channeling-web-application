@@ -181,6 +181,29 @@ router.route("/signup").post(async (req, res) => {
 
 })
 
+// get user
+// http://Localhost:8080/getuser
+router.route("/getuser").get((req, res) => {
+
+    signup.find().then((doctor) => {
+        res.json(doctor);
+    }).catch((err) => {
+        console.log(err)
+    })
+})
+
+// delete doctor
+// http://Localhost:8080/userdelete/:id
+router.route("/userdelete/:id").delete(async (req, res) => {
+    let userId = req.params.id;
+
+    await signup.findByIdAndDelete(userId).then(() => {
+        res.status(200).send({ status: "user delete " })
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).send({ status: "user delete error", error: err.message });
+    })
+})
 
 
 // user signin

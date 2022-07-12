@@ -337,7 +337,8 @@ export default AdminDoctor;
 
 const doctor = [
   { label: "Select" },
-  { label: "hart" },
-  { label: "iye" },
-  { label: "brain" },
+  { label: "cardiologist" },
+  { label: "dermatologist" },
+  { label: "Counsiling psychologist" },
+  { label: "cancer surgeon" },
 ]
