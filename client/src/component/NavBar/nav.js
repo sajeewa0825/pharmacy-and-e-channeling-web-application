@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "./image/phy.png";
+import Logo from "./image/Frame 1.svg";
 import "./nav.css";
 import { Link } from "react-router-dom";
 // import phone from "./image/phone-solid.svg";
@@ -15,11 +15,10 @@ const navBar = () => {
             <img
               src={Logo}
               alt=""
-              width="50"
-              height="34"
+              width="220px"
+              height="50px"
               className="d-inline-block align-text-center"
             />
-            Pharmacy
           </a>
           <button
             className="navbar-toggler "
