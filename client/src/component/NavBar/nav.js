@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "./image/Frame 1.svg";
+import Logo from "./image/Group 4.svg";
 import "./nav.css";
 import { Link } from "react-router-dom";
 // import phone from "./image/phone-solid.svg";
@@ -15,8 +15,6 @@ const navBar = () => {
             <img
               src={Logo}
               alt=""
-              width="220px"
-              height="50px"
               className="d-inline-block align-text-center"
             />
           </a>
@@ -42,7 +40,7 @@ const navBar = () => {
                   aria-current="page"
                   to={"/phhome"}
                 >
-                  <i className="fa fa-home"></i>Home
+                  <i class="fa fa-home"></i>Home
                 </Link>
               </li>
               <li className="nav-item">
@@ -51,8 +49,8 @@ const navBar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to={"/phprice"}>
-                  <i className="fa fa-usd"></i>Pricing
+                <Link className="nav-link" to={"/drhome"}>
+                  <i class="fa fa-stethoscope"></i>Doctor
                 </Link>
               </li>
               <li className="nav-item">
