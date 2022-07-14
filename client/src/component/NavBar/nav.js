@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "./image/phy.png";
+import Logo from "./image/Group 4.svg";
 import "./nav.css";
 import { Link } from "react-router-dom";
 // import phone from "./image/phone-solid.svg";
@@ -15,11 +15,8 @@ const navBar = () => {
             <img
               src={Logo}
               alt=""
-              width="50"
-              height="34"
               className="d-inline-block align-text-center"
             />
-            Pharmacy
           </a>
           <button
             className="navbar-toggler "
@@ -43,7 +40,7 @@ const navBar = () => {
                   aria-current="page"
                   to={"/phhome"}
                 >
-                  <i className="fa fa-home"></i>Home
+                  <i class="fa fa-home"></i>Home
                 </Link>
               </li>
               <li className="nav-item">
@@ -52,8 +49,8 @@ const navBar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to={"/phprice"}>
-                  <i className="fa fa-usd"></i>Pricing
+                <Link className="nav-link" to={"/drhome"}>
+                  <i class="fa fa-stethoscope"></i>Doctor
                 </Link>
               </li>
               <li className="nav-item">
@@ -67,18 +64,18 @@ const navBar = () => {
             className="collapse navbar-collapse justify-content-end "
             id="navbarNavDropdown"
           >
-            <button
-              type="button"
-              className="btn btn-none position-relative me-1 p-0"
-            >
-              <i className="bi bi-cart3 fs-4 text-black "></i>
-              <span className="position-absolute top-0 start-100 translate-middle badge rounded-circle CartBadge ">
-                2<span className="visually-hidden">unread messages</span>
-              </span>
-            </button>
-            <button type="button" className="btn  ">
-              <i className="bi bi-person text-black fs-4"></i>
-            </button>
+            <Link to={"/cart"}>
+              {" "}
+              <button
+                type="button"
+                className=" btn-none position-relative me-1 p-0"
+              >
+                <i className="bi bi-cart3 fs-4 text-black "></i>
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-circle CartBadge ">
+                  0<span className="visually-hidden">unread messages</span>
+                </span>
+              </button>
+            </Link>
           </div>
         </div>
       </nav>
