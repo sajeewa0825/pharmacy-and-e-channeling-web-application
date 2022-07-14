@@ -16,14 +16,14 @@ const Landing = () => {
               <img
                 src={Logo}
                 alt="logo"
-                className="d-inline-block align-text-center"
+                className="d-inline-block align-text-center LandingPage-Logo"
               />
             </Link>
             <div className="col LandingPage-Col-btn">
               <div className="LandingPage-LogingBtn ">
                 <button
                   type="button"
-                  className=" LandingPage-LogingBtnDesign-1 me-2"
+                  className=" LandingPage-LogingBtnDesign-1"
                 >
                   <Link className="LandingPagey_btnLink-1" to={"/signin"}>
                     Singin
@@ -42,7 +42,7 @@ const Landing = () => {
           </div>
         </div>
         <div className="row LandingPageBody-Row ">
-          <div className="col-sm-5 ps-5">
+          <div className="col-sm-5 LandingPageBody-colText">
             <h1 className="LandingPageBody-heading">
               Consult Doctors Protect Yourself and Family
             </h1>
@@ -51,14 +51,14 @@ const Landing = () => {
               notify you when availability opens up.
             </h4>
             <div className="col LandingPageBody-btn">
-              <div className="LandingPage-LogingBtn ">
+              <div className="LandingPage-HomeBtn ">
                 <button className=" LandingPage-HomeBtnDesign-1">
-                  <Link className="LandingPage_HomebtnLink-1" to={"/signin"}>
-                    Pharmecy
+                  <Link className="LandingPage_HomebtnLink-1" to={"/phhome"}>
+                    Pharmacy
                   </Link>
                 </button>
                 <button className="LandingPage-HomeBtnDesign-2">
-                  <Link className="LandingPage_HomebtnLink-2" to={"/signup"}>
+                  <Link className="LandingPage_HomebtnLink-2" to={"/drhome"}>
                     Doctor
                   </Link>
                 </button>
