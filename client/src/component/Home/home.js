@@ -95,29 +95,39 @@ const Home = () => {
           </div>
           <div className="col-lg-6">
             <div class="content">
-              <div class="title">Welcome to Medisine</div>
+              <div class="title">Welcome to Medisuite</div>
               <h3 class="text-theme-color">
-                Medisine is a US exclusive pharmacy and top choice.
+                Order medicine online from Medisuite pharmacy
               </h3>
               <p class="description">
-                Since its founding we become an integral part of the city,
-                advancing our mission of the providing access to compassionate
-                care to our communities. today patient find care that combines
-                world-class medincine with compassion.
+                For over 32 years, Medisuite Pharmacy has been providing you
+                with genuine medicines round-the-clock, through 24-hour
+                pharmacies. And now through medisuite Pharmacy, we intend to
+                make your lives easier – by getting your medicines delivered to
+                you. Yes, no more stepping out to get your medicines, no more
+                standing in long queues, no more worrying about the genuineness
+                of medicines, no more sweat! Here are more reasons why you
+                should buy your medicines from medisuite Pharmacy:
               </p>
               <ul>
                 <li>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                  Super-fast deliveries. In select cities, deliveries are done
+                  in as less as 1 day
+                </li>
+                <li>Attractive deals on medicines and other FMCG products</li>
+                <li>
+                  Get Health Credits on purchases (not applicable on discounted
+                  products)
                 </li>
                 <li>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                  Prescriptions can be uploaded directly to place an order
                 </li>
                 <li>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                  Option to consult with a pharmacologist to check medicine
+                  interactions
                 </li>
+                <li>Wide range of healthcare products to choose from</li>
+                <li>Only genuine and top-quality products delivered.</li>
               </ul>
             </div>
           </div>
