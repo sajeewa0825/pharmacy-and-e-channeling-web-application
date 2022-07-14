@@ -62,13 +62,14 @@ export default function SignIn() {
             const data = await response.json()
 
             if (data.user) {
-                console.log(data.user)
-                console.log(localStorage)
                 localStorage.setItem('token', data.user.token)
                 localStorage.setItem('name', data.user.name)
-                console.log(localStorage)
                 window.location.href = '/drhome'
-            } else {
+            } else if(data.admin){
+                localStorage.setItem('admintoken', data.admin.admintoken)
+                console.log(localStorage)
+                window.location.href = '/admin'
+            }else {
                 alert('Please check your username and password')
                 document.getElementById("form2").reset();
             }

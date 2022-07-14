@@ -9,6 +9,7 @@ const SendMail = require("../utils/sendEmail")
 
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
+const ADMIN1 =process.env.ADMIN1
 
 // add appointment details
 // http://Localhost:8080/addappointment
@@ -234,12 +235,25 @@ router.route("/signin").post(async (req, res) => {
         }
         )
 
+        const admintoken = jwt.sign(
+            {
+                Email: user.Email,
+            },
+            JWT_SECRET_KEY, {
+            expiresIn: '6h'
+        }
+        )
+
         const userdata = {
             token,
             name
         }
 
-        return res.json({ status: 200, user: userdata })
+        if (ADMIN1 === user.Email) {
+            return res.json({ status: 200, admin: admintoken  })
+        } else {
+            return res.json({ status: 200, user: userdata })
+        }
     } else {
         return res.json({ status: 'error', user: false })
     }
