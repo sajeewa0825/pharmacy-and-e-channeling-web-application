@@ -67,10 +67,13 @@
   display: contents;
 }
 .details li {
+  display: flex;
   margin-inline: 100px;
   list-style-type: none;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  /* margin-top: 15px;
+  margin-bottom: 15px; */
+  padding-top: 7px;
+  padding-bottom: 7px;
 }
 .iconNav {
   width: 25px;
