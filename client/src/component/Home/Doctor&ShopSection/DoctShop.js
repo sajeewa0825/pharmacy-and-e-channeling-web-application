@@ -26,7 +26,7 @@ const DoctShop = () => {
             </div>
           </div>
           <div className="col-lg-6">
-            <h4>Pharamecy Shop</h4>
+            <h4>Pharmacy Shop</h4>
             <div className="DoctorPharmacySection">
               <img src={Parmacy} className="DocPharImg" />
               <h5 className="text-muted DocPharText">
