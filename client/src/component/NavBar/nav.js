@@ -58,6 +58,11 @@ const navBar = () => {
                   <i className="fa fa-shopping-bag"></i>Shop
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to={"/contactUs"}>
+                  <i className="fa fa-mobile"></i>Contact Us
+                </Link>
+              </li>
             </ul>
           </div>
           <div

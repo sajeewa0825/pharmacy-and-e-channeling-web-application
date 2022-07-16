@@ -8,8 +8,9 @@ import FeatureProduct from "../Products/FeatureProducts";
 import ProductBlog from "../Products/ProductBlog/ProductBlog";
 import DoctShop from "./Doctor&ShopSection/DoctShop";
 import WhyShoosUs from "./WhyChooseUs/WhyShoosUs";
-import OurTeam from "./OurTeam/OurTeam";
+
 import NavBar from "../NavBar/nav";
+import Board from "../../DoctorPage/component/Blog/Bord";
 
 const Home = () => {
   return (
@@ -202,13 +203,13 @@ const Home = () => {
       <div className="container pb-4">
         <ProductBlog />
       </div>
-      <div className="container-fluid FPSection1">
+      <div className="container-fluid ">
         <div className="container">
           <WhyShoosUs />
         </div>
       </div>
       <div className="container-fluid">
-        <OurTeam />
+        <Board />
       </div>
     </div>
   );

@@ -1,44 +1,54 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { AnnotationIcon, GlobeAltIcon, LightningBoltIcon, ScaleIcon } from '@heroicons/react/outline'
+import {
+  AnnotationIcon,
+  GlobeAltIcon,
+  LightningBoltIcon,
+  ScaleIcon,
+} from "@heroicons/react/outline";
 
 const features = [
   {
-    name: 'Competitive exchange rates',
+    name: "Competitive exchange rates",
     description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+      "get competitive exchange rates and free online transfers with online purchases of high-quality, low-cost pharmaceuticals and health-care supplies",
     icon: GlobeAltIcon,
   },
   {
-    name: 'No hidden fees',
+    name: "No hidden fees",
     description:
-      'Make sure we are offering everything you want within your budget and that there are no hidden charges',
+      "Make sure we are offering everything you want within your budget and that there are no hidden charges.",
     icon: ScaleIcon,
   },
   {
-    name: 'Transfers are instant',
+    name: "Transfers are instant",
     description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+      "As a plus, transfers are secure and instant – no more waiting for multiple days",
     icon: LightningBoltIcon,
   },
   {
-    name: 'notifications',
+    name: "notifications",
     description:
-      'Medkit may contact you whether you’re at home or  at work , you’ll be notified as soon as our services are verified..Even faster and more efficient!',
+      "Medisuite may contact you whether you’re at home or at work , you’ll be notified as soon as our services are verified. Even faster and more efficient!",
     icon: AnnotationIcon,
   },
-]
+];
 
 export default function Service() {
   return (
     <div className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="lg:text-center">
-          <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">our services</h2>
+          <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">
+            our services
+          </h2>
           <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
             A better way to Your Health
           </p>
           <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-          We take your health seriously at Medkit.com. Be it purchasing  high-quality, affordable medicines and health care products online or online doctor consultations, we've got it all covered for our customers!
+            We take your health seriously at Medkit.com. Be it purchasing
+            high-quality, affordable medicines and health care products online
+            or online doctor consultations, we've got it all covered for our
+            customers!
           </p>
         </div>
 
@@ -50,14 +60,18 @@ export default function Service() {
                   <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
                     <feature.icon className="h-6 w-6" aria-hidden="true" />
                   </div>
-                  <p className="ml-16 text-lg leading-6 font-medium text-gray-900">{feature.name}</p>
+                  <p className="ml-16 text-lg leading-6 font-medium text-gray-900">
+                    {feature.name}
+                  </p>
                 </dt>
-                <dd className="mt-2 ml-16 text-base text-gray-500">{feature.description}</dd>
+                <dd className="mt-2 ml-16 text-base text-gray-500">
+                  {feature.description}
+                </dd>
               </div>
             ))}
           </dl>
         </div>
       </div>
     </div>
-  )
+  );
 }
