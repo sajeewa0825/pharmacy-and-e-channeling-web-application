@@ -14,7 +14,7 @@
   border-radius: 50px;
 }
 .form-control.inputSearch {
-  width: 850px;
+  width: 450px;
   border-color: #5089fd;
   border-radius: 50px;
 }
@@ -24,6 +24,7 @@
   font-size: 15px;
   letter-spacing: 3px;
 }
+
 @media screen and (max-width: 576px) {
   .TextSideMenu {
     padding-top: 5px;
@@ -46,6 +47,6 @@
     font-size: 15px;
   }
   .form-control.inputSearch {
-    max-width: 150px;
+    max-width: 250px;
   }
 }

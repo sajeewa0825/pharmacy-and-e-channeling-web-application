@@ -1,149 +1,156 @@
-.LandingPage {
-  position: relative;
+.landingPage-Row {
+  display: flex;
 }
-.LandingPage-bgImg {
-  width: 100%;
-  height: auto;
-  position: relative;
-  opacity: 60%;
+
+.LandingPageBody-Row {
+  background: #eef3ff;
+  padding-left: 70px;
 }
-.LandingPage-LogingBtn {
-  position: absolute;
-  right: 2px;
-  top: 5px;
-}
-.LandingPage-LogingBtnDesign {
-  background: #5089fd;
-  padding: 3px;
-  margin-right: 5px;
-  width: 100px;
-  border-radius: 50px;
-  text-align: center;
-}
-.LandingPage-Heading {
-  position: absolute;
-  top: 33%;
-  left: 26%;
-  text-align: center;
-  width: 50%;
-}
-.LandingPagey_btnPharmacy {
-  color: white;
-  background: #5089fd;
-  width: 150px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  /* border-radius: 50px; */
-  height: 50px;
-  clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
-}
-.LandingPagey_btnDoctor {
-  color: white;
-  background: #5089fd;
-  width: 150px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  /* border-radius: 50px; */
-  height: 50px;
-  clip-path: polygon(100% 0%, 75% 50%, 100% 100%, 25% 100%, 0% 50%, 25% 0%);
-}
-.LandingPagey_btnLink {
-  text-decoration: none;
-  color: white;
-  font-weight: bolder;
-  margin-left: 5px;
+.LandingPage-Col-btn {
   display: flex;
   align-items: center;
+  justify-content: end;
 }
-.LandingPagey_btnLink_btn {
+.LandingPagey_btnLink-1 {
   text-decoration: none;
-  color: white;
-  font-weight: bolder;
-  margin-left: 5px;
+  color: #0048dd;
 }
-.LandingPage-Heading_Text {
-  font-size: 50px;
-  margin-bottom: 20px;
+
+.LandingPagey_btnLink-2 {
+  text-decoration: none;
+  color: #ffffff;
 }
-.LandingPage-Text {
-  font-size: 25px;
+.LandingPagey_btnLink-2:hover {
+  color: #ffffff;
 }
-.LandingPage-Heading .LandingPage-Heading_Text:after {
-  display: block;
-  content: "";
-  height: 4px;
-  width: 130px;
-  background-color: #5089fd;
-  position: absolute;
-  left: 230px;
-  margin-bottom: 5px;
+.LandingPage-LogingBtnDesign-1 {
+  border: 1px solid #0048dd;
   border-radius: 5px;
+  padding: 5px;
+  width: 100px;
+  margin-right: 10px;
+}
+.LandingPage-LogingBtnDesign-2 {
+  border: 1px solid #0048dd;
+  border-radius: 5px;
+  padding: 5px;
+  width: 100px;
+  background-color: #0048dd;
+}
+.LandingPage_HomebtnLink-2 {
+  text-decoration: none;
+  color: #0048dd;
+}
+.LandingPage_HomebtnLink-1 {
+  text-decoration: none;
+
+  color: #ffffff;
+}
+.LandingPage_HomebtnLink-1:hover {
+  color: #ffffff;
+}
+.LandingPage-HomeBtnDesign-2 {
+  border: 1px solid #0048dd;
+  border-radius: 8px;
+  padding: 10px;
+  width: 130px;
+}
+.LandingPage-HomeBtnDesign-1 {
+  border: 1px solid #0048dd;
+  border-radius: 8px;
+  padding: 10px;
+  width: 130px;
+  background-color: #0048dd;
+  margin-right: 30px;
+}
+.LandingPageBody-heading {
+  font-size: 56px;
+  font-weight: 400;
+  padding-top: 50px;
+}
+.LandingPageBody-Text {
+  font-size: 16px;
+  font-weight: 400;
+  padding-top: 20px;
+}
+.LandingPageBody-btn {
+  padding-top: 30px;
 }
 @media screen and (max-width: 992px) {
-  .LandingPage-Heading {
-    position: absolute;
-    top: 30%;
-    left: 20%;
-    text-align: center;
-    width: 60%;
-    margin: auto;
-  }
-  .LandingPage-Heading_Text {
+  .LandingPageBody-heading {
     font-size: 35px;
+    padding-top: 10px;
   }
-  .LandingPage-Text {
-    font-size: 16px;
+  .LandingPage-HomeBtnDesign-1 {
+    width: 120px;
+    padding: 7px;
+  }
+  .LandingPage-HomeBtnDesign-2 {
+    width: 120px;
+    padding: 7px;
+  }
+  .LandingPageBody-btn {
+    padding-top: 15px;
   }
 }
 @media screen and (max-width: 768px) {
-  .LandingPage-Heading {
-    position: absolute;
-    top: 25%;
-    left: 20%;
-    text-align: center;
-    width: 60%;
-    margin: auto;
+  .LandingPageBody-heading {
+    font-size: 25px;
+    padding-top: 7px;
   }
-  .LandingPage-Heading_Text {
-    font-size: 30px;
+  .LandingPage-HomeBtnDesign-1 {
+    width: 100px;
+    padding: 5px;
   }
-  .LandingPage-Text {
+  .LandingPage-HomeBtnDesign-2 {
+    width: 100px;
+    padding: 5px;
+  }
+  .LandingPageBody-btn {
+    padding-top: 10px;
+  }
+  .LandingPageBody-Text {
     font-size: 14px;
+    padding-top: 10px;
   }
 }
 @media screen and (max-width: 576px) {
-  .LandingPage-Heading {
-    position: absolute;
-    top: 15%;
-    left: 20%;
-    text-align: center;
-    width: 60%;
-    margin: auto;
+  .LandingPageBody-heading {
+    font-size: 25px;
+    padding-top: 25px;
   }
-  .LandingPage-Heading_Text {
-    font-size: 20px;
-  }
-  .LandingPage-Text {
-    font-size: 10px;
-  }
-  .LandingPagey_btnPharmacy {
+  .LandingPage-HomeBtnDesign-1 {
     width: 100px;
-    padding: 3px;
-
-    height: auto;
+    padding: 5px;
   }
-  .LandingPagey_btnDoctor {
+  .LandingPage-HomeBtnDesign-2 {
     width: 100px;
-    padding: 3px;
-
-    height: auto;
+    padding: 5px;
   }
-  .LandingPagey_btnLink {
-    font-size: 12px;
-    margin-left: 7px;
+  .LandingPageBody-btn {
+    padding-top: 10px;
   }
-  .LandingPagey_btnLink_btn {
-    font-size: 12px;
-    margin-left: 7px;
+  .LandingPageBody-Text {
+    font-size: 14px;
+    padding-top: 10px;
+  }
+  .LandingPage-Logo {
+    width: 150px;
+  }
+  .LandingPage-LogingBtnDesign-1 {
+    width: 80px;
+    font-size: 14px;
+  }
+  .LandingPage-LogingBtnDesign-2 {
+    width: 80px;
+    font-size: 14px;
+  }
+  .LandingPage-HomeBtn {
+    display: flex;
+    justify-content: center;
+    padding-left: 0;
+  }
+  .LandingPageBody-Row {
+    padding-left: 10px;
   }
 }

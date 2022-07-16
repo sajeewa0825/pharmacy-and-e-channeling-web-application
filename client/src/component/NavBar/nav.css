@@ -46,9 +46,12 @@
 .nav-link:hover::before {
   width: 100%;
 }
-.me-auto {
-  align-items: center;
+.nav-link i {
+  margin-right: 2px;
 }
+/* .me-auto {
+  align-items: center;
+} */
 
 .icon-circle {
   position: absolute;

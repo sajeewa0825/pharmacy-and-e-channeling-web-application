@@ -155,6 +155,8 @@ const AdminDoctor = () => {
             </div>
           </div>
         </div>
+        {/* doctor card */}
+
         <div className="row row-cols-md-2 row-cols-lg-3">
           <div className="col-sm-4 p-3">
             <div class="AdminDoc_DocDtail_card">

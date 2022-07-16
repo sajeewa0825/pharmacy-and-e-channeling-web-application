@@ -1,0 +1,308 @@
+@import url("https://fonts.googleapis.com/css?family=Allura|Josefin+Sans");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Rancho&family=Water+Brush&display=swap");
+
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  font-family: poppins;
+}
+
+body {
+  font-family: "Josefin Sans", sans-serif;
+  width: 100%;
+  letter-spacing: 0.075em;
+  text-decoration: none;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+} */
+.Aboutus-container {
+  width: 100%;
+  background-color: #fff;
+  padding: 25px 30px;
+  padding-left: 10px;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.Aboutus-header {
+  padding: 30px;
+  text-align: left;
+  background: white;
+  color: rgb(18, 18, 97);
+  font-size: 37px;
+  margin-bottom: 5px;
+}
+
+.Aboutus-header h6 {
+  font-size: 25px;
+  margin-bottom: 5px;
+  text-align: left;
+}
+.Aboutus-header img {
+  width: 100%;
+  height: 500px;
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+.Aboutus-header p {
+  font-size: 16px;
+  color: #686b75;
+  margin: 0 0 15px;
+}
+.Aboutus-Services h2 {
+  color: rgb(18, 18, 97);
+  text-align: center;
+  padding-top: 20px;
+}
+.Aboutus-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.Aboutus-column {
+  width: 100%;
+  padding: 0 1em 1em 1em;
+  text-align: center;
+}
+.Aboutus-card {
+  width: 100%;
+  height: 100%;
+  padding: 2em 1.5em;
+  background: linear-gradient(#ffffff 50%, rgb(18, 18, 97) 50%);
+  background-size: 100% 200%;
+  background-position: 0 2.5%;
+  border-radius: 5px;
+  box-shadow: 0 0 35px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  transition: 0.5s;
+}
+.Aboutus-card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f194c;
+  margin: 1em 0;
+}
+.Aboutus-card p {
+  color: #575a7b;
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: 0.03em;
+}
+.Aboutus-icon-wrapper {
+  background-color: rgb(18, 18, 97);
+  position: relative;
+  margin: auto;
+  font-size: 30px;
+  height: 2.5em;
+  width: 2.5em;
+  color: #ffffff;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  transition: 0.5s;
+}
+.Aboutus-card:hover {
+  background-position: 0 100%;
+}
+.Aboutus-card:hover .Aboutus-icon-wrapper {
+  background-color: #ffffff;
+}
+.Aboutus-card:hover .Aboutus-icon-wrapper i {
+  color: rgb(18, 18, 97);
+}
+.Aboutus-card:hover h3 {
+  color: #ffffff;
+}
+.Aboutus-card:hover p {
+  color: #f0f0f0;
+}
+
+/* .section {
+  display: block;
+} */
+
+#about-section {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 13%;
+}
+/* .about-right {
+  width: 57%;
+} */
+
+.about-right ul li {
+  display: flex;
+  align-items: center;
+}
+.about-right h1 {
+  color: rgb(18, 18, 97);
+  font-size: 37px;
+  margin-bottom: 5px;
+}
+.about-right p {
+  color: #444;
+  line-height: 26px;
+  font-size: 15px;
+}
+.about-right .address {
+  margin: 25px 0;
+}
+.about-right .address ul li {
+  margin-bottom: 5px;
+}
+.address .address-logo {
+  margin-right: 15px;
+  color: rgb(18, 18, 97);
+}
+.address .saprater {
+  margin: 0 35px;
+}
+
+.Aboutus-footer {
+  padding: 1rem;
+  text-align: center;
+  background: white;
+  margin-top: 20px;
+}
+.Aboutus-wrapper h2 {
+  color: rgb(18, 18, 97);
+}
+.Aboutus-wrapper .icon {
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 50%;
+  margin: 10px;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 22px;
+  display: inline-block;
+  align-items: center;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  color: #333;
+  text-decoration: none;
+}
+.Aboutus-wrapper .tooltip {
+  position: absolute;
+  top: 0;
+  line-height: 1.5;
+  font-size: 14px;
+  background-color: #ffffff;
+  color: #ffffff;
+  padding: 5px 8px;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.Aboutus-wrapper .tooltip::before {
+  position: absolute;
+  content: "";
+  height: 8px;
+  width: 8px;
+  background-color: #ffffff;
+  bottom: -3px;
+  left: 50%;
+  transform: translate(-50%) rotate(45deg);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.Aboutus-wrapper .icon span i {
+  color: #1f194c;
+}
+.Aboutus-wrapper .icon span i:hover {
+  color: #ffffff;
+}
+.Aboutus-wrapper .icon:hover .tooltip {
+  top: -45px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.address ul li p {
+  display: flex;
+  align-items: center;
+}
+.Aboutus-wrapper .icon:hover span,
+.Aboutus-wrapper .icon:hover .tooltip {
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+}
+.Aboutus-wrapper .facebook:hover,
+.Aboutus-wrapper .facebook:hover .tooltip,
+.Aboutus-wrapper .facebook:hover .tooltip::before {
+  background-color: #3b5999;
+  color: #ffffff;
+}
+.Aboutus-wrapper .twitter:hover,
+.Aboutus-wrapper .twitter:hover .tooltip,
+.Aboutus-wrapper .twitter:hover .tooltip::before {
+  background-color: #46c1f6;
+  color: #ffffff;
+}
+.Aboutus-wrapper .instagram:hover,
+.Aboutus-wrapper .instagram:hover .tooltip,
+.Aboutus-wrapper .instagram:hover .tooltip::before {
+  background-color: #e1306c;
+  color: #ffffff;
+}
+.Aboutus-wrapper .youtube:hover,
+.Aboutus-wrapper .youtube:hover .tooltip,
+.Aboutus-wrapper .youtube:hover .tooltip::before {
+  background-color: #de463b;
+  color: #ffffff;
+}
+
+@media screen and (min-width: 992px) {
+  #about-section {
+    padding: 1em 3em;
+  }
+  .Aboutus-column {
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+  }
+  .Aboutus-header img {
+    width: auto;
+    height: auto;
+  }
+}
+@media screen and (max-width: 768px) {
+  #about-section {
+    padding: 0 2em;
+  }
+  .Aboutus-column {
+    flex: 0 50%;
+    max-width: 50%;
+  }
+  .Aboutus-header img {
+    width: auto;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .Aboutus-column {
+    width: 100%;
+    display: block;
+  }
+  .Aboutus-header img {
+    width: auto;
+    height: auto;
+  }
+}
+@media screen and (max-width: 552px) {
+  .Aboutus-header img {
+    width: auto;
+    height: auto;
+  }
+}

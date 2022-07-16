@@ -1,51 +1,73 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Landing.css";
-import BGImage from "./Image/26807.jpg";
+import Logo from "../component/NavBar/image/Group 4.svg";
+import BGImage from "./Image/Group 3.png";
 // import { TextField } from "@mui/material/TextField";
 // import Drservice from "./../DoctorPage/component/dService/drService";
 
 const Landing = () => {
   return (
     <div>
-      <div className="LandingPage">
-        <img src={BGImage} className="LandingPage-bgImg" alt="" />
-        <div className="LandingPage-LogingBtn ">
-          <button type="button" className=" LandingPage-LogingBtnDesign me-2">
-            <Link className="LandingPagey_btnLink" to={"/signin"}>
-              <i class="bi bi-person fs-5 me-2"></i>Singin
+      <div className="container-fluid">
+        <div className="row ">
+          <div className="col landingPage-Row">
+            <Link className="navbar-brand" to="#">
+              <img
+                src={Logo}
+                alt="logo"
+                className="d-inline-block align-text-center LandingPage-Logo"
+              />
             </Link>
-          </button>
-          <button type="button" className=" LandingPage-LogingBtnDesign">
-            <Link className="LandingPagey_btnLink" to={"/signup"}>
-              <i class="bi bi-person-plus fs-5 me-2"></i>SingUp
-            </Link>
-          </button>
+            <div className="col LandingPage-Col-btn">
+              <div className="LandingPage-LogingBtn ">
+                <button
+                  type="button"
+                  className=" LandingPage-LogingBtnDesign-1"
+                >
+                  <Link className="LandingPagey_btnLink-1" to={"/signin"}>
+                    Singin
+                  </Link>
+                </button>
+                <button
+                  type="button"
+                  className=" LandingPage-LogingBtnDesign-2"
+                >
+                  <Link className="LandingPagey_btnLink-2" to={"/signup"}>
+                    SingUp
+                  </Link>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="LandingPage-Heading">
-          <h1 className="LandingPage-Heading_Text">Landing page</h1>
-          <h3 className="LandingPage-Text">
-            Sit exercitation eu aliquip esse pariatur. Voluptate esse nulla ut
-            ad cupidatat elit officia ullamco occaecat eiusmod enim voluptate
-            esse do. Do do ea sint sint cupidatat occaecat est. Laboris magna
-            pariatur aliqua cillum dolore in duis enim voluptate ullamco cillum
-            cupidatat.
-          </h3>
-          <button type="button" className=" LandingPagey_btnPharmacy me-2">
-            <Link className="LandingPagey_btnLink_btn" to={"/phhome"}>
-              Pharmacy
-            </Link>
-          </button>
-          <button type="button" className=" LandingPagey_btnDoctor">
-            <Link className="LandingPagey_btnLink_btn" to={"/drhome"}>
-              Doctor
-            </Link>
-          </button>
-          <button type="button" className=" LandingPagey_btnDoctor">
-            <Link className="LandingPagey_btnLink_btn" to={"/admin"}>
-              Admin
-            </Link>
-          </button>
+        <div className="row LandingPageBody-Row ">
+          <div className="col-sm-5 LandingPageBody-colText">
+            <h1 className="LandingPageBody-heading">
+              Consult Doctors Protect Yourself and Family
+            </h1>
+            <h4 className="LandingPageBody-Text">
+              We can help you find available vaccine appointments near you or
+              notify you when availability opens up.
+            </h4>
+            <div className="col LandingPageBody-btn">
+              <div className="LandingPage-HomeBtn ">
+                <button className=" LandingPage-HomeBtnDesign-1">
+                  <Link className="LandingPage_HomebtnLink-1" to={"/phhome"}>
+                    Pharmacy
+                  </Link>
+                </button>
+                <button className="LandingPage-HomeBtnDesign-2">
+                  <Link className="LandingPage_HomebtnLink-2" to={"/drhome"}>
+                    Doctor
+                  </Link>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className="col-sm-7">
+            <img src={BGImage} alt="Image" />
+          </div>
         </div>
       </div>
     </div>
