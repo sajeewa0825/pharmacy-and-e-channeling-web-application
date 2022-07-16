@@ -21,6 +21,7 @@ import AdminAppoinment from "../AdminDashBoard/AdminAppoinment/AdminAppoinment";
 import AdminProduct from "../AdminDashBoard/AdminProduct/AdminProduct";
 import AdminPayment from "../AdminDashBoard/AdminPayment/AdminPayment";
 import Cart from "../component/Home/Cart/Cart";
+import ContactUs from "./../component/ContactUs/ContactUs";
 
 const Routing = () => {
   return (
@@ -45,6 +46,7 @@ const Routing = () => {
         <Route path="adminPayment" element={<AdminPayment />} />
         <Route path="video" element={<VideoHome />} />
         <Route path="cart" element={<Cart />} />
+        <Route path="contactUs" element={<ContactUs />} />
         <Route path="/" element={<Landing />} />
       </Routes>
       <Footer />
