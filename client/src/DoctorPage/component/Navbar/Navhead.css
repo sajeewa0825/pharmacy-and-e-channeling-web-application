@@ -2,6 +2,10 @@
   margin: 0;
   padding: 0;
 }
+.Navhead-Col {
+  display: flex;
+  justify-content: center;
+}
 .ContNavRow {
   background-color: #2a2f38;
 }
@@ -46,9 +50,6 @@
 .nav-link:hover::before {
   width: 100%;
 }
-.me-auto {
-  align-items: center;
-}
 
 .icon-circle {
   position: absolute;
@@ -72,8 +73,9 @@
   list-style-type: none;
   /* margin-top: 15px;
   margin-bottom: 15px; */
-  padding-top: 7px;
-  padding-bottom: 7px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  align-items: center;
 }
 .iconNav {
   width: 25px;
@@ -88,33 +90,6 @@
 .CartBadge {
   background-color: #5089fd;
 }
-
-@media only screen and (max-width: 576px) {
-  .details li {
-    margin-inline: 2px;
-  }
-  .iconNav {
-    width: 15px;
-    height: 15px;
-    margin: 2px;
-  }
-  .iconNavText {
-    font-size: 8px;
-  }
-}
-@media only screen and (max-width: 768px) {
-  .details li {
-    margin-inline: 20px;
-  }
-  .iconNav {
-    width: 15px;
-    height: 15px;
-    margin: 3px;
-  }
-  .iconNavText {
-    font-size: 10px;
-  }
-}
 @media only screen and (max-width: 992px) {
   .details li {
     margin-inline: 20px;
@@ -125,6 +100,43 @@
     margin: 3px;
   }
   .iconNavText {
+    font-size: 12px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .details li {
+    margin-inline: 20px;
+    padding: 20px;
+  }
+  .iconNav {
+    width: 15px;
+    height: 15px;
+    margin: 3px;
+  }
+  .iconNavText {
+    font-size: 12px;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .details li {
+    margin-inline: 2px;
+  }
+  .iconNav {
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+  }
+  .iconNavText {
     font-size: 10px;
+  }
+  .Navhead-Col {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .details li {
+    margin-top: 3px;
+    margin-bottom: 2px;
+    padding: 5px;
   }
 }
