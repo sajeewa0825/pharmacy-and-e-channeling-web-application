@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 // import phone from "./image/phone-solid.svg";
 // import loca from "./image/location-dot-solid.svg";
 // import clockIcon from "./image/clock-solid.svg";
+import Drservice from "./../../DoctorPage/component/dService/drService";
 
 const navBar = () => {
   return (
@@ -81,6 +82,43 @@ const navBar = () => {
                 </span>
               </button>
             </Link>
+            {/* UserImage Start */}
+            <button
+              type="button"
+              data-bs-toggle="dropdown"
+              data-bs-display="static"
+              aria-expanded="false"
+              className="ms-2"
+            >
+              <img
+                src="https://ps.w.org/user-avatar-reloaded/assets/icon-256x256.png?rev=2540745"
+                alt=""
+                className="UserImage-NavBar"
+              />
+            </button>
+
+            <ul class="dropdown-menu dropdown-menu-lg-end userImage-ul">
+              <span>Name###</span>
+              <li>
+                <a class="dropdown-item" href="#">
+                  <i class="bi bi-person-video2 me-2 text-dark fs-5"></i> My
+                  Profile
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">
+                  <i class="bi bi-pencil-square me-2 text-dark fs-5"></i> My
+                  Edit Profile
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">
+                  <i class="bi bi-box-arrow-left me-2 text-dark fs-5"></i> Log
+                  out
+                </a>
+              </li>
+            </ul>
+            {/* UserImage End */}
           </div>
         </div>
       </nav>
