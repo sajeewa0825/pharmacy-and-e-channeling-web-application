@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState,useEffect } from 'react'
 import Logo from "./image/Group 4.svg";
 import "./nav.css";
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
 // import phone from "./image/phone-solid.svg";
 // import loca from "./image/location-dot-solid.svg";
 // import clockIcon from "./image/clock-solid.svg";
 
-const navBar = () => {
+const NavBar = (props) => {
+  const [item, Setitem] = useState([props.CartItems])
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
@@ -77,7 +79,7 @@ const navBar = () => {
               >
                 <i className="bi bi-cart3 fs-4 text-black "></i>
                 <span className="position-absolute top-0 start-100 translate-middle badge rounded-circle CartBadge ">
-                  0<span className="visually-hidden">unread messages</span>
+                {item[0].length}<span className="visually-hidden">unread messages</span>
                 </span>
               </button>
             </Link>
@@ -87,4 +89,10 @@ const navBar = () => {
     </div>
   );
 };
-export default navBar;
+function mapStateToProps(state) {
+  return {
+    CartItems: state.CartItem.cartItems
+  }
+}
+
+export default connect(mapStateToProps)(NavBar)

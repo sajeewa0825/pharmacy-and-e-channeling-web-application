@@ -315,10 +315,12 @@ export default connect(null, matchDispatchToProps)(AddressForm)
 
 
 const doctor = [
-    { label: "hart" },
-    { label: "iye" },
-    { label: "brain" },
-]
+    { label: "Select" },
+    { label: "cardiologist" },
+    { label: "dermatologist" },
+    { label: "Counsiling psychologist" },
+    { label: "cancer surgeon" },
+  ]
 
 const gender = [
     { label: "Male" },

@@ -2,10 +2,17 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import "./shop.css";
 import SideMenu from "./SideBar/SideMenu";
-import NavBar from "../NavBar/nav";
+import Logo from "../NavBar/image/Group 4.svg"
+import "../NavBar/nav.css";
+import { Link } from "react-router-dom";
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux'
+import { CartData } from '../../actions/CartActions';
 
-const Shop = () => {
+const Shop = (props) => {
   const [Product, SetProduct] = useState([])
+  const [item, Setitem] = useState([props.CartItems])
+  console.log(props)
 
   useEffect(() => {
     const getproduct = () => {
@@ -19,6 +26,14 @@ const Shop = () => {
 
     getproduct();
   }, [])
+
+  const [Item, SetItem] = useState([])
+  const [count, Setcount] = useState(item[0].length)
+
+  const addData = (data)=>{
+    props.CartData(data)
+    Setcount(parseInt(count)+parseInt(1))
+  }
 
 
   let ProductData = Product.map((data) => {
@@ -62,7 +77,7 @@ const Shop = () => {
               <div className="price">
                 <span>$90.00</span> {data.price}
               </div>
-              <a className="add-to-cart" href="#">
+              <a className="add-to-cart" href="#" onClick={() => addData(data)}>
                 add to cart
               </a>
             </div>
@@ -73,7 +88,83 @@ const Shop = () => {
 
   return (
     <div>
-      <NavBar />
+          <div>
+      <nav className="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+        <div className="container-fluid">
+          <a className="navbar-brand" href="/phhome">
+            <img
+              src={Logo}
+              alt=""
+              className="d-inline-block align-text-center"
+            />
+          </a>
+          <button
+            className="navbar-toggler "
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div
+            className="collapse navbar-collapse justify-content-end "
+            id="navbarNavDropdown"
+          >
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <Link
+                  className="nav-link active "
+                  aria-current="page"
+                  to={"/phhome"}
+                >
+                  <i class="fa fa-home"></i>Home
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to={"/phaboutus"}>
+                  <i className="fa fa-handshake-o"></i> About Us
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to={"/drhome"}>
+                  <i class="fa fa-stethoscope"></i>Doctor
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to={"/phshop"}>
+                  <i className="fa fa-shopping-bag"></i>Shop
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to={"/contactUs"}>
+                  <i className="fa fa-mobile"></i>Contact Us
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div
+            className="collapse navbar-collapse justify-content-end "
+            id="navbarNavDropdown"
+          >
+            <Link to={"/cart"}>
+              {" "}
+              <button
+                type="button"
+                className=" btn-none position-relative me-1 p-0"
+              >
+                <i className="bi bi-cart3 fs-4 text-black "></i>
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-circle CartBadge ">
+                {count}<span className="visually-hidden">unread messages</span>
+                </span>
+              </button>
+            </Link>
+          </div>
+        </div>
+      </nav>
+    </div>
       <div className="container-fluid">
         <SideMenu />
       </div>
@@ -89,4 +180,14 @@ const Shop = () => {
   );
 };
 
-export default Shop;
+function matchDispatchToProps(dispatch) {
+  return bindActionCreators({ CartData: CartData }, dispatch)
+}
+
+function mapStateToProps(state) {
+  return {
+    CartItems: state.CartItem.cartItems
+  }
+}
+
+export default connect(mapStateToProps, matchDispatchToProps)(Shop)

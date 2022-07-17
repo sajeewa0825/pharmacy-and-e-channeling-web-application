@@ -1,8 +1,57 @@
-import React from "react";
+import React, { useState } from 'react'
 import "./Cart.css";
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
 
-const Cart = () => {
+const Cart = (props) => {
+  const [item, Setitem] = useState([props.CartItems])
+
+  let total=0;
+
+
+  const CartItem = item[0].map((data) => {
+    console.log(item)
+    total=parseInt(total)+parseInt(data.price)
+    return (
+        <tr>
+          <td data-th="Product">
+            <div class="row">
+              <div class="col-md-3 text-left">
+                <img
+                  src={data.imgLink}
+                  alt=""
+                  class="img-fluid d-none d-md-block rounded mb-2 shadow "
+                />
+              </div>
+              <div class="col-md-9 text-left mt-sm-2">
+                <h4>{data.name}</h4>
+                <p class="font-weight-light">Brand &amp; Name</p>
+              </div>
+            </div>
+          </td>
+          <td data-th="Price">${data.price}</td>
+          <td data-th="Quantity">
+            <input
+              type="number"
+              class="form-control form-control-lg text-center"
+              value="1"
+            />
+          </td>
+          <td class="actions" data-th="">
+            <div class="text-right">
+              <button class="btn btn-white border-secondary bg-white btn-md mb-2">
+                <i class="fas fa-sync text-primary"></i>
+              </button>
+              <button class="btn btn-white border-secondary bg-white btn-md mb-2">
+                <i class="fas fa-trash text-danger"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      
+    )
+  })
+
   return (
     <div>
       <section class="pt-3 pb-3">
@@ -139,7 +188,7 @@ const Cart = () => {
             <div class="col-lg-12 col-md-12 col-12">
               <h3 class="display-5 mb-2 text-center">SHOPPING CART</h3>
               <p class="mb-5 text-center">
-                <i class="text-primary font-weight-bold">3</i> items in your
+                <i class="text-primary font-weight-bold">{item[0].length}</i> items in your
                 cart
               </p>
               <table
@@ -155,116 +204,12 @@ const Cart = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td data-th="Product">
-                      <div class="row">
-                        <div class="col-md-3 text-left">
-                          <img
-                            src="https://via.placeholder.com/250x250/5fa9f8/ffffff"
-                            alt=""
-                            class="img-fluid d-none d-md-block rounded mb-2 shadow "
-                          />
-                        </div>
-                        <div class="col-md-9 text-left mt-sm-2">
-                          <h4>Product Name</h4>
-                          <p class="font-weight-light">Brand &amp; Name</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td data-th="Price">$49.00</td>
-                    <td data-th="Quantity">
-                      <input
-                        type="number"
-                        class="form-control form-control-lg text-center"
-                        value="1"
-                      />
-                    </td>
-                    <td class="actions" data-th="">
-                      <div class="text-right">
-                        <button class="btn btn-white border-secondary bg-white btn-md mb-2">
-                          <i class="fas fa-sync text-primary"></i>
-                        </button>
-                        <button class="btn btn-white border-secondary bg-white btn-md mb-2">
-                          <i class="fas fa-trash text-danger"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td data-th="Product">
-                      <div class="row">
-                        <div class="col-md-3 text-left">
-                          <img
-                            src="https://via.placeholder.com/250x250/5fa9f8/ffffff"
-                            alt=""
-                            class="img-fluid d-none d-md-block rounded mb-2 shadow "
-                          />
-                        </div>
-                        <div class="col-md-9 text-left mt-sm-2">
-                          <h4>Product Name</h4>
-                          <p class="font-weight-light">Brand &amp; Name</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td data-th="Price">$49.00</td>
-                    <td data-th="Quantity">
-                      <input
-                        type="number"
-                        class="form-control form-control-lg text-center"
-                        value="1"
-                      />
-                    </td>
-                    <td class="actions" data-th="">
-                      <div class="text-right">
-                        <button class="btn btn-white border-secondary bg-white btn-md mb-2">
-                          <i class="fas fa-sync text-primary"></i>
-                        </button>
-                        <button class="btn btn-white border-secondary bg-white btn-md mb-2">
-                          <i class="fas fa-trash text-danger"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td data-th="Product">
-                      <div class="row">
-                        <div class="col-md-3 text-left">
-                          <img
-                            src="https://via.placeholder.com/250x250/5fa9f8/ffffff"
-                            alt=""
-                            class="img-fluid d-none d-md-block rounded mb-2 shadow "
-                          />
-                        </div>
-                        <div class="col-md-9 text-left mt-sm-2">
-                          <h4>Product Name</h4>
-                          <p class="font-weight-light">Brand &amp; Name</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td data-th="Price">$49.00</td>
-                    <td data-th="Quantity">
-                      <input
-                        type="number"
-                        class="form-control form-control-lg text-center"
-                        value="1"
-                      />
-                    </td>
-                    <td class="actions" data-th="">
-                      <div class="text-right">
-                        <button class="btn btn-white border-secondary bg-white btn-md mb-2">
-                          <i class="fas fa-sync text-primary"></i>
-                        </button>
-                        <button class="btn btn-white border-secondary bg-white btn-md mb-2">
-                          <i class="fas fa-trash text-danger"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
+                  {CartItem}
                 </tbody>
               </table>
               <div class="float-right text-right">
                 <h4>Subtotal:</h4>
-                <h1>$99.00</h1>
+                <h1>${total}</h1>
               </div>
             </div>
           </div>
@@ -349,4 +294,10 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+function mapStateToProps(state) {
+  return {
+    CartItems: state.CartItem.cartItems
+  }
+}
+
+export default connect(mapStateToProps)(Cart)
