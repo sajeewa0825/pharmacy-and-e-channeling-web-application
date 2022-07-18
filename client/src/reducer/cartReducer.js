@@ -1,4 +1,4 @@
-import {ADD_CART_DATA} from "../actions/type"
+import {ADD_CART_DATA,REMOVE_FROM_CART} from "../actions/type"
 
 const CART_INITIAL_STATE = {
     cartItems: [],
@@ -24,6 +24,12 @@ export default function(state=CART_INITIAL_STATE,actions){
                 cartItems: [...state.cartItems, item],
               };
             }
+        case REMOVE_FROM_CART:
+            return {
+                ...state,
+                cartItems: state.cartItems.filter((x) => x._id !== actions.payload),
+            };    
+
     }
     return state
 }

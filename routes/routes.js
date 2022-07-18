@@ -3,6 +3,7 @@ const appointment = require("../models/appointment.js");
 const signup = require("../models/register");
 const doctor = require("../models/doctor")
 const product = require("../models/product")
+const buy = require("../models/buyitem")
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const SendMail = require("../utils/sendEmail")
@@ -534,6 +535,47 @@ router.route("/videochat").post((req, res) => {
 })
 
 
+// add buyitem
+// http://Localhost:8080/buyitem
+router.route("/buyitem").post((req, res) => {
+
+    const name = req.body.name;
+    const user = req.body.user;
+    const address = req.body.address;
+    const phone = req.body.phone;
+    const item = req.body.item;
+    const bill = req.body.bill;
+    const status= req.body.status;
+
+    const newbuyitem = new buy({
+        name,
+        user,
+        address,
+        phone,
+        item,
+        bill,
+        status
+    })
+
+    newbuyitem.save().then(() => {
+        res.json("Product buy succesfull");
+    }).catch((err) => {
+        console.log(err);
+        res.json(err)
+    })
+})
+
+
+// get buyitem
+// http://Localhost:8080/addproduct
+router.route("/buyitem").get((req, res) => {
+
+    buy.find().then((product) => {
+        res.json(product);
+    }).catch((err) => {
+        console.log(err)
+    })
+})
 
 
 
