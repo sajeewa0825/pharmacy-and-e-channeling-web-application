@@ -10,7 +10,7 @@ const SendMail = require("../utils/sendEmail")
 
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
-const ADMIN1 =process.env.ADMIN1
+const ADMIN1 = process.env.ADMIN1
 
 // add appointment details
 // http://Localhost:8080/addappointment
@@ -102,7 +102,7 @@ router.route("/appointmentdelete/:id").delete(async (req, res) => {
 // http://Localhost:8080/update/dfdsrr353fd
 router.route("/appointmentupdate/:id").put(async (req, res) => {
     let userId = req.params.id;
-    const { 
+    const {
         Dr_name,
         Dr_type,
         Time,
@@ -228,7 +228,6 @@ router.route("/signin").post(async (req, res) => {
     if (isPasswordValid) {
         const token = jwt.sign(
             {
-                name: user.name,
                 Email: user.Email,
             },
             JWT_SECRET_KEY, {
@@ -251,7 +250,7 @@ router.route("/signin").post(async (req, res) => {
         }
 
         if (ADMIN1 === user.Email) {
-            return res.json({ status: 200, admin: admintoken  })
+            return res.json({ status: 200, admin: admintoken })
         } else {
             return res.json({ status: 200, user: userdata })
         }
@@ -327,7 +326,7 @@ router.route("/doctordelete/:id").delete(async (req, res) => {
 // http://Localhost:8080/update/dfdsrr353fd
 router.route("/doctorupdate/:id").put(async (req, res) => {
     let userId = req.params.id;
-    const { 
+    const {
         name,
         specialist,
         timePeriod,
@@ -486,12 +485,12 @@ router.route("/deleteproduct/:id").delete(async (req, res) => {
 // http://Localhost:8080/update/dfdsrr353fd
 router.route("/productupdate/:id").put(async (req, res) => {
     let userId = req.params.id;
-    const { 
+    const {
         name,
         qty,
         imgLink,
         price,
-        info 
+        info
     } = req.body;
 
     const updateData = {
@@ -499,7 +498,7 @@ router.route("/productupdate/:id").put(async (req, res) => {
         qty,
         imgLink,
         price,
-        info 
+        info
     }
 
     await product.findByIdAndUpdate(userId, updateData).then(() => {
@@ -545,24 +544,43 @@ router.route("/buyitem").post((req, res) => {
     const phone = req.body.phone;
     const item = req.body.item;
     const bill = req.body.bill;
-    const status= req.body.status;
+    const d_t = new Date()
+    const status = req.body.status;
 
-    const newbuyitem = new buy({
-        name,
-        user,
-        address,
-        phone,
-        item,
-        bill,
-        status
-    })
+    const decode = jwt.verify(user, JWT_SECRET_KEY)
 
-    newbuyitem.save().then(() => {
-        res.json("Product buy succesfull");
-    }).catch((err) => {
-        console.log(err);
-        res.json(err)
-    })
+    let year = d_t.getFullYear();
+    let month = ("0" + (d_t.getMonth() + 1)).slice(-2);
+    let day = ("0" + d_t.getDate()).slice(-2);
+
+    const date =year + "-" + month + "-" + day
+
+    if (decode.Email) {
+
+        const newbuyitem = new buy({
+            name,
+            user: decode.Email,
+            address,
+            phone,
+            item,
+            bill,
+            date,
+            status
+        })
+
+        newbuyitem.save().then(() => {
+            res.json({ status: 200, message: "Product buy succesfull" });
+        }).catch((err) => {
+            console.log(err);
+            res.json(err)
+        })
+
+    } else {
+        return res.send({ status: 500, message: 'Not valid user please Relogin' })
+
+    }
+
+
 })
 
 
@@ -570,11 +588,21 @@ router.route("/buyitem").post((req, res) => {
 // http://Localhost:8080/addproduct
 router.route("/buyitem").get((req, res) => {
 
-    buy.find().then((product) => {
-        res.json(product);
-    }).catch((err) => {
-        console.log(err)
-    })
+    const token = req.body.token;
+    const decode = jwt.verify(token, JWT_SECRET_KEY)
+
+    if (decode.Email) {
+        buy.find({
+            user:decode.Email,
+            status:"pending"
+        }).then((product) => {
+            res.json(product);
+        }).catch((err) => {
+            console.log(err)
+            res.json(err);
+        })
+    }
+
 })
 
 

@@ -66,18 +66,31 @@ const Cart = (props) => {
     phone,
     item,
     bill,
-    user: "localStorage.token",
+    user: localStorage.token,
     status: "pending"
   }
 
   const submitHandler = (e) => {
     e.preventDefault();
     axios.post("http://localhost:8080/buyitem", senddata).then((res) => {
-      document.getElementById('closebutton').click();
-      window.location.reload(false);
+      console.log(res.data.status)
+
+      if (res.data.status === 500){
+        alert("Something went to Wrong Plase Relogin Account")
+      }else{
+        document.getElementById('closebutton').click();
+        window.location.reload(false);
+      }
+
     }).catch((err) => {
       alert(err)
     })
+  }
+
+  const orderconfrom = (confrom) =>{
+    if (confrom) {
+      console.log("recevied")
+    }
   }
   const CartItem = item.map((data) => {
 
@@ -109,9 +122,6 @@ const Cart = (props) => {
         </td>
         <td class="actions" data-th="">
           <div class="text-right">
-            <button class="btn btn-white border-secondary bg-white btn-md mb-2">
-              <i class="fas fa-sync text-primary"></i>
-            </button>
             <button class="btn btn-white border-secondary bg-white btn-md mb-2" onClick={() => removeitem(data._id)}>
               <i class="fas fa-trash text-danger"></i>
             </button>
@@ -168,27 +178,6 @@ const Cart = (props) => {
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>
-                              <div class="form-check">
-                                <input
-                                  class="form-check-input"
-                                  type="checkbox"
-                                  value=""
-                                  id="flexCheckDefault"
-                                />
-                                <label
-                                  class="form-check-label"
-                                  for="flexCheckDefault"
-                                >
-                                  (Please mark this when you got the order)
-                                </label>
-                              </div>
-                            </td>
-                          </tr>
 
                           <tr>
                             <th scope="row">1</th>
@@ -201,6 +190,7 @@ const Cart = (props) => {
                                   type="checkbox"
                                   role="switch"
                                   id="flexSwitchCheckDefault"
+                                  onChange={(e) =>orderconfrom(e.target.checked)}
                                 />
                                 <label
                                   class="form-check-label"

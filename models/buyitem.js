@@ -14,7 +14,7 @@ const buySchema = new Schema({
 
     address: {
         type: String,
-        required: false
+        required: true
     },
 
     phone: {
@@ -24,17 +24,22 @@ const buySchema = new Schema({
 
     item: {
         type: Array,
-        required: false
+        required: true
     },
 
     bill: {
         type: String,
-        required: false
+        required: true
+    },
+
+    date: {
+        type: String,
+        required: true
     },
 
     status: {
         type: String,
-        required: false
+        required: true
     }
 
 })

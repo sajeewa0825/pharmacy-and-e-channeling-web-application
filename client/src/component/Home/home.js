@@ -200,9 +200,6 @@ const Home = () => {
           <FeatureProduct />
         </div>
       </div>
-      <div className="container pb-4">
-        <ProductBlog />
-      </div>
       <div className="container-fluid ">
         <div className="container">
           <WhyShoosUs />
