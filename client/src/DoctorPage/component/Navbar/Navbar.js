@@ -145,11 +145,10 @@ export default function NavBar() {
     <div className="Zindex setfont">
       <Popover className="relative bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
+          <div className="flex justify-between items-center border-b-2 border-gray-100 md:justify-start md:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1">
-              <Link className="nav-link" to={"dhome"}>
-                <span className="sr-only">Medisute</span>
-                <img className="h-8 w-auto sm:h-10" src={Logo} alt="/drhome" />
+              <Link className="" to={"/drhome"}>
+                <img className="LogoD-home" src={Logo} alt="/drhome" />
               </Link>
             </div>
             <div className="-mr-2 -my-2 md:hidden">
