@@ -19,6 +19,7 @@ const Shop = (props) => {
       axios.get("http://Localhost:8080/addproduct").then((res) => {
         console.log(res.data)
         SetProduct(res.data)
+        SetItems(res.data)
       }).catch((err) => {
         alert(err)
       })
@@ -27,12 +28,25 @@ const Shop = (props) => {
     getproduct();
   }, [])
 
-  const [Item, SetItem] = useState([])
+  const [Items, SetItems] = useState([])
   const [count, Setcount] = useState(item[0].length)
 
   const addData = (data)=>{
     props.CartData(data)
     Setcount(parseInt(count)+parseInt(1))
+  }
+
+  const search = (pname) =>{
+    const found = Product.find(obj => {
+      return obj.name === pname ;
+    });
+
+    if(pname === null){
+      SetProduct(Items)
+    }else{
+      SetProduct(found)
+    }
+
   }
 
 

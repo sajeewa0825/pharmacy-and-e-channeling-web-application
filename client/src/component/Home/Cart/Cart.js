@@ -7,6 +7,7 @@ import { removeFromCart } from '../../../actions/CartActions';
 import { bindActionCreators } from 'redux';
 
 const Cart = (props) => {
+
   console.log(props.CartItems)
   const [item, Setitem] = useState(props.CartItems)
   const [name, Setname] = useState("")
@@ -75,9 +76,9 @@ const Cart = (props) => {
     axios.post("http://localhost:8080/buyitem", senddata).then((res) => {
       console.log(res.data.status)
 
-      if (res.data.status === 500){
+      if (res.data.status === 500) {
         alert("Something went to Wrong Plase Relogin Account")
-      }else{
+      } else {
         document.getElementById('closebutton').click();
         window.location.reload(false);
       }
@@ -87,11 +88,80 @@ const Cart = (props) => {
     })
   }
 
-  const orderconfrom = (confrom) =>{
-    if (confrom) {
-      console.log("recevied")
-    }
+
+  const [Pendingitem, SetPendingitem] = useState([])
+
+  const orderconfrom = (e) => {
+
+    e.preventDefault();
+    axios.get("http://Localhost:8080/buyitem", {
+      params: {
+        token: localStorage.getItem("token")
+      }
+    }).then((res) => {
+      SetPendingitem(res.data)
+    }).catch((err) => {
+      alert(err)
+    })
+
   }
+
+  const [status, Setstatus] = useState(false)
+
+  const updatedata= {
+    status:"received"
+  }
+  const orderUpdate = (e, Id) => {
+    e.preventDefault();
+    console.log(status)
+
+    if (status) {
+      axios.put(`http://localhost:8080/buyitem/${Id}`, updatedata).then((res) => {
+        alert("Updated")
+        Setstatus(false)
+      }).catch((err) => {
+        alert(err)
+      })
+    }
+
+  }
+
+  const ordermap = Pendingitem.map((data) => {
+    console.log(Pendingitem)
+    return (
+      <tbody key={data._id}>
+        <tr>
+          <th scope="row">{data._id}</th>
+          {data.item.map((item) => <ul><td key={item._id}>{item.name}-{item.qty}</td></ul>)}
+          <td>{data.date}</td>
+          <td>
+            <div class="form-check form-switch">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                role="switch"
+                id="flexSwitchCheckDefault"
+                onChange={(e) => Setstatus(e.target.checked)}
+              />
+              <label
+                class="form-check-label"
+                for="flexSwitchCheckDefault"
+              >
+                (Not/Get)
+              </label>
+            </div>
+          </td>
+          <td>
+            <button type="button" class="btn btn-primary" onClick={(e) => orderUpdate(e, data._id)}>
+              confrom
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    )
+  })
+
+
   const CartItem = item.map((data) => {
 
     return (
@@ -143,6 +213,7 @@ const Cart = (props) => {
                 class=" summeryBtn"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
+                onClick={(e) => orderconfrom(e)}
               >
                 <i class="bi bi-card-list"></i>Summery
               </button>
@@ -171,43 +242,15 @@ const Cart = (props) => {
                       <table class="table">
                         <thead>
                           <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
+                            <th scope="col">Order Id</th>
+                            <th scope="col">Item</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Order Status</th>
                             <th scope="col">Order Status</th>
                           </tr>
                         </thead>
-                        <tbody>
-
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>
-                              <div class="form-check form-switch">
-                                <input
-                                  class="form-check-input"
-                                  type="checkbox"
-                                  role="switch"
-                                  id="flexSwitchCheckDefault"
-                                  onChange={(e) =>orderconfrom(e.target.checked)}
-                                />
-                                <label
-                                  class="form-check-label"
-                                  for="flexSwitchCheckDefault"
-                                >
-                                  (Not/Get)
-                                </label>
-                              </div>
-                            </td>
-                          </tr>
-                        </tbody>
+                        {ordermap}
                       </table>
-                    </div>
-                    <div class="modal-footer border-0">
-                      <button type="button" class="btn btn-primary">
-                        Save changes
-                      </button>
                     </div>
                   </div>
                 </div>
@@ -263,54 +306,54 @@ const Cart = (props) => {
               >
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                   <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">
-                          ADD YOUR DELIVERY DTAILS
-                        </h5>
-                        <button
-                          type="button"
-                          class="btn-close"
-                          data-bs-dismiss="modal"
-                          aria-label="Close"
-                          id='closebutton'
-                        ></button>
-                      </div>
-                      <div class="modal-body" >
-                        <div class="row g-3">
-                          <div class="col-md-6">
-                            <input
-                              type="text"
-                              class="form-control"
-                              placeholder="Name"
-                              aria-label="First name"
-                              onChange={(e) => { Setname(e.target.value) }}
-                            />
-                          </div>
-                          <div class="col-md-6">
-                            <input
-                              type="text"
-                              class="form-control"
-                              placeholder="Mobile number"
-                              aria-label="Mobile number"
-                              onChange={(e) => { Setphone(e.target.value) }}
-                            />
-                          </div>
-                          <div class="col-md-12">
-                            <input
-                              type="text"
-                              class="form-control"
-                              placeholder="Address"
-                              aria-label="Address"
-                              onChange={(e) => { Setaddres(e.target.value) }}
-                            />
-                          </div>
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">
+                        ADD YOUR DELIVERY DTAILS
+                      </h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                        id='closebutton'
+                      ></button>
+                    </div>
+                    <div class="modal-body" >
+                      <div class="row g-3">
+                        <div class="col-md-6">
+                          <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Name"
+                            aria-label="First name"
+                            onChange={(e) => { Setname(e.target.value) }}
+                          />
+                        </div>
+                        <div class="col-md-6">
+                          <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Mobile number"
+                            aria-label="Mobile number"
+                            onChange={(e) => { Setphone(e.target.value) }}
+                          />
+                        </div>
+                        <div class="col-md-12">
+                          <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Address"
+                            aria-label="Address"
+                            onChange={(e) => { Setaddres(e.target.value) }}
+                          />
                         </div>
                       </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" onClick={(e) => submitHandler(e)}>
-                          Confirm Order
-                        </button>
-                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" onClick={(e) => submitHandler(e)}>
+                        Confirm Order
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>

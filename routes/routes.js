@@ -587,8 +587,7 @@ router.route("/buyitem").post((req, res) => {
 // get buyitem
 // http://Localhost:8080/addproduct
 router.route("/buyitem").get((req, res) => {
-
-    const token = req.body.token;
+    let token = req.query.token
     const decode = jwt.verify(token, JWT_SECRET_KEY)
 
     if (decode.Email) {
@@ -603,6 +602,26 @@ router.route("/buyitem").get((req, res) => {
         })
     }
 
+})
+
+// update buyitem status
+// http://Localhost:8080/buyitem/dfdsrr353fd
+router.route("/buyitem/:id").put(async (req, res) => {
+    let userId = req.params.id;
+    const {
+        status
+    } = req.body;
+
+    const updateData = {
+        status
+    }
+
+    await buy.findByIdAndUpdate(userId, updateData).then(() => {
+        res.status(200).send({ status: "product updated " })
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).send({ status: "product  update error ", error: err.message });
+    })
 })
 
 
