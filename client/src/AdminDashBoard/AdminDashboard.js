@@ -12,7 +12,7 @@ const AdminDashboard = () => {
           <div className="col-md-2 adminLeft_col" id="style-3">
             <div className="sidemenu_top">
               <div className="sidemenu_top_User_img">
-                <span>Logo</span>
+                <span>MEDISUITE</span>
                 <hr />
                 <img src={User} alt="img" />
                 <span>Admin</span>
@@ -21,7 +21,7 @@ const AdminDashboard = () => {
             <div className="sidemenu_center">
               <ul className="sidemenu_center_ul">
                 <li>
-                  <Link to={"#"} className="sidemenu_center_ul_Link">
+                  <Link to={"/admin"} className="sidemenu_center_ul_Link">
                     <i class="bi bi-columns-gap"></i>
                     <span>Dashboard</span>
                   </Link>
@@ -79,30 +79,7 @@ const AdminDashboard = () => {
             </div>
           </div>
           <div className="col-md-10 adminRight_col " id="style-3">
-            <div className="row adminRight_row">
-              <div className="adminRight_top">
-                <ul className="adminRight_top_ul">
-                  <li>
-                    <i class="bi bi-journal-text"></i>
-                    <span>Make an appointment</span>
-                  </li>
-                  <li>
-                    <i class="bi bi-pencil"></i>
-                    <span>Write a prescription</span>
-                  </li>
-                  <li>
-                    <i class="bi bi-journals"></i>
-                    <span>Generate Report</span>
-                  </li>
-                  <li>
-                    <i class="bi bi-bell icon_Bell me-3"></i>
-                  </li>
-                  <li>
-                    <img src={User} alt="" width={"60px"} height={"60px"} />
-                  </li>
-                </ul>
-              </div>
-            </div>
+            <div className="row adminRight_row"></div>
             <div className="row">
               <AdminHome />
             </div>
