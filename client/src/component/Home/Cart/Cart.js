@@ -176,30 +176,15 @@ const Cart = (props) => {
                               <div class="form-check">
                                 <input
                                   class="form-check-input"
-                                  type="radio"
-                                  name="flexRadioDefault"
-                                  id="flexRadioDefault1"
+                                  type="checkbox"
+                                  value=""
+                                  id="flexCheckDefault"
                                 />
                                 <label
                                   class="form-check-label"
-                                  for="flexRadioDefault1"
+                                  for="flexCheckDefault"
                                 >
-                                  Got it
-                                </label>
-                              </div>
-                              <div class="form-check">
-                                <input
-                                  class="form-check-input"
-                                  type="radio"
-                                  name="flexRadioDefault"
-                                  id="flexRadioDefault2"
-                                  checked
-                                />
-                                <label
-                                  class="form-check-label"
-                                  for="flexRadioDefault2"
-                                >
-                                  Not
+                                  (Please mark this when you got the order)
                                 </label>
                               </div>
                             </td>
@@ -210,33 +195,18 @@ const Cart = (props) => {
                             <td>Mark</td>
                             <td>Otto</td>
                             <td>
-                              <div class="form-check">
+                              <div class="form-check form-switch">
                                 <input
                                   class="form-check-input"
-                                  type="radio"
-                                  name="flexRadioDefault"
-                                  id="flexRadioDefault1"
+                                  type="checkbox"
+                                  role="switch"
+                                  id="flexSwitchCheckDefault"
                                 />
                                 <label
                                   class="form-check-label"
-                                  for="flexRadioDefault1"
+                                  for="flexSwitchCheckDefault"
                                 >
-                                  Got it
-                                </label>
-                              </div>
-                              <div class="form-check">
-                                <input
-                                  class="form-check-input"
-                                  type="radio"
-                                  name="flexRadioDefault"
-                                  id="flexRadioDefault2"
-                                  checked
-                                />
-                                <label
-                                  class="form-check-label"
-                                  for="flexRadioDefault2"
-                                >
-                                  Not
+                                  (Not/Get)
                                 </label>
                               </div>
                             </td>

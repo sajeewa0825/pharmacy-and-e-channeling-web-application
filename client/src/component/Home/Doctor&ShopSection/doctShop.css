@@ -2,8 +2,9 @@
   border: 2px solid #5089fd;
   border-radius: 10px;
   padding: 10px;
+  margin-top: 25px;
 }
-.btn.DocPhamBtn1 {
+.DocPhamBtn1 {
   background-color: #5089fd;
   padding-left: 35px;
   padding-right: 35px;
@@ -12,17 +13,26 @@
   color: white;
   font-weight: bold;
   font-size: 15px;
+  border-radius: 5px;
+  margin-top: 25px;
 }
 .DocPharImg {
+  width: 380px;
+  height: 205px;
+}
+.DocPharImgLogo {
   width: 400px;
   height: 205px;
 }
 .DoctorPharmacySection {
   display: flex;
+  align-items: center;
 }
 .DocPharText {
-  font-size: 15px;
+  font-size: 18px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 .DoctShopSecDiv {
   border-right: 1px solid #5089fd;
