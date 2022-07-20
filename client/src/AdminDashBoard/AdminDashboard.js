@@ -69,12 +69,12 @@ const AdminDashboard = () => {
                     <span>Payments</span>
                   </Link>
                 </li>
-                {/* <li>
+                <li>
                   <Link to={"./#"} className="sidemenu_center_ul_Link">
-                    <i class="bi bi-truck"></i>
-                    <span>Delivery</span>
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Logout</span>
                   </Link>
-                </li> */}
+                </li>
               </ul>
             </div>
           </div>
