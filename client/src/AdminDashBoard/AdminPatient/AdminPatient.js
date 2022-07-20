@@ -125,6 +125,12 @@ const AdminPatient = () => {
                     <span>Products</span>
                   </Link>
                 </li>
+                <li>
+                  <Link to={"./#"} className="sidemenu_center_ul_Link">
+                    <i class="bi bi-box-arrow-left"></i>
+                    <span>Logout</span>
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
