@@ -60,15 +60,6 @@ const AdminDashboard = () => {
                     <span>Products</span>
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    to={"/adminPayment"}
-                    className="sidemenu_center_ul_Link"
-                  >
-                    <i class="bi bi-credit-card-2-back"></i>
-                    <span>Payments</span>
-                  </Link>
-                </li>
                 {/* <li>
                   <Link to={"./#"} className="sidemenu_center_ul_Link">
                     <i class="bi bi-truck"></i>
