@@ -195,7 +195,7 @@ const Cart = (props) => {
           </td>
           <td>
             <button type="button" class="btn btn-primary" onClick={(e) => orderUpdate(e, data._id)}>
-              confrom
+            confrom
             </button>
           </td>
         </tr>
