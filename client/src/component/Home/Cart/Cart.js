@@ -79,6 +79,26 @@ const Cart = (props) => {
       if (res.data.status === 500) {
         alert("Something went to Wrong Plase Relogin Account")
       } else {
+
+        for (let index = 0; index < item.length; index++) {
+          axios.get(`http://localhost:8080/productqtyfind/${item[index]._id}`).then((res) => {
+            console.log(res.data[0].qty)
+              const data={
+                qty:parseInt(res.data[0].qty)- parseInt(item[index].qty)
+              }
+              console.log(data)
+            axios.put(`http://localhost:8080/productqtyupdated/${item[index]._id}`,data).then((res) => {
+              console.log(res)
+            }).catch((err) => {
+              alert(err)
+            })
+
+          }).catch((err) => {
+            alert(err)
+          })
+          
+        }
+
         document.getElementById('closebutton').click();
         window.location.reload(false);
       }

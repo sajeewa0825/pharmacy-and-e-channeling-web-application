@@ -568,8 +568,36 @@ router.route("/buyitem").post((req, res) => {
             status
         })
 
-        newbuyitem.save().then(() => {
+
+
+        newbuyitem.save().then((response) => {
             res.json({ status: 200, message: "Product buy succesfull" });
+            console.log(response)
+            const subject = "Your order has shipped"
+            const text = `
+            Medisuite,
+            Woo hoo! Your order is on its way. Your order details can be found below.
+            
+            TRACK YOUR ORDER 
+            
+            ORDER SUMMARY:
+            
+            Order ID: ${response._id}
+            Order Date: ${date}
+            Order Total: ${bill}
+            Phone number: ${phone}
+            SHIPPING ADDRESS: ${address}
+
+            ..Item List..
+            ${item.map( (data) =>{
+                return ("Name- \t" +data.name+ "\t  price Rs.- " +data.price + "\tquntity- \t" +data.qty+"\n\t   ")
+            })}
+            
+            
+            Thank you for placing your order!`
+        
+        
+            SendMail(decode.Email, subject, text)
         }).catch((err) => {
             console.log(err);
             res.json(err)
@@ -617,6 +645,39 @@ router.route("/buyitem/:id").put(async (req, res) => {
     }
 
     await buy.findByIdAndUpdate(userId, updateData).then(() => {
+        res.status(200).send({ status: "product updated " })
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).send({ status: "product  update error ", error: err.message });
+    })
+})
+
+// update item qty
+// http://Localhost:8080/update/dfdsrr353fd
+router.route("/productqtyfind/:id").get(async (req, res) => {
+    const pid = req.params.id;
+    product.find({
+        _id:pid
+    }).then((productdata) => {
+        res.json(productdata);
+    }).catch((err) => {
+        console.log(err)
+        res.json(err);
+    })
+
+
+})
+
+
+router.route("/productqtyupdated/:id").put(async (req, res) => {
+    const pid = req.params.id;
+    const {
+        qty
+    } = req.body;
+    const updateData ={
+        qty:qty
+    }
+    product.findByIdAndUpdate(pid, updateData).then(() => {
         res.status(200).send({ status: "product updated " })
     }).catch((err) => {
         console.log(err);
