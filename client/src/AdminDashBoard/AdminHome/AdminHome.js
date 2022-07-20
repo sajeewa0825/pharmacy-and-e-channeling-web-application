@@ -40,6 +40,13 @@ const AdminHome = () => {
       alert(err)
     })
 
+    axios.get("http://Localhost:8080/addproduct").then((res) => {
+      console.log(res.data)
+      SetProduct(res.data)
+    }).catch((err) => {
+      alert(err)
+    })
+
     getdata();
   }, [])
 
@@ -63,6 +70,19 @@ const AdminHome = () => {
       <li class="list-group-item p-3">{data.name}</li>
     )
   })
+
+  const product = Product.map((data) => {
+    return (
+      <tr key={data._id}>
+      <td>
+        {data._id}
+      </td>
+      <td>{data.name}</td>
+      <td>{data.price}</td>
+      <td>{data.qty}</td>
+    </tr>
+    )})
+
 
   return (
     <div>
@@ -170,64 +190,10 @@ const AdminHome = () => {
                       <th scope="col">Product Name</th>
                       <th scope="col">Price</th>
                       <th scope="col">QTY</th>
-                      <th scope="col">Product Image</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>
-                        <i class="bi bi-person"></i>Mark
-                      </td>
-                      <td>Otto</td>
-                      <td>2020-7-9</td>
-                      <td>10.00 a.m</td>
-                      <td>0712345678</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <i class="bi bi-person"></i>Mark
-                      </td>
-                      <td>Otto</td>
-                      <td>2020-7-9</td>
-                      <td>10.00 a.m</td>
-                      <td>0712345678</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <i class="bi bi-person"></i>Mark
-                      </td>
-                      <td>Otto</td>
-                      <td>2020-7-9</td>
-                      <td>10.00 a.m</td>
-                      <td>0712345678</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <i class="bi bi-person"></i>Mark
-                      </td>
-                      <td>Otto</td>
-                      <td>2020-7-9</td>
-                      <td>10.00 a.m</td>
-                      <td>0712345678</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <i class="bi bi-person"></i>Mark
-                      </td>
-                      <td>Otto</td>
-                      <td>2020-7-9</td>
-                      <td>10.00 a.m</td>
-                      <td>0712345678</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <i class="bi bi-person"></i>Mark
-                      </td>
-                      <td>Otto</td>
-                      <td>2020-7-9</td>
-                      <td>10.00 a.m</td>
-                      <td>0712345678</td>
-                    </tr>
+                  {product}
                   </tbody>
                 </table>
               </div>
