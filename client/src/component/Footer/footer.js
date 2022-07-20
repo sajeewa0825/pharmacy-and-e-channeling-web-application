@@ -6,28 +6,6 @@ import { Link } from "react-router-dom";
 const footer = () => {
   return (
     <div>
-      <div className="container-fluid Footer-Head">
-        <div className="row">
-          <div className="col">
-            <h1 className="Footer-Head-h1">JOIN WITH MEDISUITE</h1>
-          </div>
-
-          <div className="col LandingPage-Col-btn">
-            <div className="LandingPage-LogingBtn ">
-              <button type="button" className=" Footer-Btn">
-                <Link className="LandingPagey_btnLink-1" to={"/signin"}>
-                  Singin
-                </Link>
-              </button>
-              <button type="button" className="Footer-Btn">
-                <Link className="LandingPagey_btnLink-1" to={"/signup"}>
-                  SingUp
-                </Link>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
       <footer class="footer-body">
         <div class="container">
           <div class="row py-3">
