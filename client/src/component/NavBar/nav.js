@@ -14,6 +14,27 @@ const NavBar = (props) => {
     localStorage.clear();
     window.location.href = '/signin'
   }
+
+  function LoginCheck() {
+    if (!localStorage.token) {
+      return(
+      <li>
+      <Link class="dropdown-item" to={"/signin"}>
+        <i class="bi bi-box-arrow-left me-2 text-dark fs-5" onClick={(e) => logout(e)}></i> Login
+      </Link>
+    </li>
+      )
+    }else{
+      return(
+        <li>
+        <a class="dropdown-item" href="#">
+          <i class="bi bi-box-arrow-left me-2 text-dark fs-5" onClick={(e) => logout(e)}></i> Log
+          out
+        </a>
+      </li>
+      )
+    }}
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
@@ -106,12 +127,7 @@ const NavBar = (props) => {
             <ul class="dropdown-menu dropdown-menu-lg-end userImage-ul">
               <span>{localStorage.getItem("name")}</span>
  
-              <li>
-                <a class="dropdown-item" href="#">
-                  <i class="bi bi-box-arrow-left me-2 text-dark fs-5" onClick={(e) => logout(e)}></i> Log
-                  out
-                </a>
-              </li>
+            {LoginCheck()}
             </ul>
             {/* UserImage End */}
           </div>
