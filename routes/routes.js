@@ -572,7 +572,6 @@ router.route("/buyitem").post((req, res) => {
 
         newbuyitem.save().then((response) => {
             res.json({ status: 200, message: "Product buy succesfull" });
-            console.log(response)
             const subject = "Your order has shipped"
             const text = `
             Medisuite,
@@ -679,6 +678,7 @@ router.route("/productqtyupdated/:id").put(async (req, res) => {
     const updateData ={
         qty:qty
     }
+
     product.findByIdAndUpdate(pid, updateData).then(() => {
         res.status(200).send({ status: "product updated " })
     }).catch((err) => {

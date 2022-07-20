@@ -222,6 +222,7 @@ export default function NavBar() {
                               </a>
                             ))}
                           </div>
+
                           <div className="px-5 py-5 bg-gray-50 space-y-6 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
                             {callsToAction.map((item) => (
                               <div key={item.name} className="flow-root">

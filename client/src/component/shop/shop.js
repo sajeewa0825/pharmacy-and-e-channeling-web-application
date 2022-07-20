@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./shop.css";
-import SideMenu from "./SideBar/SideMenu";
+// import SideMenu from "./SideBar/SideMenu";
 import Logo from "../NavBar/image/Group 4.svg"
 import "../NavBar/nav.css";
 import { Link } from "react-router-dom";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 import { CartData } from '../../actions/CartActions';
+import "./SideMenu.css";
 
 const Shop = (props) => {
   const [Product, SetProduct] = useState([])
   const [item, Setitem] = useState([props.CartItems])
-  console.log(props)
+
 
   useEffect(() => {
     const admin =localStorage.getItem('token')
@@ -35,7 +36,6 @@ const Shop = (props) => {
       axios.get("http://Localhost:8080/addproduct").then((res) => {
         console.log(res.data)
         SetProduct(res.data)
-        SetItems(res.data)
       }).catch((err) => {
         alert(err)
       })
@@ -46,27 +46,35 @@ const Shop = (props) => {
 
   const [Items, SetItems] = useState([])
   const [count, Setcount] = useState(item[0].length)
+  const [pname, Setpname] = useState("")
 
   const addData = (data)=>{
     props.CartData(data)
     Setcount(parseInt(count)+parseInt(1))
   }
 
-  const search = (pname) =>{
-    const found = Product.find(obj => {
-      return obj.name === pname ;
-    });
-
-    if(pname === null){
-      SetProduct(Items)
+  const search = () =>{
+    console.log(pname)
+    if (pname === "") {
+      
     }else{
-      SetProduct(found)
+      const ser =Product.find(obj => {
+        return obj.name === pname ;
+      });
+
+      if (ser) {
+        SetItems([ser])
+      }else{
+        alert("Name not match")
+      }
     }
 
   }
 
+  console.log(Items)
 
-  let ProductData = Product.map((data) => {
+  const SearchData = Items?.map((data) => {
+    console.log(data)
     return (
         <div key={data._id} className="col-md-3 col-sm-6">
           <div className="product-grid">
@@ -74,7 +82,7 @@ const Shop = (props) => {
               <a href="#" className="image">
                 <img className="pic-1" src={data.imgLink} />
               </a>
-              <span className="product-discount-label">-33%</span>
+              <span className="product-discount-label">{data.qty}</span>
               <ul className="product-links">
                 <li>
                   <a href="#" data-tip="Add to Wishlist">
@@ -105,7 +113,7 @@ const Shop = (props) => {
                 <a href="#">{data.name}</a>
               </h3>
               <div className="price">
-                <span>$90.00</span> {data.price}
+                <span></span>Rs.{data.price}
               </div>
               <a className="add-to-cart" href="#" onClick={() => addData(data)}>
                 add to cart
@@ -113,8 +121,60 @@ const Shop = (props) => {
             </div>
           </div>
         </div>
-    )
-  })
+      
+    );
+  });
+
+  const ProductData = Product.map((data) => {
+    return (
+        <div key={data._id} className="col-md-3 col-sm-6">
+          <div className="product-grid">
+            <div className="product-image">
+              <a href="#" className="image">
+                <img className="pic-1" src={data.imgLink} />
+              </a>
+              <span className="product-discount-label">{data.qty}</span>
+              <ul className="product-links">
+                <li>
+                  <a href="#" data-tip="Add to Wishlist">
+                    <i className="fa fa-heart"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" data-tip="Compare">
+                    <i className="fa fa-random"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" data-tip="Quick View">
+                    <i className="fa fa-search"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div className="product-content">
+              <ul className="rating">
+                <li className="fas fa-star"></li>
+                <li className="fas fa-star"></li>
+                <li className="fas fa-star"></li>
+                <li className="far fa-star"></li>
+                <li className="far fa-star"></li>
+              </ul>
+              <h3 className="title">
+                <a href="#">{data.name}</a>
+              </h3>
+              <div className="price">
+                <span></span>Rs.{data.price}
+              </div>
+              <a className="add-to-cart" href="#" onClick={() => addData(data)}>
+                add to cart
+              </a>
+            </div>
+          </div>
+        </div>
+      
+    );
+  });
 
   return (
     <div>
@@ -196,17 +256,33 @@ const Shop = (props) => {
       </nav>
     </div>
       <div className="container-fluid">
-        <SideMenu />
+        <nav class="navbar navbar-light bg-white">
+          <div class="container-fluid">
+            <div className="col-12">
+              <form class="d-flex justify-content-end">
+                <div className="d-flex">
+                  <input
+                    class="form-control me-2 inputSearch"
+                    type="search"
+                    placeholder="Search"
+                    aria-label="Search"
+                    onChange={(e) => Setpname(e.target.value)}
+                  />
+                  <button class="btn SearchButton" type="submit" onClick={ (e) => search(e)}>
+                    Search
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
       </div>
       {/*******       Products    ***********/}
 
       <div className="container-fluid">
-        <div className="row" >
-            {ProductData}
-        </div>
+        <div className="row">{SearchData}{ProductData}</div>
       </div>
-
-    </div >
+    </div>
   );
 };
 

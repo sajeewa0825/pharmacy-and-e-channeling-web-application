@@ -100,7 +100,7 @@ const Cart = (props) => {
         }
 
         document.getElementById('closebutton').click();
-        window.location.reload(false);
+        window.location.href = '/cart'
       }
 
     }).catch((err) => {
@@ -183,7 +183,6 @@ const Cart = (props) => {
 
 
   const CartItem = item.map((data) => {
-
     return (
       <tr key={data._id}>
         <td data-th="Product">
@@ -197,11 +196,11 @@ const Cart = (props) => {
             </div>
             <div class="col-md-9 text-left mt-sm-2">
               <h4>{data.name}</h4>
-              <p class="font-weight-light">Brand &amp; Name</p>
+              <p class="font-weight-light">{data.info}</p>
             </div>
           </div>
         </td>
-        <td data-th="Price">${data.price}</td>
+        <td data-th="Price">Rs.{data.price}</td>
         <td data-th="Quantity">
           <input
             type="number"
