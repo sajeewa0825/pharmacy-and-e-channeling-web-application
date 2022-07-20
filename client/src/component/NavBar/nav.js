@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState} from 'react'
 import Logo from "./image/Group 4.svg";
 import "./nav.css";
 import { Link } from "react-router-dom";
@@ -6,10 +6,14 @@ import { connect } from 'react-redux';
 // import phone from "./image/phone-solid.svg";
 // import loca from "./image/location-dot-solid.svg";
 // import clockIcon from "./image/clock-solid.svg";
-import Drservice from "./../../DoctorPage/component/dService/drService";
 
 const NavBar = (props) => {
   const [item, Setitem] = useState([props.CartItems])
+
+  const logout = (e) =>{
+    localStorage.clear()
+    window.location.href = '/'
+  }
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
@@ -100,22 +104,11 @@ const NavBar = (props) => {
             </button>
 
             <ul class="dropdown-menu dropdown-menu-lg-end userImage-ul">
-              <span>Name###</span>
+              <span>{localStorage.getItem("name")}</span>
+ 
               <li>
                 <a class="dropdown-item" href="#">
-                  <i class="bi bi-person-video2 me-2 text-dark fs-5"></i> My
-                  Profile
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#">
-                  <i class="bi bi-pencil-square me-2 text-dark fs-5"></i> My
-                  Edit Profile
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#">
-                  <i class="bi bi-box-arrow-left me-2 text-dark fs-5"></i> Log
+                  <i class="bi bi-box-arrow-left me-2 text-dark fs-5" onClick={(e) => logout(e)}></i> Log
                   out
                 </a>
               </li>

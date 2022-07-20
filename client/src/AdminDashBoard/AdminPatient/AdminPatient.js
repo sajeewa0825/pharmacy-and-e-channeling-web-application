@@ -8,6 +8,23 @@ const AdminPatient = () => {
 
   useEffect(() => {
     const getdata = () => {
+
+      const admin =localStorage.getItem('admintoken')
+      const data ={
+        token :admin
+      }
+      axios.post("http://Localhost:8080/adminverify",data).then((res) => {
+          if(res.data.status === 200){
+              console.log("admin verfiy")
+          }else{
+            localStorage.clear();
+            window.location.href = '/signin'
+          }
+      }).catch((err) => {
+        localStorage.clear();
+        window.location.href = '/signin'
+      })
+
       axios.get("http://Localhost:8080/getuser").then((res) => {
         Setuser(res.data)
       }).catch((err) => {

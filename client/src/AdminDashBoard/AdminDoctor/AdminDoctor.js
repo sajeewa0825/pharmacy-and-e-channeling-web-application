@@ -10,6 +10,22 @@ const AdminDoctor = () => {
   const [user_id, Setuser_id] = useState("")
 
   useEffect(() => {
+    const admin =localStorage.getItem('admintoken')
+    const data ={
+      token :admin
+    }
+    axios.post("http://Localhost:8080/adminverify",data).then((res) => {
+        if(res.data.status === 200){
+            console.log("admin verfiy")
+        }else{
+          localStorage.clear();
+          window.location.href = '/signin'
+        }
+    }).catch((err) => {
+      localStorage.clear();
+      window.location.href = '/signin'
+    })
+
     const getdata = () => {
       axios.get("http://Localhost:8080/regdoctor").then((res) => {
         console.log(res.data)

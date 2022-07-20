@@ -1,4 +1,5 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect } from 'react'
 import "./home.css";
 import Img1 from "./image/item-1.jpg";
 import Img2 from "./image/item-2.jpg";
@@ -13,6 +14,28 @@ import NavBar from "../NavBar/nav";
 import Board from "../../DoctorPage/component/Blog/Bord";
 
 const Home = () => {
+  useEffect(() => {
+    const getdata = () => {
+
+      const admin =localStorage.getItem('token')
+      const data ={
+        token :admin
+      }
+      axios.post("http://Localhost:8080/adminverify",data).then((res) => {
+          if(res.data.status === 200){
+              console.log("admin verfiy")
+          }else{
+            localStorage.clear();
+            window.location.href = '/signin'
+          }
+      }).catch((err) => {
+        localStorage.clear();
+        window.location.href = '/signin'
+      })
+    }
+
+    getdata();
+  },[])
   return (
     <div>
       <NavBar />

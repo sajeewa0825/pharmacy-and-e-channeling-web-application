@@ -11,6 +11,22 @@ const AdminAppoinment = () => {
   const [timepi, Settimepi] = useState([])
 
   useEffect(() => {
+    const admin =localStorage.getItem('admintoken')
+      const data ={
+        token :admin
+      }
+      axios.post("http://Localhost:8080/adminverify",data).then((res) => {
+          if(res.data.status === 200){
+              console.log("admin verfiy")
+          }else{
+            localStorage.clear();
+            window.location.href = '/signin'
+          }
+      }).catch((err) => {
+        localStorage.clear();
+        window.location.href = '/signin'
+      })
+
     const getdata = () => {
       axios.get("http://Localhost:8080/getappointment").then((res) => {
         console.log(res.data)
@@ -42,10 +58,10 @@ const AdminAppoinment = () => {
   const [P_no, SetPno] = useState("");
   const [Dr_type, SetDtype] = useState("");
 
-  const Total_bill = 3000;
+  let Total_bill = 3000;
 
   if (localStorage.token) {
-    Total_bill = Total_bill * ((100 - 10) / 100);
+    Total_bill = parseInt( Total_bill) * ((100 - 10) / 100);
   }
 
   const AppointmentSendTime = new Date()

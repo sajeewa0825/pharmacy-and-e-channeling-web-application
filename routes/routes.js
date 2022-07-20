@@ -669,6 +669,8 @@ router.route("/productqtyfind/:id").get(async (req, res) => {
 })
 
 
+// product qty update
+// http://Localhost:8080/productqtyupdated
 router.route("/productqtyupdated/:id").put(async (req, res) => {
     const pid = req.params.id;
     const {
@@ -684,6 +686,22 @@ router.route("/productqtyupdated/:id").put(async (req, res) => {
         res.status(500).send({ status: "product  update error ", error: err.message });
     })
 })
+
+
+// update password
+// http://Localhost:8080/setpassword
+router.route("/adminverify").post(async (req, res) => {
+    try {
+        const verified = jwt.verify(req.body.token, JWT_SECRET_KEY);
+        if (verified) {
+                return res.send({ status: 200, message: 'verify' })
+        } else {
+            return res.status(401).send(error);
+        }
+    } catch (error) {
+        return res.status(401).send(error);
+    }
+});
 
 
 

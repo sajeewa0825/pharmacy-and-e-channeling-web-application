@@ -19,7 +19,6 @@ import AdminDoctor from "./../AdminDashBoard/AdminDoctor/AdminDoctor";
 import AdminPatient from "../AdminDashBoard/AdminPatient/AdminPatient";
 import AdminAppoinment from "../AdminDashBoard/AdminAppoinment/AdminAppoinment";
 import AdminProduct from "../AdminDashBoard/AdminProduct/AdminProduct";
-import AdminPayment from "../AdminDashBoard/AdminPayment/AdminPayment";
 import Cart from "../component/Home/Cart/Cart";
 import ContactUs from "./../component/ContactUs/ContactUs";
 
@@ -43,7 +42,6 @@ const Routing = () => {
         <Route path="adminPatient" element={<AdminPatient />} />
         <Route path="adminAppoinment" element={<AdminAppoinment />} />
         <Route path="adminProduct" element={<AdminProduct />} />
-        <Route path="adminPayment" element={<AdminPayment />} />
         <Route path="video" element={<VideoHome />} />
         <Route path="cart" element={<Cart />} />
         <Route path="contactUs" element={<ContactUs />} />

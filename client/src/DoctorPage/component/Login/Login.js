@@ -20,7 +20,7 @@ function Copyright(props) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
             {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
+            <Link color="inherit" href="#">
                 Your Website
             </Link>{' '}
             {new Date().getFullYear()}
@@ -66,8 +66,7 @@ export default function SignIn() {
                 localStorage.setItem('name', data.user.name)
                 window.location.href = '/drhome'
             } else if(data.admin){
-                localStorage.setItem('admintoken', data.admin.admintoken)
-                console.log(localStorage)
+                localStorage.setItem('admintoken', data.admin)
                 window.location.href = '/admin'
             }else {
                 alert('Please check your username and password')
