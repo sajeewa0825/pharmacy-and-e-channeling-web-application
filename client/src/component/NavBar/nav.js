@@ -11,8 +11,8 @@ const NavBar = (props) => {
   const [item, Setitem] = useState([props.CartItems])
 
   const logout = (e) =>{
-    localStorage.clear()
-    window.location.href = '/'
+    localStorage.clear();
+    window.location.href = '/signin'
   }
   return (
     <div>

@@ -5,6 +5,11 @@ import { Link } from "react-router-dom";
 import AdminHome from "./AdminHome/AdminHome";
 
 const AdminDashboard = () => {
+  const logout = () =>{
+    localStorage.clear();
+    window.location.href = '/signin'
+  }
+
   return (
     <div>
       <div className="container-fluid">
@@ -60,12 +65,12 @@ const AdminDashboard = () => {
                     <span>Products</span>
                   </Link>
                 </li>
-                {/* <li>
-                  <Link to={"./#"} className="sidemenu_center_ul_Link">
-                    <i class="bi bi-truck"></i>
-                    <span>Delivery</span>
-                  </Link>
-                </li> */}
+                <li>
+                  <div  className="sidemenu_center_ul_Link">
+                    <i class="bi bi-box-arrow-left" > </i>
+                    <span onClick={() => logout()}>Logout</span>
+                  </div>
+                </li>
               </ul>
             </div>
           </div>

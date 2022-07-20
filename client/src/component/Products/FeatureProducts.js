@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -10,7 +10,7 @@ const FeatureProduct = () => {
     dots: false,
     infinite: true,
     speed: 400,
-    slidesToShow: 4,
+    slidesToShow: 3,
     slidesToScroll: 2,
     initialSlide: 0,
     autoplay: true,
@@ -25,11 +25,21 @@ const FeatureProduct = () => {
         },
       },
       {
+        breakpoint: 720,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+          infinite: true,
+        },
+      },
+      {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
           initialSlide: 2,
+          infinite: true,
         },
       },
       {
@@ -37,24 +47,28 @@ const FeatureProduct = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          infinite: true,
         },
       },
     ],
   };
 
-  const [Product, SetProduct] = useState([])
+  const [Product, SetProduct] = useState([]);
 
   useEffect(() => {
     const getproduct = () => {
-      axios.get("http://Localhost:8080/addproduct").then((res) => {
-        console.log(res.data)
-        SetProduct(res.data)
-      }).catch((err) => {
-        alert(err)
-      })
-    }
+      axios
+        .get("http://Localhost:8080/addproduct")
+        .then((res) => {
+          console.log(res.data);
+          SetProduct(res.data);
+        })
+        .catch((err) => {
+          alert(err);
+        });
+    };
     getproduct();
-  }, [])
+  }, []);
 
   let ProductData = Product.map((data,index) => {
     if (index === 0) {
@@ -204,6 +218,6 @@ const FeatureProduct = () => {
         {ProductData}
     </div>
   );
-}
+};
 
 export default FeatureProduct;
