@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import "./Cart.css";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
@@ -7,6 +7,28 @@ import { removeFromCart } from '../../../actions/CartActions';
 import { bindActionCreators } from 'redux';
 
 const Cart = (props) => {
+  useEffect(() => {
+    const getdata = () => {
+
+      const admin =localStorage.getItem('token')
+      const data ={
+        token :admin
+      }
+      axios.post("http://Localhost:8080/adminverify",data).then((res) => {
+          if(res.data.status === 200){
+              console.log("admin verfiy")
+          }else{
+            localStorage.clear();
+            window.location.href = '/signin'
+          }
+      }).catch((err) => {
+        localStorage.clear();
+        window.location.href = '/signin'
+      })
+    }
+
+    getdata();
+  },[])
 
   console.log(props.CartItems)
   const [item, Setitem] = useState(props.CartItems)

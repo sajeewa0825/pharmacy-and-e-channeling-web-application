@@ -22,8 +22,8 @@ function Copyright(props) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
             {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                Uwu.Ict
+            <Link color="inherit">
+                Medisuite.tk
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -191,23 +191,9 @@ export default function SignUp() {
                         >
                             Sign Up
                         </Button>
-                        <div className="text-center mb-3">
-                            <p> Or Sign Up in with:</p>
-                            <button type="button" className="btn btn-link btn-floating mx-1">
-                                <img src='https://cdn1.iconfinder.com/data/icons/logotypes/32/square-facebook-128.png' width="36px" alt='Facebook' />
-                            </button>
-
-                            <button type="button" className="btn btn-link btn-floating mx-1">
-                                <img src='https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png' width="36px" alt='Google' />
-                            </button>
-
-                            <button type="button" className="btn btn-link btn-floating mx-1">
-                                <img src='https://cdn3.iconfinder.com/data/icons/social-media-2253/25/Group-256.png' width="36px" alt='Git hub' />
-                            </button>
-                        </div>
                         <Grid container justifyContent="center">
                             <Grid item>
-                                <Link href="#" variant="body2" className='setfont'>
+                                <Link href="\signin" variant="body2" className='setfont'>
                                     Already have an account? Sign in
                                 </Link>
                             </Grid>

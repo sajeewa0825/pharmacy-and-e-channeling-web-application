@@ -18,10 +18,10 @@ const FeatureProduct = () => {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToShow: 4,
+          slidesToScroll: 4,
           infinite: true,
-          dots: false,
+          dots: true,
         },
       },
       {
@@ -56,34 +56,152 @@ const FeatureProduct = () => {
     getproduct();
   }, [])
 
-  let ProductData = Product.map((data) => {
+  let ProductData = Product.map((data,index) => {
+    if (index === 0) {
+      console.log(Product)
+    
     return (
-      <div>
-        <div class="card ">
-          <img
-            src={data.imgLink}
-            class="card-img-top"
-            alt="img"
-          />
-
-          <div class="card-body">
-            <h5 class="card-title">{data.name}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{data.price}</h6>
-            <p class="card-text">
-              Some quick example text to build on the card title and make up
-              the bulk of the card's content.
-            </p>
+      <div className="FPSection">
+        <h2 class="text-center"> Featurs Products </h2>
+        <Slider {...settings}>
+          <div class="product-grid">
+            <div class="product-image">
+              <a href="#" class="image">
+                <img class="pic-1" src={Product[0].imgLink} />
+              </a>
+              <span class="product-discount-label">{Product[0].qty}</span>
+            </div>
+            <div class="product-content">
+              <ul class="rating">
+                <li class="fas fa-star"></li>
+                <li class="fas fa-star"></li>
+                <li class="fas fa-star"></li>
+                <li class="far fa-star"></li>
+                <li class="far fa-star"></li>
+              </ul>
+              <h3 class="title">
+                <a href="#">{Product[0].name}</a>
+              </h3>
+              <div class="price">
+                <span>Rs.1600</span> Rs.{Product[0].price}
+              </div>
+              <a class="add-to-cart" href="#">
+                add to cart
+              </a>
+            </div>
           </div>
-        </div>
+          <div class="product-grid">
+            <div class="product-image">
+              <a href="#" class="image">
+                <img class="pic-1" src={Product[1].imgLink} />
+              </a>
+              <span class="product-discount-label">{Product[1].qty}</span>
+            </div>
+            <div class="product-content">
+              <ul class="rating">
+                <li class="fas fa-star"></li>
+                <li class="fas fa-star"></li>
+                <li class="fas fa-star"></li>
+                <li class="far fa-star"></li>
+                <li class="far fa-star"></li>
+              </ul>
+              <h3 class="title">
+                <a href="#">{Product[1].name}</a>
+              </h3>
+              <div class="price">
+                <span>Rs. 3600 </span>Rs. {Product[1].price}
+              </div>
+              <a class="add-to-cart" href="#">
+                add to cart
+              </a>
+            </div>
+          </div>
+          <div class="product-grid">
+            <div class="product-image">
+              <a href="#" class="image">
+                <img class="pic-1" src={Product[2].imgLink} />
+              </a>
+              <span class="product-discount-label">{Product[2].qty}</span>
+            </div>
+            <div class="product-content">
+              <ul class="rating">
+                <li class="fas fa-star"></li>
+                <li class="fas fa-star"></li>
+                <li class="fas fa-star"></li>
+                <li class="far fa-star"></li>
+                <li class="far fa-star"></li>
+              </ul>
+              <h3 class="title">
+                <a href="#">{Product[2].name}</a>
+              </h3>
+              <div class="price">
+                <span>Rs.10000</span> Rs. {Product[2].price}
+              </div>
+              <a class="add-to-cart" href="#">
+                add to cart
+              </a>
+            </div>
+          </div>
+          <div class="product-grid">
+            <div class="product-image">
+              <a href="#" class="image">
+                <img class="pic-1" src={Product[3].imgLink} />
+              </a>
+              <span class="product-discount-label">{Product[3].qty}</span>
+            </div>
+            <div class="product-content">
+              <ul class="rating">
+                <li class="fas fa-star"></li>
+                <li class="fas fa-star"></li>
+                <li class="fas fa-star"></li>
+                <li class="far fa-star"></li>
+                <li class="far fa-star"></li>
+              </ul>
+              <h3 class="title">
+                <a href="#">{Product[3].name}</a>
+              </h3>
+              <div class="price">
+                <span>Rs.1600</span> Rs.{Product[3].price}
+              </div>
+              <a class="add-to-cart" href="#">
+                add to cart
+              </a>
+            </div>
+          </div>
+          <div class="product-grid">
+            <div class="product-image">
+              <a href="#" class="image">
+                <img class="pic-1" src={Product[2].imgLink} />
+              </a>
+              <span class="product-discount-label">{Product[2].qty}</span>
+            </div>
+            <div class="product-content">
+              <ul class="rating">
+                <li class="fas fa-star"></li>
+                <li class="fas fa-star"></li>
+                <li class="fas fa-star"></li>
+                <li class="far fa-star"></li>
+                <li class="far fa-star"></li>
+              </ul>
+              <h3 class="title">
+                <a href="#">{Product[2].name}</a>
+              </h3>
+              <div class="price">
+                <span>Rs.10000</span> Rs. {Product[2].price}
+              </div>
+              <a class="add-to-cart" href="#">
+                add to cart
+              </a>
+            </div>
+          </div>
+          
+        </Slider>
       </div>
-    )
+    )}
   })
   return (
     <div className="FPSection">
-      <h2 class="text-center"> Featurs Products </h2>
-      <Slider {...settings}>
         {ProductData}
-      </Slider>
     </div>
   );
 }
