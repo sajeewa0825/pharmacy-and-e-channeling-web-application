@@ -9,7 +9,7 @@ const footer = () => {
       <div className="container-fluid Footer-Head">
         <div className="row">
           <div className="col">
-            <h1 className="Footer-Head-h1">PLEASE JOIN WITH MEDISUITE</h1>
+            <h1 className="Footer-Head-h1">JOIN WITH MEDISUITE</h1>
           </div>
 
           <div className="col LandingPage-Col-btn">
@@ -60,19 +60,19 @@ const footer = () => {
             <div className="col-sm footer-col pt-5">
               <h1 className="footer-col-Heading">Quick Links</h1>
               <ul className="Footer-Links-ul">
-                <Link to="#" className="Footer-Link">
+                <Link to="/phhome" className="Footer-Link">
                   <li>Pharmacy</li>
                 </Link>
-                <Link to="#" className="Footer-Link">
+                <Link to="/drhome" className="Footer-Link">
                   <li>Doctor Page</li>
                 </Link>
-                <Link to="#" className="Footer-Link">
+                <Link to="/phshop" className="Footer-Link">
                   <li>Shop</li>
                 </Link>
-                <Link to="#" className="Footer-Link">
+                <Link to="/phaboutus" className="Footer-Link">
                   <li>About Us</li>
                 </Link>
-                <Link to="#" className="Footer-Link">
+                <Link to="/contactUs" className="Footer-Link">
                   <li>ContactUs</li>
                 </Link>
               </ul>
