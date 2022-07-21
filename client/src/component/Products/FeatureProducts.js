@@ -60,7 +60,6 @@ const FeatureProduct = () => {
       axios
         .get("https://medisuite.herokuapp.com/addproduct")
         .then((res) => {
-          console.log(res.data);
           SetProduct(res.data);
         })
         .catch((err) => {
@@ -72,7 +71,6 @@ const FeatureProduct = () => {
 
   let ProductData = Product.map((data,index) => {
     if (index === 0) {
-      console.log(Product)
     
     return (
       <div className="FPSection">

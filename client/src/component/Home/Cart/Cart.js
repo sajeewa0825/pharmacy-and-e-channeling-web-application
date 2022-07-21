@@ -16,7 +16,7 @@ const Cart = (props) => {
       }
       axios.post("https://medisuite.herokuapp.com/adminverify",data).then((res) => {
           if(res.data.status === 200){
-              console.log("admin verfiy")
+              console.log("verfiy")
           }else{
             localStorage.clear();
             window.location.href = '/signin'
