@@ -652,7 +652,7 @@ router.route("/buyitem/:id").put(async (req, res) => {
 })
 
 // update item qty
-// http://Localhost:8080/update/dfdsrr353fd
+// http://Localhost:8080/update/dfdsrr353
 router.route("/productqtyfind/:id").get(async (req, res) => {
     const pid = req.params.id;
     product.find({
