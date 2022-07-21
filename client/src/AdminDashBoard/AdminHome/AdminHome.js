@@ -17,7 +17,7 @@ const AdminHome = () => {
         token :admin
       }
       console.log(data)
-      axios.post("http://Localhost:8080/adminverify",data).then((res) => {
+      axios.post("https://medisuite.herokuapp.com/adminverify",data).then((res) => {
           if(res.data.status === 200){
               console.log("admin verfiy")
           }else{
@@ -30,13 +30,13 @@ const AdminHome = () => {
       })
 
 
-      axios.get("http://Localhost:8080/getuser").then((res) => {
+      axios.get("https://medisuite.herokuapp.com/getuser").then((res) => {
         Setuser(res.data)
       }).catch((err) => {
         alert(err)
       })
 
-      axios.get("http://Localhost:8080/addproduct").then((res) => {
+      axios.get("https://medisuite.herokuapp.com/addproduct").then((res) => {
         console.log(res.data)
         SetProduct(res.data)
       }).catch((err) => {
@@ -44,21 +44,21 @@ const AdminHome = () => {
       })
     }
 
-    axios.get("http://Localhost:8080/getappointment").then((res) => {
+    axios.get("https://medisuite.herokuapp.com/getappointment").then((res) => {
       console.log(res.data)
       Setappointment(res.data)
     }).catch((err) => {
       alert(err)
     })
 
-    axios.get("http://Localhost:8080/regdoctor").then((res) => {
+    axios.get("https://medisuite.herokuapp.com/regdoctor").then((res) => {
       console.log(res.data)
       SetDoctordata(res.data)
     }).catch((err) => {
       alert(err)
     })
 
-    axios.get("http://Localhost:8080/addproduct").then((res) => {
+    axios.get("https://medisuite.herokuapp.com/addproduct").then((res) => {
       console.log(res.data)
       SetProduct(res.data)
     }).catch((err) => {

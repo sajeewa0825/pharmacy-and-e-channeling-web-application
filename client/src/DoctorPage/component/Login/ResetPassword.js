@@ -35,7 +35,7 @@ export default function SignIn() {
         let checkerror = validate(data1);
 
         if (checkerror===0) {
-            axios.post('http://Localhost:8080/setpassword', data1).then((res) => {
+            axios.post('https://medisuite.herokuapp.com/setpassword', data1).then((res) => {
                 console.log(res)
                 alert(res.data.message)
                 window.location.href = '/signin'

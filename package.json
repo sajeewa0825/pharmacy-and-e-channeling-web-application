@@ -4,9 +4,7 @@
   "description": "physical and channeling management system",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "client": "cd client && npm start",
-    "dev": "concurrently -n server,client -c red,green \"nodemon server.js\" \"npm run client\""
+    "start": "node server.js"
   },
   "author": "sajeewa",
   "license": "ISC",

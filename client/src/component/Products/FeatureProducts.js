@@ -58,7 +58,7 @@ const FeatureProduct = () => {
   useEffect(() => {
     const getproduct = () => {
       axios
-        .get("http://Localhost:8080/addproduct")
+        .get("https://medisuite.herokuapp.com/addproduct")
         .then((res) => {
           console.log(res.data);
           SetProduct(res.data);

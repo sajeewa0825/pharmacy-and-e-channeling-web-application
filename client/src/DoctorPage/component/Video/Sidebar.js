@@ -46,7 +46,7 @@ const Sidebar = ({ children }) => {
       me
     }
     event.preventDefault();
-        axios.post("http://Localhost:8080/videochat",data ).then((res) => {
+        axios.post("https://medisuite.herokuapp.com/videochat",data ).then((res) => {
             if(res.data.status === 200){
                 console.log("ok")
             }else{

@@ -18,7 +18,7 @@ const AdminAppoinment = () => {
       token: admin,
     };
     axios
-      .post("http://Localhost:8080/adminverify", data)
+      .post("https://medisuite.herokuapp.com/adminverify", data)
       .then((res) => {
         if (res.data.status === 200) {
           console.log("admin verfiy");
@@ -34,7 +34,7 @@ const AdminAppoinment = () => {
 
     const getdata = () => {
       axios
-        .get("http://Localhost:8080/getappointment")
+        .get("https://medisuite.herokuapp.com/getappointment")
         .then((res) => {
           console.log(res.data);
           Setappointment(res.data);
@@ -44,7 +44,7 @@ const AdminAppoinment = () => {
         });
 
       axios
-        .get("http://Localhost:8080/regdoctor")
+        .get("https://medisuite.herokuapp.com/regdoctor")
         .then((res) => {
           console.log(res.data);
           SetDoctordata(res.data);
@@ -95,7 +95,7 @@ const AdminAppoinment = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:8080/addappointment", newAppointment)
+      .post("https://medisuite.herokuapp.com/addappointment", newAppointment)
       .then((res) => {
         document.getElementById("form").reset();
         document.getElementById("closebutton").click();
@@ -109,7 +109,7 @@ const AdminAppoinment = () => {
   const deletedata = (id) => {
     console.log(id);
     axios
-      .delete(`http://localhost:8080/appointmentdelete/${id}`)
+      .delete(`https://medisuite.herokuapp.com/appointmentdelete/${id}`)
       .then((res) => {
         Setappointment(appointment.filter((item) => item._id !== id));
         alert("Appointment deleted");

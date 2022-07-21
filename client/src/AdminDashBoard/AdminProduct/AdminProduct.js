@@ -20,7 +20,7 @@ const AdminProduct = () => {
         token: admin,
       };
       axios
-        .post("http://Localhost:8080/adminverify", data)
+        .post("https://medisuite.herokuapp.com/adminverify", data)
         .then((res) => {
           if (res.data.status === 200) {
             console.log("admin verfiy");
@@ -35,7 +35,7 @@ const AdminProduct = () => {
         });
 
       axios
-        .get("http://Localhost:8080/addproduct")
+        .get("https://medisuite.herokuapp.com/addproduct")
         .then((res) => {
           console.log(res.data);
           SetProduct(res.data);
@@ -60,7 +60,7 @@ const AdminProduct = () => {
     console.log(newproduct);
     e.preventDefault();
     axios
-      .post("http://localhost:8080/addproduct", newproduct)
+      .post("https://medisuite.herokuapp.com/addproduct", newproduct)
       .then((res) => {
         document.getElementById("form").reset();
         document.getElementById("closebutton").click();
@@ -73,7 +73,7 @@ const AdminProduct = () => {
 
   const deleteproduct = (id) => {
     axios
-      .delete(`http://localhost:8080/deleteproduct/${id}`)
+      .delete(`https://medisuite.herokuapp.com/deleteproduct/${id}`)
       .then((res) => {
         alert("Appointment deleted");
         SetProduct(Product.filter((data) => data._id !== id));
@@ -97,7 +97,7 @@ const AdminProduct = () => {
   const productupdate = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:8080/productupdate/${user_id}`, newproduct)
+      .put(`https://medisuite.herokuapp.com/productupdate/${user_id}`, newproduct)
       .then((res) => {
         Setuser_id("");
         Setsubmit("");

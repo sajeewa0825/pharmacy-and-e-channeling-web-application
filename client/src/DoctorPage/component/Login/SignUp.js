@@ -56,7 +56,7 @@ export default function SignUp() {
         let checkerror =validate(data1);
 
         if (checkerror === 0) {
-            axios.post("http://Localhost:8080/signup", data1).then((res) => {
+            axios.post("https://medisuite.herokuapp.com/signup", data1).then((res) => {
                 if(res.data.status === 200){
                     window.location.href =  '/signin'
                 }else{
