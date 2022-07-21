@@ -185,9 +185,9 @@ const FeatureProduct = () => {
           <div class="product-grid">
             <div class="product-image">
               <a href="#" class="image">
-                <img class="pic-1" src={Product[2].imgLink} />
+                <img class="pic-1" src={Product[4].imgLink} />
               </a>
-              <span class="product-discount-label">{Product[2].qty}</span>
+              <span class="product-discount-label">{Product[4].qty}</span>
             </div>
             <div class="product-content">
               <ul class="rating">
@@ -198,10 +198,10 @@ const FeatureProduct = () => {
                 <li class="far fa-star"></li>
               </ul>
               <h3 class="title">
-                <a href="#">{Product[2].name}</a>
+                <a href="#">{Product[4].name}</a>
               </h3>
               <div class="price">
-                <span>Rs.10000</span> Rs. {Product[2].price}
+                <span>Rs.1800</span> Rs. {Product[4].price}
               </div>
               <a class="add-to-cart" href="#">
                 add to cart
