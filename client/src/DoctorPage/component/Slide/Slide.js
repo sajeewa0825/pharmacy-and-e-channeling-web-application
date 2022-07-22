@@ -8,27 +8,6 @@ import "../Navbar/Navbar.css"
 
 
 export default function Slide() {
-    const setdevice = async(event) =>{
-        event.preventDefault();
-        localStorage.setItem('videoenable', true)
-        window.location.href = '/video'
-    }
-
-    const videoButton = () => {
-        if (localStorage.token) {
-            return (
-                <div className="mt-3 sm:mt-0 sm:ml-3">
-                    <button
-                        onClick={setdevice.bind(e)}
-                        className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 md:py-4 md:text-lg md:px-10 setfont"
-                    >
-                        Online consultation
-                    </button>
-                </div>
-            )
-        }
-    }
-
     return (
         <div className="relative bg-white overflow-hidden">
             <div className="max-w-7xl mx-auto">
@@ -65,7 +44,6 @@ export default function Slide() {
                                         Make Appointment
                                     </Link>
                                 </div>
-                                    {videoButton()}
                             </div>
                         </div>
                     </main>

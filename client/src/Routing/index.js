@@ -12,7 +12,6 @@ import About from "../component/About/About";
 import Price from "../component/Price/price";
 import Shop from "../component/shop/shop";
 import Frogetpassword from "../DoctorPage/component/Login/Frogetpassword";
-import VideoHome from "../DoctorPage/component/Video/VideoHome";
 import PasswordReset from "../DoctorPage/component/Login/ResetPassword";
 import AdminDashboard from "./../AdminDashBoard/AdminDashboard";
 import AdminDoctor from "./../AdminDashBoard/AdminDoctor/AdminDoctor";
@@ -42,7 +41,6 @@ const Routing = () => {
         <Route path="adminPatient" element={<AdminPatient />} />
         <Route path="adminAppoinment" element={<AdminAppoinment />} />
         <Route path="adminProduct" element={<AdminProduct />} />
-        <Route path="video" element={<VideoHome />} />
         <Route path="cart" element={<Cart />} />
         <Route path="contactUs" element={<ContactUs />} />
         <Route path="/" element={<Landing />} />
