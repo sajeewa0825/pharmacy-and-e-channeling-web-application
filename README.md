@@ -13,7 +13,7 @@ Medisuite is a MERN stack web project.
 ```terminal
 
 $ git clone https://github.com/sajeewa0825/pharmacy-and-e-channeling-web-application.git
-$ npm i
+$ npm install
 ```
 
 ## Client-side usage(PORT: 3000)
@@ -21,7 +21,7 @@ $ npm i
 ```terminal
 
 $ cd client   // go to client folder
-$ npm i       // npm install packages
+$ npm install       // npm install packages
 $ npm run dev // run it locally
 
 // deployment for client app
@@ -33,7 +33,6 @@ $ npm run start // this will run the files in docs, this behavior is exactly the
 
 ```terminal
 $ cd server   // go to server folder
-$ npm i       // npm install packages
+$ npm install       // npm install packages
 $ npm run dev // run it locally
-$ npm run build // this will build the server code to es5 js codes and generate a dist file
 ```
