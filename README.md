@@ -1,7 +1,3 @@
-# pharmacy-and-e-channeling-web-application
-Pharmacy and e-Channel web application. This will enable online shopping and e-channeling services. This design basically uses the MERN stack.
-
-
 # Medisuite 
 
 Medisuite is a MERN stack web project.
