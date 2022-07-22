@@ -1,3 +1,10 @@
+<h1 align="center">
+🌐 MERN Stack
+</h1>
+<p align="center">
+MongoDB, Expressjs, React/Redux, Nodejs
+</p>
+
 # Medisuite 
 
 Medisuite is a MERN stack web project.
