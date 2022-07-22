@@ -13,8 +13,8 @@ const SideMenu = () => {
                   class="btn IconButton me-1 p-0"
                   type="button"
                   data-bs-toggle="offcanvas"
-                  data-bs-target="#offcanvasRight"
-                  aria-controls="offcanvasRight"
+                  data-bs-target="#offcanvasWithBothOptions"
+                  aria-controls="offcanvasWithBothOptions"
                 >
                   <i class="bi bi-hdd-rack"></i>
                 </button>
@@ -22,12 +22,18 @@ const SideMenu = () => {
               </div>
               <div
                 class="offcanvas offcanvas-start"
+                data-bs-scroll="true"
                 tabindex="-1"
-                id="offcanvasRight"
-                aria-labelledby="offcanvasRightLabel"
+                id="offcanvasWithBothOptions"
+                aria-labelledby="offcanvasWithBothOptionsLabel"
               >
                 <div class="offcanvas-header">
-                  <h5 id="offcanvasRightLabel">Offcanvas right</h5>
+                  <h5
+                    class="offcanvas-title"
+                    id="offcanvasWithBothOptionsLabel"
+                  >
+                    Backdrop with scrolling
+                  </h5>
                   <button
                     type="button"
                     class="btn-close text-reset"
@@ -35,7 +41,12 @@ const SideMenu = () => {
                     aria-label="Close"
                   ></button>
                 </div>
-                <div class="offcanvas-body">...</div>
+                <div class="offcanvas-body">
+                  <p>
+                    Try scrolling the rest of the page to see this option in
+                    action.
+                  </p>
+                </div>
               </div>
               <div className="d-flex">
                 <input

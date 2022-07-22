@@ -60,6 +60,12 @@ const FeatureProduct = () => {
     return (
       <div>
         <div class="card ">
+          <img
+            src={data.imgLink}
+            class="card-img-top"
+            alt="img"
+          />
+
           <div class="card-body">
             <h5 class="card-title">{data.name}</h5>
             <h6 class="card-subtitle mb-2 text-muted">{data.price}</h6>
@@ -76,7 +82,7 @@ const FeatureProduct = () => {
     <div className="FPSection">
       <h2 class="text-center"> Featurs Products </h2>
       <Slider {...settings}>
-            {ProductData}
+        {ProductData}
       </Slider>
     </div>
   );

@@ -73,6 +73,7 @@ function PaymentForm(props) {
   const sendData = (e,props) => {
     e.preventDefault();
     let Dr_name = props.AddressForm[0].Dr_name
+    let Dr_type = props.AddressForm[0].D_type
     let F_name = props.AddressForm[0].F_name
     let L_name = props.AddressForm[0].L_name
     let TimePeriod = props.AddressForm[0].TimePeriod
@@ -90,6 +91,7 @@ function PaymentForm(props) {
 
     let newAppointment = {
       Dr_name,
+      Dr_type,
       TimePeriod,
       Date,
       F_name,

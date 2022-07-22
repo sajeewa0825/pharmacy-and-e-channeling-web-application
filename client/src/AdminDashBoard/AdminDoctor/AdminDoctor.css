@@ -1,0 +1,91 @@
+.AdminDoctor-container {
+  background-color: #f1f5fc;
+}
+.adminDoc_top_row {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  border-bottom: 1px solid rgba(197, 197, 197, 0.808);
+}
+/* .adminDoc_top_row .col h4 {
+  letter-spacing: 0.5px;
+} */
+.adminDoc_top_row .col h4::after {
+  display: block;
+  content: "";
+  height: 3px;
+  width: 50px;
+  background-color: #009efb;
+  border-radius: 5px;
+}
+.AdminDoctor_AddDoc_btn {
+  background: #009efb;
+  padding: 10px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 5px;
+}
+.AdminDoctor_AddDoc_btn i {
+  font-size: 15px;
+  margin-right: 3px;
+}
+.AdminDoctor_modal_Head {
+  background: #009efb;
+  color: white;
+}
+
+.AdminDoctor_modal_Head h5 {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+.AdminDoctor_modal_Submit_Btn {
+  background-color: #009efb;
+  color: white;
+  padding: 6px;
+  font-weight: 500;
+  border-radius: 5px;
+}
+.AdminDoc_DocDtail_card {
+  background: #ffffff;
+  padding: 0;
+  box-shadow: 0 1px 6px 1px rgb(69 65 78 / 10%);
+  border-radius: 10px;
+}
+.AdminDoc_sec {
+  display: flex;
+  align-items: center;
+}
+.AdminDoc_DocDtail_card_body i {
+  font-size: 20px;
+}
+.AdminDoc_DocDtail_card_body span .bi-pencil-fill {
+  color: green;
+}
+.AdminDoc_DocDtail_card_body span .bi-trash {
+  color: red;
+}
+.AdminDoc_DocDtail_card_body span {
+  float: right;
+}
+.AdminDoc_sec_Text h6 {
+  font-weight: 500;
+  font-size: 14px;
+  color: black;
+}
+.AdminDoc_sec_Text h7 {
+  font-weight: 500;
+  font-size: 14px;
+  color: rgb(116, 116, 116);
+}
+.AdminDoc_sec_Text p {
+  font-weight: 500;
+  font-size: 14px;
+  color: rgb(0, 0, 0);
+  margin-top: 10px;
+}
+.AdminDoc_sec_Text p i {
+  color: black;
+  font-size: 14px;
+}
