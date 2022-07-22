@@ -9,20 +9,10 @@ MongoDB, Expressjs, React/Redux, Nodejs
 
 Medisuite is a MERN stack web project.
 
-## Installation:
-
-Use the package manager npm to install medisuite.
-
-```bash
-
-
-After clone or download this repository....
-
-Go to terminal:-
-1.Install npm for backend ---- npm install
-2.Go to client folder & install npm for fronted ----- npm install
-
-
+## clone or download
+```terminal
+$ git clone https://github.com/amazingandyyy/mern.git
+$ npm i
 ```
 
 ## How to run project in localhost:
