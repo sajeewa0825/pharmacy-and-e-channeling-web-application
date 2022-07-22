@@ -9,14 +9,14 @@ MongoDB, Expressjs, React/Redux, Nodejs
 
 Medisuite is a MERN stack web project.
 
-# Clone or download
+## Clone or download
 ```terminal
 
 $ git clone https://github.com/sajeewa0825/pharmacy-and-e-channeling-web-application.git
 $ npm install
 ```
 
-# Client-side usage(PORT: 3000)
+## Client-side usage(PORT: 3000)
 
 ```terminal
 
