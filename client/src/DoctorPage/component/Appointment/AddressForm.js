@@ -37,7 +37,7 @@ function AddressForm(props) {
 
     useEffect(() => {
         const getdoctor = () => {
-            axios.get("http://Localhost:8080/regdoctor").then((res) => {
+            axios.get("https://medisuite.herokuapp.com/regdoctor").then((res) => {
                 console.log(res.data)
                 SetDoctordata(res.data)
             }).catch((err) => {
@@ -315,10 +315,12 @@ export default connect(null, matchDispatchToProps)(AddressForm)
 
 
 const doctor = [
-    { label: "hart" },
-    { label: "iye" },
-    { label: "brain" },
-]
+    { label: "Select" },
+    { label: "cardiologist" },
+    { label: "dermatologist" },
+    { label: "Counsiling psychologist" },
+    { label: "cancer surgeon" },
+  ]
 
 const gender = [
     { label: "Male" },

@@ -9,7 +9,7 @@ const Head = () => {
     <div>
       <div className="container-fluid">
         <div className="row ContNavRow ">
-          <div class="col-12 d-flex justify-content-center ">
+          <div class="col-12 Navhead-Col">
             <ul className="details">
               <li>
                 <img className="iconNav" src={Phone} />

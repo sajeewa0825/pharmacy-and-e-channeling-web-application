@@ -1,9 +1,107 @@
-import React from "react";
+import axios from "axios";
+import React, { useState, useEffect } from 'react'
 import "./AdminHome.css";
 
 import { Link } from "react-router-dom";
 
 const AdminHome = () => {
+  const [user, Setuser] = useState([])
+  const [Product, SetProduct] = useState([])
+  const [appointment, Setappointment] = useState([])
+  const [doctordata, SetDoctordata] = useState([])
+
+  useEffect(() => {
+    const getdata = () => {
+      const admin =localStorage.getItem('admintoken')
+      const data ={
+        token :admin
+      }
+      console.log(data)
+      axios.post("https://medisuite.herokuapp.com/adminverify",data).then((res) => {
+          if(res.data.status === 200){
+              console.log("admin verfiy")
+          }else{
+            localStorage.clear();
+            window.location.href = '/signin'
+          }
+      }).catch((err) => {
+        localStorage.clear();
+        window.location.href = '/signin'
+      })
+
+
+      axios.get("https://medisuite.herokuapp.com/getuser").then((res) => {
+        Setuser(res.data)
+      }).catch((err) => {
+        alert(err)
+      })
+
+      axios.get("https://medisuite.herokuapp.com/addproduct").then((res) => {
+        console.log(res.data)
+        SetProduct(res.data)
+      }).catch((err) => {
+        alert(err)
+      })
+    }
+
+    axios.get("https://medisuite.herokuapp.com/getappointment").then((res) => {
+      console.log(res.data)
+      Setappointment(res.data)
+    }).catch((err) => {
+      alert(err)
+    })
+
+    axios.get("https://medisuite.herokuapp.com/regdoctor").then((res) => {
+      console.log(res.data)
+      SetDoctordata(res.data)
+    }).catch((err) => {
+      alert(err)
+    })
+
+    axios.get("https://medisuite.herokuapp.com/addproduct").then((res) => {
+      console.log(res.data)
+      SetProduct(res.data)
+    }).catch((err) => {
+      alert(err)
+    })
+
+    getdata();
+  }, [])
+
+  const appointmentlist = appointment.map((data) => {
+    return (
+      <tr>
+        <td>
+          <i class="bi bi-person"></i>{data.F_name}
+        </td>
+        <td>{data.Dr_name}</td>
+        <td>{data.Date}</td>
+        <td>{data.Time}</td>
+        <td>{data.P_no}</td>
+      </tr>
+    )
+  })
+
+
+  const doctorlist = doctordata.map((data) => {
+    return (
+      <li class="list-group-item p-3">{data.name}</li>
+    )
+  })
+
+  const product = Product.map((data) => {
+    return (
+      <tr key={data._id}>
+      <td>
+        {data._id}
+      </td>
+      <td>{data.name}</td>
+      <td>{data.price}</td>
+      <td>{data.qty}</td>
+    </tr>
+    )})
+
+
   return (
     <div>
       <div className="container-fluid p-0">
@@ -13,7 +111,7 @@ const AdminHome = () => {
               <div class="adminHome_Card">
                 <div class="card-body adminHome_Card_Body">
                   <span className="pb-2">DOCTORS</span>
-                  <span>1500</span>
+                  <span>{doctordata.length}</span>
                 </div>
                 <i class="fas fa-stethoscope"></i>
               </div>
@@ -25,7 +123,7 @@ const AdminHome = () => {
               <div class="adminHome_Card">
                 <div class="card-body adminHome_Card_Body">
                   <span className="pb-2">PATIENTS</span>
-                  <span>1500</span>
+                  <span>{user.length}</span>
                 </div>
                 <i class="bi bi-people"></i>
               </div>
@@ -36,7 +134,7 @@ const AdminHome = () => {
               <div class="adminHome_Card">
                 <div class="card-body adminHome_Card_Body">
                   <span className="pb-2">APPOINMENTS</span>
-                  <span>1500</span>
+                  <span>{appointment.length}</span>
                 </div>
                 <i class="bi bi-card-heading"></i>
               </div>
@@ -47,7 +145,7 @@ const AdminHome = () => {
               <div class="adminHome_Card">
                 <div class="card-body adminHome_Card_Body">
                   <span className="pb-2">PRODUCTS</span>
-                  <span>1500</span>
+                  <span>{Product.length}</span>
                 </div>
                 <i class="bi bi-bag-plus"></i>
               </div>
@@ -77,60 +175,7 @@ const AdminHome = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>
-                          <i class="bi bi-person"></i>Mark
-                        </td>
-                        <td>Otto</td>
-                        <td>2020-7-9</td>
-                        <td>10.00 a.m</td>
-                        <td>0712345678</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <i class="bi bi-person"></i>Mark
-                        </td>
-                        <td>Otto</td>
-                        <td>2020-7-9</td>
-                        <td>10.00 a.m</td>
-                        <td>0712345678</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <i class="bi bi-person"></i>Mark
-                        </td>
-                        <td>Otto</td>
-                        <td>2020-7-9</td>
-                        <td>10.00 a.m</td>
-                        <td>0712345678</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <i class="bi bi-person"></i>Mark
-                        </td>
-                        <td>Otto</td>
-                        <td>2020-7-9</td>
-                        <td>10.00 a.m</td>
-                        <td>0712345678</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <i class="bi bi-person"></i>Mark
-                        </td>
-                        <td>Otto</td>
-                        <td>2020-7-9</td>
-                        <td>10.00 a.m</td>
-                        <td>0712345678</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <i class="bi bi-person"></i>Mark
-                        </td>
-                        <td>Otto</td>
-                        <td>2020-7-9</td>
-                        <td>10.00 a.m</td>
-                        <td>0712345678</td>
-                      </tr>
+                      {appointmentlist}
                     </tbody>
                   </table>
                 </div>
@@ -142,12 +187,7 @@ const AdminHome = () => {
               <div className="card-body">
                 <ul class="list-group ">
                   <li class="list-group-item p-3">DOCTOR LIST</li>
-                  <li class="list-group-item p-3">A second item</li>
-                  <li class="list-group-item p-3">A third item</li>
-                  <li class="list-group-item p-3">A fourth item</li>
-                  <li class="list-group-item p-3">And a fifth one</li>
-                  <li class="list-group-item p-3">And a fifth one</li>
-                  <li class="list-group-item p-3">And a fifth one</li>
+                  {doctorlist}
                 </ul>
               </div>
             </div>
@@ -168,64 +208,10 @@ const AdminHome = () => {
                       <th scope="col">Product Name</th>
                       <th scope="col">Price</th>
                       <th scope="col">QTY</th>
-                      <th scope="col">Product Image</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>
-                        <i class="bi bi-person"></i>Mark
-                      </td>
-                      <td>Otto</td>
-                      <td>2020-7-9</td>
-                      <td>10.00 a.m</td>
-                      <td>0712345678</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <i class="bi bi-person"></i>Mark
-                      </td>
-                      <td>Otto</td>
-                      <td>2020-7-9</td>
-                      <td>10.00 a.m</td>
-                      <td>0712345678</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <i class="bi bi-person"></i>Mark
-                      </td>
-                      <td>Otto</td>
-                      <td>2020-7-9</td>
-                      <td>10.00 a.m</td>
-                      <td>0712345678</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <i class="bi bi-person"></i>Mark
-                      </td>
-                      <td>Otto</td>
-                      <td>2020-7-9</td>
-                      <td>10.00 a.m</td>
-                      <td>0712345678</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <i class="bi bi-person"></i>Mark
-                      </td>
-                      <td>Otto</td>
-                      <td>2020-7-9</td>
-                      <td>10.00 a.m</td>
-                      <td>0712345678</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <i class="bi bi-person"></i>Mark
-                      </td>
-                      <td>Otto</td>
-                      <td>2020-7-9</td>
-                      <td>10.00 a.m</td>
-                      <td>0712345678</td>
-                    </tr>
+                  {product}
                   </tbody>
                 </table>
               </div>

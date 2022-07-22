@@ -20,8 +20,8 @@ function Copyright(props) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
             {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                Your Website
+            <Link color="inherit" >
+                Medisuite.com
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -48,7 +48,7 @@ export default function SignIn() {
         let checkerror =validate(data1);
         if (checkerror === 0) {
 
-            const response = await fetch('http://Localhost:8080/signin', {
+            const response = await fetch('https://medisuite.herokuapp.com/signin', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -62,13 +62,13 @@ export default function SignIn() {
             const data = await response.json()
 
             if (data.user) {
-                console.log(data.user)
-                console.log(localStorage)
                 localStorage.setItem('token', data.user.token)
                 localStorage.setItem('name', data.user.name)
-                console.log(localStorage)
                 window.location.href = '/drhome'
-            } else {
+            } else if(data.admin){
+                localStorage.setItem('admintoken', data.admin)
+                window.location.href = '/admin'
+            }else {
                 alert('Please check your username and password')
                 document.getElementById("form2").reset();
             }
@@ -154,20 +154,6 @@ export default function SignIn() {
                         >
                             Sign In
                         </Button>
-                        <div className="text-center mb-3">
-                            <p> Or Sign in with:</p>
-                            <button type="button" className="btn btn-link btn-floating mx-1">
-                                <img src='https://cdn1.iconfinder.com/data/icons/logotypes/32/square-facebook-128.png' width="36px" alt='Facebook' />
-                            </button>
-
-                            <button type="button" className="btn btn-link btn-floating mx-1">
-                                <img src='https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png' width="36px" alt='Google' />
-                            </button>
-
-                            <button type="button" className="btn btn-link btn-floating mx-1">
-                                <img src='https://cdn3.iconfinder.com/data/icons/social-media-2253/25/Group-256.png' width="36px" alt='Git hub' />
-                            </button>
-                        </div>
                         <Grid container>
                             <Grid item xs>
                                 <Link href="/frogetpassword" variant="body2" className='setfont'>

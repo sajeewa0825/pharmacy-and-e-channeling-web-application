@@ -1,12 +1,40 @@
-import React from "react";
-import Logo from "./image/phy.png";
+import React, { useState} from 'react'
+import Logo from "./image/Group 4.svg";
 import "./nav.css";
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
 // import phone from "./image/phone-solid.svg";
 // import loca from "./image/location-dot-solid.svg";
 // import clockIcon from "./image/clock-solid.svg";
 
-const navBar = () => {
+const NavBar = (props) => {
+  const [item, Setitem] = useState([props.CartItems])
+
+  const logout = (e) =>{
+    localStorage.clear();
+    window.location.href = '/signin'
+  }
+
+  function LoginCheck() {
+    if (!localStorage.token) {
+      return(
+      <li>
+      <Link class="dropdown-item" to={"/signin"}>
+        <i class="bi bi-box-arrow-left me-2 text-dark fs-5" onClick={(e) => logout(e)}></i> Login
+      </Link>
+    </li>
+      )
+    }else{
+      return(
+        <li>
+        <a class="dropdown-item" href="#">
+          <i class="bi bi-box-arrow-left me-2 text-dark fs-5" onClick={(e) => logout(e)}></i> Log
+          out
+        </a>
+      </li>
+      )
+    }}
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
@@ -15,11 +43,8 @@ const navBar = () => {
             <img
               src={Logo}
               alt=""
-              width="50"
-              height="34"
               className="d-inline-block align-text-center"
             />
-            Pharmacy
           </a>
           <button
             className="navbar-toggler "
@@ -43,7 +68,7 @@ const navBar = () => {
                   aria-current="page"
                   to={"/phhome"}
                 >
-                  <i className="fa fa-home"></i>Home
+                  <i class="fa fa-home"></i>Home
                 </Link>
               </li>
               <li className="nav-item">
@@ -52,13 +77,18 @@ const navBar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to={"/phprice"}>
-                  <i className="fa fa-usd"></i>Pricing
+                <Link className="nav-link" to={"/drhome"}>
+                  <i class="fa fa-stethoscope"></i>Doctor
                 </Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to={"/phshop"}>
                   <i className="fa fa-shopping-bag"></i>Shop
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to={"/contactUs"}>
+                  <i className="fa fa-mobile"></i>Contact Us
                 </Link>
               </li>
             </ul>
@@ -67,22 +97,49 @@ const navBar = () => {
             className="collapse navbar-collapse justify-content-end "
             id="navbarNavDropdown"
           >
+            <Link to={"/cart"}>
+              {" "}
+              <button
+                type="button"
+                className=" btn-none position-relative me-1 p-0"
+              >
+                <i className="bi bi-cart3 fs-4 text-black "></i>
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-circle CartBadge ">
+                {item[0].length}<span className="visually-hidden">unread messages</span>
+                </span>
+              </button>
+            </Link>
+            {/* UserImage Start */}
             <button
               type="button"
-              className="btn btn-none position-relative me-1 p-0"
+              data-bs-toggle="dropdown"
+              data-bs-display="static"
+              aria-expanded="false"
+              className="ms-2"
             >
-              <i className="bi bi-cart3 fs-4 text-black "></i>
-              <span className="position-absolute top-0 start-100 translate-middle badge rounded-circle CartBadge ">
-                2<span className="visually-hidden">unread messages</span>
-              </span>
+              <img
+                src="https://ps.w.org/user-avatar-reloaded/assets/icon-256x256.png?rev=2540745"
+                alt=""
+                className="UserImage-NavBar"
+              />
             </button>
-            <button type="button" className="btn  ">
-              <i className="bi bi-person text-black fs-4"></i>
-            </button>
+
+            <ul class="dropdown-menu dropdown-menu-lg-end userImage-ul">
+              <span>{localStorage.getItem("name")}</span>
+ 
+            {LoginCheck()}
+            </ul>
+            {/* UserImage End */}
           </div>
         </div>
       </nav>
     </div>
   );
 };
-export default navBar;
+function mapStateToProps(state) {
+  return {
+    CartItems: state.CartItem.cartItems
+  }
+}
+
+export default connect(mapStateToProps)(NavBar)

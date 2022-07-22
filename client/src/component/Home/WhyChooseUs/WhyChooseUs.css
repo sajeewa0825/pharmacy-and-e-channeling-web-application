@@ -1,9 +1,9 @@
 .WhyChoosUsCardIMG {
   width: 70px;
   height: 70px;
+  display: inline;
 }
 .whyChoosUsCard {
-  position: relative;
   display: flex;
   flex-direction: column;
   min-width: 0;

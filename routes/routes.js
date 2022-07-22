@@ -3,12 +3,14 @@ const appointment = require("../models/appointment.js");
 const signup = require("../models/register");
 const doctor = require("../models/doctor")
 const product = require("../models/product")
+const buy = require("../models/buyitem")
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const SendMail = require("../utils/sendEmail")
 
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
+const ADMIN1 = process.env.ADMIN1
 
 // add appointment details
 // http://Localhost:8080/addappointment
@@ -96,11 +98,11 @@ router.route("/appointmentdelete/:id").delete(async (req, res) => {
 })
 
 
-// update route
+// update appointment
 // http://Localhost:8080/update/dfdsrr353fd
 router.route("/appointmentupdate/:id").put(async (req, res) => {
     let userId = req.params.id;
-    const { 
+    const {
         Dr_name,
         Dr_type,
         Time,
@@ -181,10 +183,33 @@ router.route("/signup").post(async (req, res) => {
 
 })
 
+// get user
+// http://Localhost:8080/getuser
+router.route("/getuser").get((req, res) => {
+
+    signup.find().then((doctor) => {
+        res.json(doctor);
+    }).catch((err) => {
+        console.log(err)
+    })
+})
+
+// delete doctor
+// http://Localhost:8080/userdelete/:id
+router.route("/userdelete/:id").delete(async (req, res) => {
+    let userId = req.params.id;
+
+    await signup.findByIdAndDelete(userId).then(() => {
+        res.status(200).send({ status: "user delete " })
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).send({ status: "user delete error", error: err.message });
+    })
+})
 
 
 // user signin
-// http://Localhost:8080/doctor/signin
+// http://Localhost:8080/signin
 router.route("/signin").post(async (req, res) => {
     const user = await signup.findOne({
         Email: req.body.Email,
@@ -203,11 +228,19 @@ router.route("/signin").post(async (req, res) => {
     if (isPasswordValid) {
         const token = jwt.sign(
             {
-                name: user.name,
                 Email: user.Email,
             },
             JWT_SECRET_KEY, {
             expiresIn: '24h'
+        }
+        )
+
+        const admintoken = jwt.sign(
+            {
+                Email: user.Email,
+            },
+            JWT_SECRET_KEY, {
+            expiresIn: '6h'
         }
         )
 
@@ -216,7 +249,11 @@ router.route("/signin").post(async (req, res) => {
             name
         }
 
-        return res.json({ status: 200, user: userdata })
+        if (ADMIN1 === user.Email) {
+            return res.json({ status: 200, admin: admintoken })
+        } else {
+            return res.json({ status: 200, user: userdata })
+        }
     } else {
         return res.json({ status: 'error', user: false })
     }
@@ -271,6 +308,55 @@ router.route("/regdoctor").get((req, res) => {
         console.log(err)
     })
 })
+
+// delete doctor
+// http://Localhost:8080/doctordelete/:id
+router.route("/doctordelete/:id").delete(async (req, res) => {
+    let userId = req.params.id;
+
+    await doctor.findByIdAndDelete(userId).then(() => {
+        res.status(200).send({ status: "doctor delete " })
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).send({ status: "doctor delete error", error: err.message });
+    })
+})
+
+// update appointment
+// http://Localhost:8080/update/dfdsrr353fd
+router.route("/doctorupdate/:id").put(async (req, res) => {
+    let userId = req.params.id;
+    const {
+        name,
+        specialist,
+        timePeriod,
+        Id,
+        Dob,
+        Gender,
+        Email,
+        P_no,
+        Address } = req.body;
+
+    const updateData = {
+        name,
+        specialist,
+        timePeriod,
+        Id,
+        Dob,
+        Gender,
+        Email,
+        P_no,
+        Address
+    }
+
+    await doctor.findByIdAndUpdate(userId, updateData).then(() => {
+        res.status(200).send({ status: "Doctor updated " })
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).send({ status: "Doctor  update error ", error: err.message });
+    })
+})
+
 
 
 // send password link
@@ -352,12 +438,15 @@ router.route("/addproduct").post((req, res) => {
     const name = req.body.name;
     const imgLink = req.body.imgLink;
     const price = req.body.price;
-
+    const qty = req.body.qty;
+    const info = req.body.info;
 
     const newproduct = new product({
         name,
         imgLink,
-        price
+        price,
+        qty,
+        info
     })
 
     newproduct.save().then(() => {
@@ -369,7 +458,7 @@ router.route("/addproduct").post((req, res) => {
 
 
 // get product
-// http://Localhost:8080/doctor/addproduct
+// http://Localhost:8080/addproduct
 router.route("/addproduct").get((req, res) => {
 
     product.find().then((product) => {
@@ -379,31 +468,217 @@ router.route("/addproduct").get((req, res) => {
     })
 })
 
-// send video id from email
-// http://Localhost:8080/videochat
-router.route("/videochat").post((req, res) => {
-    console.log(req.body)
+// delete doctor
+// http://Localhost:8080/deleteproduct/:id
+router.route("/deleteproduct/:id").delete(async (req, res) => {
+    let userId = req.params.id;
 
-    const subject = "User online counseling join"
-    const text = `
-        Dear admin
-        please set doctor for call id
-    
-        ........................................
+    await product.findByIdAndDelete(userId).then(() => {
+        res.status(200).send({ status: "product delete " })
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).send({ status: "product delete error", error: err.message });
+    })
+})
 
-        call id : ${req.body.me}
-        
-        ........................................
-    
-        Regards,
-        The Medisute Server`;
+// update appointment
+// http://Localhost:8080/update/dfdsrr353fd
+router.route("/productupdate/:id").put(async (req, res) => {
+    let userId = req.params.id;
+    const {
+        name,
+        qty,
+        imgLink,
+        price,
+        info
+    } = req.body;
 
+    const updateData = {
+        name,
+        qty,
+        imgLink,
+        price,
+        info
+    }
 
-    SendMail(ADMIN_EMAIL, subject, text)
-    return res.send({ status: 200, message: 'email send' })
+    await product.findByIdAndUpdate(userId, updateData).then(() => {
+        res.status(200).send({ status: "product updated " })
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).send({ status: "product  update error ", error: err.message });
+    })
 })
 
 
+
+// add buyitem
+// http://Localhost:8080/buyitem
+router.route("/buyitem").post((req, res) => {
+
+    const name = req.body.name;
+    const user = req.body.user;
+    const address = req.body.address;
+    const phone = req.body.phone;
+    const item = req.body.item;
+    const bill = req.body.bill;
+    const d_t = new Date()
+    const status = req.body.status;
+
+    const decode = jwt.verify(user, JWT_SECRET_KEY)
+
+    let year = d_t.getFullYear();
+    let month = ("0" + (d_t.getMonth() + 1)).slice(-2);
+    let day = ("0" + d_t.getDate()).slice(-2);
+
+    const date =year + "-" + month + "-" + day
+
+    if (decode.Email) {
+
+        const newbuyitem = new buy({
+            name,
+            user: decode.Email,
+            address,
+            phone,
+            item,
+            bill,
+            date,
+            status
+        })
+
+
+
+        newbuyitem.save().then((response) => {
+            res.json({ status: 200, message: "Product buy succesfull" });
+            const subject = "Your order has shipped"
+            const text = `
+            Medisuite,
+            Woo hoo! Your order is on its way. Your order details can be found below.
+            
+            TRACK YOUR ORDER 
+            
+            ORDER SUMMARY:
+            
+            Order ID: ${response._id}
+            Order Date: ${date}
+            Order Total: ${bill}
+            Phone number: ${phone}
+            SHIPPING ADDRESS: ${address}
+
+            ..Item List..
+            ${item.map( (data) =>{
+                return ("Name- \t" +data.name+ "\t  price Rs.- " +data.price + "\tquntity- \t" +data.qty+"\n\t   ")
+            })}
+            
+            
+            Thank you for placing your order!`
+        
+        
+            SendMail(decode.Email, subject, text)
+        }).catch((err) => {
+            console.log(err);
+            res.json(err)
+        })
+
+    } else {
+        return res.send({ status: 500, message: 'Not valid user please Relogin' })
+
+    }
+
+
+})
+
+
+// get buyitem
+// http://Localhost:8080/addproduct
+router.route("/buyitem").get((req, res) => {
+    let token = req.query.token
+    const decode = jwt.verify(token, JWT_SECRET_KEY)
+
+    if (decode.Email) {
+        buy.find({
+            user:decode.Email,
+            status:"pending"
+        }).then((product) => {
+            res.json(product);
+        }).catch((err) => {
+            console.log(err)
+            res.json(err);
+        })
+    }
+
+})
+
+// update buyitem status
+// http://Localhost:8080/buyitem/dfdsrr353fd
+router.route("/buyitem/:id").put(async (req, res) => {
+    let userId = req.params.id;
+    const {
+        status
+    } = req.body;
+
+    const updateData = {
+        status
+    }
+
+    await buy.findByIdAndUpdate(userId, updateData).then(() => {
+        res.status(200).send({ status: "product updated " })
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).send({ status: "product  update error ", error: err.message });
+    })
+})
+
+// update item qty
+// http://Localhost:8080/update/dfdsrr353
+router.route("/productqtyfind/:id").get(async (req, res) => {
+    const pid = req.params.id;
+    product.find({
+        _id:pid
+    }).then((productdata) => {
+        res.json(productdata);
+    }).catch((err) => {
+        console.log(err)
+        res.json(err);
+    })
+
+
+})
+
+
+// product qty update
+// http://Localhost:8080/productqtyupdated
+router.route("/productqtyupdated/:id").put(async (req, res) => {
+    const pid = req.params.id;
+    const {
+        qty
+    } = req.body;
+    const updateData ={
+        qty:qty
+    }
+
+    product.findByIdAndUpdate(pid, updateData).then(() => {
+        res.status(200).send({ status: "product updated " })
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).send({ status: "product  update error ", error: err.message });
+    })
+})
+
+
+// update password
+// http://Localhost:8080/setpassword
+router.route("/adminverify").post(async (req, res) => {
+    try {
+        const verified = jwt.verify(req.body.token, JWT_SECRET_KEY);
+        if (verified) {
+                return res.send({ status: 200, message: 'verify' })
+        } else {
+            return res.status(401).send(error);
+        }
+    } catch (error) {
+        return res.status(401).send(error);
+    }
+});
 
 
 

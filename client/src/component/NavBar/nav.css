@@ -38,6 +38,40 @@
   height: 3px;
   transition: all 0.3s ease-in-out;
 }
+.UserImage-NavBar {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+}
+.UserImg-Div {
+  margin: 0;
+  padding: 0;
+}
+ul.userImage-ul {
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-right: 20px;
+  border: 0;
+  border-radius: 5px;
+  background: linear-gradient(145deg, #f6f9ff, #ffffff);
+  box-shadow: 2px 2px 5px #d9d9d9, -2px -2px 5px #ffffff;
+}
+ul.userImage-ul span {
+  display: flex;
+  justify-content: center;
+  border-bottom: 2px solid #00000079;
+  padding-bottom: 5px;
+}
+ul.userImage-ul li .dropdown-item {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
 
 .nav-link:hover {
   background-position: 0;
@@ -46,9 +80,12 @@
 .nav-link:hover::before {
   width: 100%;
 }
-.me-auto {
-  align-items: center;
+.nav-link i {
+  margin-right: 2px;
 }
+/* .me-auto {
+  align-items: center;
+} */
 
 .icon-circle {
   position: absolute;
@@ -63,65 +100,6 @@
   color: #fff;
 }
 
-.details {
-  display: contents;
-}
-.details li {
-  margin-inline: 100px;
-  list-style-type: none;
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-.iconNav {
-  width: 25px;
-  height: 25px;
-  margin-right: 10px;
-}
-.iconNavText {
-  font-size: 13px;
-  font-weight: bold;
-  color: #cdcdcd;
-}
 .CartBadge {
   background-color: #5089fd;
-}
-
-@media only screen and (max-width: 576px) {
-  .details li {
-    margin-inline: 2px;
-  }
-  .iconNav {
-    width: 15px;
-    height: 15px;
-    margin: 2px;
-  }
-  .iconNavText {
-    font-size: 8px;
-  }
-}
-@media only screen and (max-width: 768px) {
-  .details li {
-    margin-inline: 20px;
-  }
-  .iconNav {
-    width: 15px;
-    height: 15px;
-    margin: 3px;
-  }
-  .iconNavText {
-    font-size: 10px;
-  }
-}
-@media only screen and (max-width: 992px) {
-  .details li {
-    margin-inline: 20px;
-  }
-  .iconNav {
-    width: 15px;
-    height: 15px;
-    margin: 3px;
-  }
-  .iconNavText {
-    font-size: 10px;
-  }
 }

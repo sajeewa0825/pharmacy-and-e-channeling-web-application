@@ -1,0 +1,19 @@
+.Cart_Link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+.summeryBtn {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  background: #009efb;
+  padding: 8px;
+  border-radius: 5px;
+  font-weight: 500;
+  color: white;
+}
+.summeryBtn i {
+  font-size: 16px;
+  margin-right: 3px;
+}
