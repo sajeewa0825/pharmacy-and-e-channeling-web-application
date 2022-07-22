@@ -9,7 +9,6 @@ import Appoiment from "../DoctorPage/component/Appointment";
 import Landing from "../Landing/Landing";
 import Homeph from "../component/Home/home";
 import About from "../component/About/About";
-import Price from "../component/Price/price";
 import Shop from "../component/shop/shop";
 import Frogetpassword from "../DoctorPage/component/Login/Frogetpassword";
 import PasswordReset from "../DoctorPage/component/Login/ResetPassword";
@@ -32,7 +31,6 @@ const Routing = () => {
         <Route path="drhome" element={<Homedr />} />
         <Route path="phhome" element={<Homeph />} />
         <Route path="phaboutus" element={<About />} />
-        <Route path="phprice" element={<Price />} />
         <Route path="phshop" element={<Shop />} />
         <Route path="frogetpassword" element={<Frogetpassword />} />
         <Route path="resetpassword" element={<PasswordReset />} />

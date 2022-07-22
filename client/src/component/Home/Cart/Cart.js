@@ -323,7 +323,7 @@ const Cart = (props) => {
               </table>
               <div class="float-right text-right">
                 <h4>Subtotal:</h4>
-                <h1>${bill}</h1>
+                <h1>Rs{bill}</h1>
               </div>
             </div>
           </div>

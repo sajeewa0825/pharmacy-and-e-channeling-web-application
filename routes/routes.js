@@ -509,29 +509,6 @@ router.route("/productupdate/:id").put(async (req, res) => {
     })
 })
 
-// send video id from email
-// http://Localhost:8080/videochat
-router.route("/videochat").post((req, res) => {
-    console.log(req.body)
-
-    const subject = "User online counseling join"
-    const text = `
-        Dear admin
-        please set doctor for call id
-    
-        ........................................
-
-        call id : ${req.body.me}
-        
-        ........................................
-    
-        Regards,
-        The Medisute Server`;
-
-
-    SendMail(ADMIN_EMAIL, subject, text)
-    return res.send({ status: 200, message: 'email send' })
-})
 
 
 // add buyitem

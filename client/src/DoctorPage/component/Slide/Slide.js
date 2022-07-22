@@ -1,10 +1,8 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Popover } from '@headlessui/react'
-import e from 'cors'
 import { Link } from 'react-router-dom'
 import Navbar from "../Navbar/Navbar"
 import "../Navbar/Navbar.css"
-
 
 
 export default function Slide() {
