@@ -56,7 +56,7 @@ function PaymentForm(props) {
     if (!values.cardNumber) {
       errors.cardNumber = "Card Number is required";
       checkerror = 1;
-    } else if (values.cardNumber.length !== 16) {
+    } else if (values.cardNumber.length < 16 || values.cardNumber.length > 18 ) {
       errors.cardNumber = "Card Number is invalid";
       checkerror = 1;
     }
@@ -167,7 +167,7 @@ function PaymentForm(props) {
         </Grid>
         <Grid item xs={12}>
           <Button sx={{ mt: 3, ml: 1 }} variant="contained" onClick={CheckValidate.bind()}>
-            Pay
+           Rs.3000 Pay
           </Button>
         </Grid>
       </Grid>
