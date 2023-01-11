@@ -18,7 +18,7 @@ const Shop = (props) => {
   useEffect(() => {
     
     const getproduct = () => {
-      axios.get("https://medisuite.herokuapp.com/addproduct").then((res) => {
+      axios.get("https://web-production-2bee.up.railway.app/addproduct").then((res) => {
         console.log(res.data)
         SetProduct(res.data)
       }).catch((err) => {

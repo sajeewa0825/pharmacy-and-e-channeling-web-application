@@ -7,7 +7,7 @@ const ProductBlog = () => {
 
   useEffect(() => {
     const getdoctor = () => {
-      axios.get("http://Localhost:8080/addproduct").then((res) => {
+      axios.get("https://web-production-2bee.up.railway.app/addproduct").then((res) => {
         console.log(res.data)
         SetProduct(res.data)
       }).catch((err) => {

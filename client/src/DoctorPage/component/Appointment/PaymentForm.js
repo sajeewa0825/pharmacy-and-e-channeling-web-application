@@ -104,7 +104,7 @@ function PaymentForm(props) {
       Total_bill,
       AppointmentSendTime
     }
-    axios.post("https://medisuite.herokuapp.com/addappointment", newAppointment).then((res) => {
+    axios.post("https://web-production-2bee.up.railway.app/addappointment", newAppointment).then((res) => {
       alert("Payed!  This is a success alert")
       console.log(res)
     }).catch((err) => {

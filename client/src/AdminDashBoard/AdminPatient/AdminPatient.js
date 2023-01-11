@@ -14,7 +14,7 @@ const AdminPatient = () => {
         token: admin,
       };
       axios
-        .post("https://medisuite.herokuapp.com/adminverify", data)
+        .post("https://web-production-2bee.up.railway.app/adminverify", data)
         .then((res) => {
           if (res.data.status === 200) {
             console.log("admin verfiy");
@@ -29,7 +29,7 @@ const AdminPatient = () => {
         });
 
       axios
-        .get("https://medisuite.herokuapp.com/getuser")
+        .get("https://web-production-2bee.up.railway.app/getuser")
         .then((res) => {
           Setuser(res.data);
         })
@@ -61,7 +61,7 @@ const AdminPatient = () => {
 
   const deleteuser = (id) => {
     axios
-      .delete(`https://medisuite.herokuapp.com/userdelete/${id}`)
+      .delete(`https://web-production-2bee.up.railway.app/userdelete/${id}`)
       .then((res) => {
         alert("user deleted");
         Setuser(user.filter((data) => data._id !== id));

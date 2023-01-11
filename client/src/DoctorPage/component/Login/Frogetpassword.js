@@ -34,7 +34,7 @@ export default function Resetpassword() {
         let checkerror =validate(data1);
 
         if (checkerror===0) {
-            axios.post('https://medisuite.herokuapp.com/passwordreset', data1).then((res) => {
+            axios.post('https://web-production-2bee.up.railway.app/passwordreset', data1).then((res) => {
                 console.log(res)
                 alert(res.data.message)
                 window.location.href = '/resetpassword'

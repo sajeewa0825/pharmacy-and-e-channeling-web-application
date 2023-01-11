@@ -97,7 +97,7 @@ const AdminProduct = () => {
   const productupdate = (e) => {
     e.preventDefault();
     axios
-      .put(`https://medisuite.herokuapp.com/productupdate/${user_id}`, newproduct)
+      .put(`https://web-production-2bee.up.railway.app/productupdate/${user_id}`, newproduct)
       .then((res) => {
         Setuser_id("");
         Setsubmit("");

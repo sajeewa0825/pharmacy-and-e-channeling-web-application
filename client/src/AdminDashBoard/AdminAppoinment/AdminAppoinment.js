@@ -95,7 +95,7 @@ const AdminAppoinment = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     axios
-      .post("https://medisuite.herokuapp.com/addappointment", newAppointment)
+      .post("https://web-production-2bee.up.railway.app/addappointment", newAppointment)
       .then((res) => {
         document.getElementById("form").reset();
         document.getElementById("closebutton").click();
@@ -109,7 +109,7 @@ const AdminAppoinment = () => {
   const deletedata = (id) => {
     console.log(id);
     axios
-      .delete(`https://medisuite.herokuapp.com/appointmentdelete/${id}`)
+      .delete(`https://web-production-2bee.up.railway.app/appointmentdelete/${id}`)
       .then((res) => {
         Setappointment(appointment.filter((item) => item._id !== id));
         alert("Appointment deleted");

@@ -14,7 +14,7 @@ const Cart = (props) => {
       const data ={
         token :admin
       }
-      axios.post("https://medisuite.herokuapp.com/adminverify",data).then((res) => {
+      axios.post("https://web-production-2bee.up.railway.app/adminverify",data).then((res) => {
           if(res.data.status === 200){
               console.log("verfiy")
           }else{
@@ -95,7 +95,7 @@ const Cart = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    axios.post("https://medisuite.herokuapp.com/buyitem", senddata).then((res) => {
+    axios.post("https://web-production-2bee.up.railway.app/buyitem", senddata).then((res) => {
       console.log(res.data.status)
 
       if (res.data.status === 500) {
@@ -103,13 +103,13 @@ const Cart = (props) => {
       } else {
 
         for (let index = 0; index < item.length; index++) {
-          axios.get(`https://medisuite.herokuapp.com/productqtyfind/${item[index]._id}`).then((res) => {
+          axios.get(`https://web-production-2bee.up.railway.app/productqtyfind/${item[index]._id}`).then((res) => {
             console.log(res.data[0].qty)
               const data={
                 qty:parseInt(res.data[0].qty)- parseInt(item[index].qty)
               }
               console.log(data)
-            axios.put(`https://medisuite.herokuapp.com/productqtyupdated/${item[index]._id}`,data).then((res) => {
+            axios.put(`https://web-production-2bee.up.railway.app/productqtyupdated/${item[index]._id}`,data).then((res) => {
               console.log(res)
             }).catch((err) => {
               alert(err)
@@ -136,7 +136,7 @@ const Cart = (props) => {
   const orderconfrom = (e) => {
 
     e.preventDefault();
-    axios.get("https://medisuite.herokuapp.com/buyitem", {
+    axios.get("https://web-production-2bee.up.railway.app/buyitem", {
       params: {
         token: localStorage.getItem("token")
       }
@@ -158,7 +158,7 @@ const Cart = (props) => {
     console.log(status)
 
     if (status) {
-      axios.put(`https://medisuite.herokuapp.com/buyitem/${Id}`, updatedata).then((res) => {
+      axios.put(`https://web-production-2bee.up.railway.app/buyitem/${Id}`, updatedata).then((res) => {
         alert("Updated")
         Setstatus(false)
       }).catch((err) => {

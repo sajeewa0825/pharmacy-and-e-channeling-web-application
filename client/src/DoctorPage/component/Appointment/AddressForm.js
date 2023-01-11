@@ -37,7 +37,7 @@ function AddressForm(props) {
 
     useEffect(() => {
         const getdoctor = () => {
-            axios.get("https://medisuite.herokuapp.com/regdoctor").then((res) => {
+            axios.get("https://web-production-2bee.up.railway.app/regdoctor").then((res) => {
                 console.log(res.data)
                 SetDoctordata(res.data)
             }).catch((err) => {

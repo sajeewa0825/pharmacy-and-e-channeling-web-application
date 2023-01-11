@@ -123,7 +123,7 @@ const AdminDoctor = () => {
   const doctorupdatehandler = (e) => {
     e.preventDefault();
     axios
-      .put(`https://medisuite.herokuapp.com/doctorupdate/${user_id}`, updatedata)
+      .put(`https://web-production-2bee.up.railway.app/doctorupdate/${user_id}`, updatedata)
       .then((res) => {
         Setuser_id("");
         Setsubmit("");
